@@ -50,9 +50,19 @@ export const useGame = () => {
   }
 
   const handleGuess = (letter: string) => {
+    {/* CHANGE: Added a check to see if the player has already won or lost the game, to make sure they can't make any new guesses after the game is complete. */}
+    if(isGameOver || isSolved(country, guesses)) return;
+
     if (!country?.name?.toLowerCase().includes(letter.toLowerCase())) {
-      const strikeCopy = [...strikes]
-      strikeCopy.pop()
+
+      {/* CHANGE: NO-COMMENT YET */}
+      const newStrikes = [...strikes]
+      const strike = newStrikes.find((strike: any) => !strike.guess)
+      if (strike) {
+        strike.guess = letter
+        strike.icon = '🚫'
+        setStrikes(newStrikes)
+      }
     }
     setGuesses((prev: string[]) => [...prev, letter.toLowerCase()])
   }

@@ -31,15 +31,14 @@ const Home: NextPage = () => {
             'Content-Type': 'application/json',
           },
         })
-
-        const result = { data: [] }
+        const result = await response.json()
+        setCountry(result.data)
       } catch (error) {
         console.log(error)
       }
     }
     handler()
   }, [setCountry])
-
   return (
     <main>
       <h1>Gjett flagget</h1>

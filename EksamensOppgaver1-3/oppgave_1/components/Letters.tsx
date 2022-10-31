@@ -21,7 +21,7 @@ export default function Letters({
     <>
       <p className="message">{getMessage()}</p>
       <ul className="letters">
-        {letterList.map((letter) => {
+        {letterList?.map((letter) => {
           return(
           <Letter
             key={letter}

@@ -8,5 +8,6 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   const country = countries[Math.floor(Math.random() * countries.length)]
-  return res.status(404).json({ success: true, data: country })
+  
+  return res.status(200).json({ success: true, data: country })
 }

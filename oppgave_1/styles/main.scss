@@ -50,6 +50,7 @@ main {
     background: lighten(#c1c1c1, 30%);
     border: 2px solid #333;
     padding: 2rem;
+    margin: 0.8rem;
     box-shadow: 4px 4px 0 0 #c1c1c1;
     &.highlight {
       background-color: #fdd522;

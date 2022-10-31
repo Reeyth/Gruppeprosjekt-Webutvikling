@@ -1,0 +1,488 @@
+{
+  "year": {
+    "1": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Onsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" }
+      }
+    },
+    "2": {
+      "week": {
+        "Mandag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Tirsdag": { "id": 7, "name": "Trine", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Torsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Fredag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" }
+      }
+    },
+    "3": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Onsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" }
+      }
+    },
+    "4": {
+      "week": {
+        "Mandag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Tirsdag": { "id": 7, "name": "Trine", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Torsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Fredag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" }
+      }
+    },
+    "5": {
+      "week": {
+        "Mandag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Tirsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Fredag": { "id": 3, "name": "Finn", "rules": "*" }
+      }
+    },
+    "6": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 7, "name": "Trine", "rules": "days:*|week:even" }
+      }
+    },
+    "7": {
+      "week": {
+        "Mandag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Tirsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Fredag": { "id": 3, "name": "Finn", "rules": "*" }
+      }
+    },
+    "8": {
+      "week": {
+        "Mandag": null,
+        "Tirsdag": null,
+        "Onsdag": null,
+        "Torsdag": null,
+        "Fredag": null
+      }
+    },
+    "9": {
+      "week": {
+        "Mandag": { "id": 9, "name": "Ali", "rules": "days:1" },
+        "Tirsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" }
+      }
+    },
+    "10": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 7, "name": "Trine", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Torsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Fredag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" }
+      }
+    },
+    "11": {
+      "week": {
+        "Mandag": { "id": 9, "name": "Ali", "rules": "days:1" },
+        "Tirsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" }
+      }
+    },
+    "12": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 7, "name": "Trine", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Torsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Fredag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" }
+      }
+    },
+    "13": {
+      "week": {
+        "Mandag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" },
+        "Tirsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" }
+      }
+    },
+    "14": {
+      "week": {
+        "Mandag": { "id": 7, "name": "Trine", "rules": "days:*|week:even" },
+        "Tirsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Torsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Fredag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" }
+      }
+    },
+    "15": {
+      "week": {
+        "Mandag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" },
+        "Tirsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" }
+      }
+    },
+    "16": {
+      "week": {
+        "Mandag": { "id": 7, "name": "Trine", "rules": "days:*|week:even" },
+        "Tirsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Torsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Fredag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" }
+      }
+    },
+    "17": {
+      "week": {
+        "Mandag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" },
+        "Tirsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Torsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Fredag": { "id": 2, "name": "Lars", "rules": "*" }
+      }
+    },
+    "18": {
+      "week": {
+        "Mandag": { "id": 9, "name": "Ali", "rules": "days:1" },
+        "Tirsdag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Onsdag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Torsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Fredag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" }
+      }
+    },
+    "19": {
+      "week": {
+        "Mandag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" },
+        "Tirsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Torsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Fredag": { "id": 2, "name": "Lars", "rules": "*" }
+      }
+    },
+    "20": {
+      "week": {
+        "Mandag": { "id": 9, "name": "Ali", "rules": "days:1" },
+        "Tirsdag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Onsdag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Torsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Fredag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" }
+      }
+    },
+    "21": {
+      "week": {
+        "Mandag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Tirsdag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 3, "name": "Finn", "rules": "*" }
+      }
+    },
+    "22": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 5, "name": "Olav", "rules": "*" }
+      }
+    },
+    "23": {
+      "week": {
+        "Mandag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Tirsdag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 3, "name": "Finn", "rules": "*" }
+      }
+    },
+    "24": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 5, "name": "Olav", "rules": "*" }
+      }
+    },
+    "25": {
+      "week": {
+        "Mandag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Tirsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" }
+      }
+    },
+    "26": {
+      "week": {
+        "Mandag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Tirsdag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Onsdag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" }
+      }
+    },
+    "27": {
+      "week": {
+        "Mandag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Tirsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" }
+      }
+    },
+    "28": {
+      "week": {
+        "Mandag": null,
+        "Tirsdag": null,
+        "Onsdag": null,
+        "Torsdag": null,
+        "Fredag": null
+      }
+    },
+    "29": {
+      "week": {
+        "Mandag": null,
+        "Tirsdag": null,
+        "Onsdag": null,
+        "Torsdag": null,
+        "Fredag": null
+      }
+    },
+    "30": {
+      "week": {
+        "Mandag": null,
+        "Tirsdag": null,
+        "Onsdag": null,
+        "Torsdag": null,
+        "Fredag": null
+      }
+    },
+    "31": {
+      "week": {
+        "Mandag": null,
+        "Tirsdag": null,
+        "Onsdag": null,
+        "Torsdag": null,
+        "Fredag": null
+      }
+    },
+    "32": {
+      "week": {
+        "Mandag": null,
+        "Tirsdag": null,
+        "Onsdag": null,
+        "Torsdag": null,
+        "Fredag": null
+      }
+    },
+    "33": {
+      "week": {
+        "Mandag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Tirsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Fredag": { "id": 14, "name": "Sharek", "rules": "days:*" }
+      }
+    },
+    "34": {
+      "week": {
+        "Mandag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Tirsdag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Onsdag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 6, "name": "Sebastian", "rules": "*" }
+      }
+    },
+    "35": {
+      "week": {
+        "Mandag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Tirsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Fredag": { "id": 14, "name": "Sharek", "rules": "days:*" }
+      }
+    },
+    "36": {
+      "week": {
+        "Mandag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Tirsdag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Onsdag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 6, "name": "Sebastian", "rules": "*" }
+      }
+    },
+    "37": {
+      "week": {
+        "Mandag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Tirsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Torsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Fredag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" }
+      }
+    },
+    "38": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Onsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" }
+      }
+    },
+    "39": {
+      "week": {
+        "Mandag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Tirsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Torsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Fredag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" }
+      }
+    },
+    "40": {
+      "week": {
+        "Mandag": null,
+        "Tirsdag": null,
+        "Onsdag": null,
+        "Torsdag": null,
+        "Fredag": null
+      }
+    },
+    "41": {
+      "week": {
+        "Mandag": { "id": 9, "name": "Ali", "rules": "days:1" },
+        "Tirsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Fredag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" }
+      }
+    },
+    "42": {
+      "week": {
+        "Mandag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Tirsdag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Onsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Torsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Fredag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" }
+      }
+    },
+    "43": {
+      "week": {
+        "Mandag": { "id": 9, "name": "Ali", "rules": "days:1" },
+        "Tirsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Fredag": { "id": 15, "name": "Carlos", "rules": "days:*|week:odd" }
+      }
+    },
+    "44": {
+      "week": {
+        "Mandag": { "id": 6, "name": "Sebastian", "rules": "*" },
+        "Tirsdag": { "id": 5, "name": "Olav", "rules": "*" },
+        "Onsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Torsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Fredag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" }
+      }
+    },
+    "45": {
+      "week": {
+        "Mandag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Tirsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" }
+      }
+    },
+    "46": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Onsdag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" },
+        "Torsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Fredag": { "id": 5, "name": "Olav", "rules": "*" }
+      }
+    },
+    "47": {
+      "week": {
+        "Mandag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Tirsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Fredag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" }
+      }
+    },
+    "48": {
+      "week": {
+        "Mandag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Tirsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Onsdag": { "id": 11, "name": "Nora", "rules": "days:*|week:even" },
+        "Torsdag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" },
+        "Fredag": { "id": 5, "name": "Olav", "rules": "*" }
+      }
+    },
+    "49": {
+      "week": {
+        "Mandag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Tirsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Fredag": { "id": 6, "name": "Sebastian", "rules": "*" }
+      }
+    },
+    "50": {
+      "week": {
+        "Mandag": { "id": 2, "name": "Lars", "rules": "*" },
+        "Tirsdag": { "id": 7, "name": "Trine", "rules": "days:*|week:even" },
+        "Onsdag": { "id": 1, "name": "Trude", "rules": "days:123" },
+        "Torsdag": { "id": 8, "name": "Simen", "rules": "days:24" },
+        "Fredag": { "id": 12, "name": "Oline", "rules": "days:*|week:even" }
+      }
+    },
+    "51": {
+      "week": {
+        "Mandag": { "id": 14, "name": "Sharek", "rules": "days:*" },
+        "Tirsdag": { "id": 3, "name": "Finn", "rules": "*" },
+        "Onsdag": { "id": 13, "name": "Susanne", "rules": "days:*|week:odd" },
+        "Torsdag": { "id": 4, "name": "Kaare", "rules": "days:*|week:odd" },
+        "Fredag": { "id": 6, "name": "Sebastian", "rules": "*" }
+      }
+    },
+    "52": {
+      "week": {
+        "Mandag": null,
+        "Tirsdag": null,
+        "Onsdag": null,
+        "Torsdag": null,
+        "Fredag": null
+      }
+    }
+  },
+  "occurrances": {
+    "trude": 16,
+    "sebastian": 19,
+    "lars": 16,
+    "simen": 11,
+    "kaare": 18,
+    "olav": 17,
+    "trine": 8,
+    "finn": 22,
+    "oline": 18,
+    "nora": 16,
+    "sharek": 19,
+    "susanne": 18,
+    "ali": 6,
+    "carlos": 16
+  }
+}

@@ -1,0 +1,73 @@
+// TODO: Her er det bugs
+
+@import './globals.scss';
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.flag {
+  font-size: 12rem;
+}
+
+.country {
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 4rem;
+  background: lighten(#c1c1c1, 30%);
+  border: 2px solid #333;
+  padding: 2rem;
+  box-shadow: 4px 4px 0 0 #c1c1c1;
+
+  li {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &.strike {
+    color: #a7a8aa;
+    background-color: tomato;
+  }
+
+  &.highlight {
+    background-color: #fdd522;
+  }
+
+  span {
+    margin-right: 0.75em;
+    display: inline-block;
+  }
+}
+
+.strikes {
+  display: flex;
+  gap: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.letters {
+  display: block;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, 50px);
+
+  .letter {
+    background: lighten(#c1c1c1, 30%);
+    border: 2px solid #333;
+    padding: 2rem;
+    box-shadow: 4px 4px 0 0 #c1c1c1;
+    &.highlight {
+      background-color: #fd2238;
+    }
+  }
+}
+
+.message {
+  margin: 2rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+}

@@ -44,7 +44,10 @@ const Home: NextPage = () => {
       <h1>Gjett flagget</h1>
       <p className="flag">{country?.unicodeFlag}</p>
       <Strikes strikes={strikes} />
-      <Words words={wordSplit()} />
+      <Words 
+      words={wordSplit()}
+      isMatch={isMatch}/>
+      {/* Feil med handleGuess muligens. */}
       <Letters
         handleGuess={handleGuess}
         guesses={guesses}

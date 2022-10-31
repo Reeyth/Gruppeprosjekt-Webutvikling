@@ -1,4 +1,5 @@
 // TODO: Her er det bugs
+import { countries } from '../../data/countries';
 
 import type { NextApiRequest, NextApiResponse } from 'next'
 

@@ -21,14 +21,15 @@ export default function Letters({
     <>
       <p className="message">{getMessage()}</p>
       <ul className="letters">
-        {letterList.forEach((letter) => (
+        {letterList.map((letter) => {
+          return(
           <Letter
+            key={letter}
             handleGuess={handleGuess}
             guesses={guesses}
-            key={letter}
             letter={letter}
           />
-        ))}
+        )})}
       </ul>
     </>
   )

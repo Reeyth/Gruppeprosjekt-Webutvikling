@@ -6,7 +6,7 @@ export default function Strikes({ strikes }: { strikes: Strike[] }) {
   return (
     <ul className="strikes">
       {strikes.map((strike: Strike, index: number) => (
-        <li>{strike.icon}</li>
+        <li key={index}>{strike.icon}</li>
       ))}
     </ul>
   )

@@ -1,4 +1,4 @@
-const Table = ( { students, currentSort }) => {
+const Table = ( { students } : any) => {
 
     return (        
         <div>
@@ -14,7 +14,7 @@ const Table = ( { students, currentSort }) => {
                 </thead>
 
                 <tbody>
-                    {students.map((student) => (
+                    {students.map((student : any) => (
                         <tr key={student.id}>
                             <td>{student.id}</td>
                             <td>{student.name}</td>

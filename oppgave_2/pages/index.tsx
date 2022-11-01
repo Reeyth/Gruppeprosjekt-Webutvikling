@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 
   const [sortType, setSortType] = useState('none');
 
-  const handleSort = (type: string) => {
+  const handleSort = (type : any) => {
       setSortType(type.target.value);
   }
 

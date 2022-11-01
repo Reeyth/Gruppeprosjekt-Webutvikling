@@ -1,40 +1,36 @@
 import type { NextPage } from 'next'
-import { Student } from "../types";
 import { useEffect, useState } from 'react'
-import Table from '../components/Table'
 import Filter from '../components/Filter'
+import { TableType } from '../types'
+import MainTable from '../components/MainTable'
 
 const Home: NextPage = () => {
   const [students, setStudents] = useState<Student[]>([])
-  // const [students, setStudents] = useState([])
+  const [sortType, setSortType] = useState<TableType>(TableType.DEFAULT)
+
+  const _studentFetcher = async () => {
+    try {
+      const response = await fetch('/api/students')
+      const data: Student[] = await response.json()
+      setStudents(data.sort((a: Student, b: Student) => (a.name).localeCompare(b.name)))
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   useEffect(() => {
-    const handler = async () => {
-      try {
-        const response = await fetch('/api/students')
-        const data = await response.json()
-        setStudents(Array.from(data))
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    handler()
+    _studentFetcher()
   }, [])
 
-  const [sortType, setSortType] = useState('none');
-
-  const handleSort = (type : any) => {
-      setSortType(type.target.value);
+  const handleSort = (type: TableType) => {
+    setSortType(type)
   }
 
   return (
     <main>
       <h1>Student gruppering</h1>
-
-      <Filter handleSort={handleSort} currentSort={sortType} />
-
-      <Table students={students} currentSort={sortType} />
-
+      <Filter handleSort={handleSort} type={sortType} />
+      <MainTable type={sortType} students={students} />
     </main>
   )
 }

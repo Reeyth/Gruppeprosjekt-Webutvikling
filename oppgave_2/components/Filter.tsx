@@ -1,19 +1,45 @@
-const Filter = (props : any) => {
+import React from 'react'
+import { TableType } from '../types'
 
-
-    return (
-        <div id="filter">
-            {/* Four radiobuttons for the different ways of sorting/grouping the students.
-
-            The first radiobutton has the checked attribute to be selected by default when the page loads. It checks if the currentSort is none or name
-            and is selected based on that. Using only "checked" would not work becuased of how components is refreshed.  */}
-            {/*Added correct props and syntax with typescript types. also removed the current sort (ADD LATER)*/}
-            Ingen <input type="radio" value="none" name ="filter" onChange={props.handleSort}/>
-            Alder <input type="radio" value="age" name ="filter" onChange={props.handleSort} />
-            Kjønn <input type="radio" value="gender" name ="filter" onChange={props.handleSort} />
-            Gruppe <input type="radio" value="group" name ="filter" onChange={props.handleSort} />
-        </div>
-        )
+type FilterProps = {
+  handleSort: (value: TableType) => void
+  type: TableType
 }
 
-export default Filter;
+const Filter: React.FC<FilterProps> = ({ handleSort, type }) => {
+  return (
+    <div id="filter">
+      <input
+        type="radio"
+        value={TableType.DEFAULT}
+        name="filter"
+        onChange={() => handleSort(TableType.DEFAULT)}
+        checked={type === TableType.DEFAULT}
+      />
+      <label htmlFor="none">Ingen</label>
+      <input
+        type="radio"
+        value={TableType.AGE}
+        name="filter"
+        onChange={() => handleSort(TableType.AGE)}
+      />
+      <label htmlFor="age">Alder</label>
+      <input
+        type="radio"
+        value={TableType.GENDER}
+        name="filter"
+        onChange={() => handleSort(TableType.GENDER)}
+      />
+      <label htmlFor="gender">Kjønn</label>
+      <input
+        type="radio"
+        value={TableType.GROUP}
+        name="filter"
+        onChange={() => handleSort(TableType.GROUP)}
+      />
+      <label htmlFor="group">Gruppe</label>
+    </div>
+  )
+}
+
+export default Filter

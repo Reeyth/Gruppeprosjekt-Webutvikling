@@ -3,10 +3,9 @@ export type Error = { status: false; error: string }
 
 export type Result = Data | Error
 
-export type Student = {
-    id:       string
-    name:     string
-    gender:   String
-    age:      number
-    group:    String
+export enum TableType {
+  AGE = 'age',
+  GENDER = 'gender',
+  GROUP = 'group',
+  DEFAULT = 'none',
 }

@@ -12,7 +12,9 @@ const Home: NextPage = () => {
     try {
       const response = await fetch('/api/students')
       const data: Student[] = await response.json()
-      setStudents(data.sort((a: Student, b: Student) => (a.name).localeCompare(b.name)))
+      setStudents(
+        data.sort((a: Student, b: Student) => a.name.localeCompare(b.name))
+      )
     } catch (error) {
       console.error(error)
     }

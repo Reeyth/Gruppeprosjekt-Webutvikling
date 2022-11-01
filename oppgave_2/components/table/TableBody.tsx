@@ -9,7 +9,7 @@ const TableBody: React.FC<TableBodyProps> = ({ students }) => {
   return (
     <tbody>
       {students.map((student: Student) => (
-        <TableRow key={student.id} student={student}/>
+        <TableRow key={student.id} student={student} />
       ))}
     </tbody>
   )

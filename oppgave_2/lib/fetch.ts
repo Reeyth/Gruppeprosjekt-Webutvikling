@@ -11,7 +11,6 @@ export default async function (url: string, options: any): Promise<any> {
     const isJson = response.headers
       .get('content-type')
       ?.includes('application/json')
-
     const data = isJson ? await response.json() : null
     if (!response.ok) {
       const error = {

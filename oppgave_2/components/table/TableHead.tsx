@@ -8,7 +8,7 @@ const TableHead: React.FC<TableHeadProps> = ({labels}) => {
   return (
     <thead>
       <tr>
-        {labels.map((label: string) => <th>{label}</th>)}
+        {labels.map((label: string) => <th key={label}>{label}</th>)}
       </tr>
     </thead>
   )

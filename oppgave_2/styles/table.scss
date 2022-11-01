@@ -1,14 +1,25 @@
 table {
     width: 100%;
-  }
+}
   
-  th, td {
-    border: 1px solid black;
-    padding: 0.5rem;
+th, td {
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+
+tr:nth-child(even), 
+thead {
+  background-color: gray;
+  color: white;
+}
+
+.table-element {
+
+  margin-bottom: 3rem;
+
+  span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    float: right;
   }
-  
-  tr:nth-child(even), 
-  thead {
-    background-color: gray;
-    color: white;
-  }
+}

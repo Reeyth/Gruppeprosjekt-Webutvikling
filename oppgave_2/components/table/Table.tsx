@@ -16,7 +16,7 @@ const Table: React.FC<TableProps> = ( { type, students }) => {
     }
 
     return (       
-        <div>
+        <div className="table-element">
             {type !== TableType.DEFAULT && <h2>{`Gruppering etter ${tableHeader[type]}: ${students[0][type]}`}</h2>}
             <table>
                 <TableHead labels={["ID", "Navn", "Kjønn", "Alder", "Gruppe"]}/>

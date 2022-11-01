@@ -42,7 +42,7 @@ const MainTable: React.FC<MainTableProps> = ({ type, students }) => {
       ) : (
         <>
           {displayStudents.map((studs, index) => (
-            <Table type={type} students={studs} />
+            <Table key={index} type={type} students={studs} />
           ))}
         </>
       )}

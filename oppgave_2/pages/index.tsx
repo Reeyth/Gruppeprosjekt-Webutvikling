@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
+import { Student } from "../types";
 import { useEffect, useState } from 'react'
 import Table from '../components/Table'
 import Filter from '../components/Filter'
 
 const Home: NextPage = () => {
-  const [students, setStudents] = useState([])
+  const [students, setStudents] = useState<Student[]>([])
+  // const [students, setStudents] = useState([])
 
   useEffect(() => {
     const handler = async () => {
@@ -22,7 +24,7 @@ const Home: NextPage = () => {
   const [sortType, setSortType] = useState('none');
 
   const handleSort = (type: string) => {
-      setSortType(type);
+      setSortType(type.target.value);
   }
 
   return (

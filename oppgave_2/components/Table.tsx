@@ -1,3 +1,5 @@
+import { Student } from "../types";
+
 const Table = ( { students } : any) => {
 
     return (        
@@ -14,7 +16,7 @@ const Table = ( { students } : any) => {
                 </thead>
 
                 <tbody>
-                    {students.map((student : any) => (
+                    {students.map((student : Student) => (
                         <tr key={student.id}>
                             <td>{student.id}</td>
                             <td>{student.name}</td>

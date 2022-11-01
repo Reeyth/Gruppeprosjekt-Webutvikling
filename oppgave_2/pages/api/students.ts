@@ -1,5 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+type Student = {
+  id: string
+  name: string;
+  gender: string;
+  age: number;
+  group: string
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>

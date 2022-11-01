@@ -1,13 +1,16 @@
 import type { NextPage } from 'next'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const Home: NextPage = () => {
+  const [students, setStudents] = useState([])
+
   useEffect(() => {
     const handler = async () => {
       try {
         const response = await fetch('/api/students')
         const data = await response.json()
-        console.log(data)
+        setStudents(Array.from(data))
+        console.log(students)
       } catch (error) {
         console.log(error)
       }

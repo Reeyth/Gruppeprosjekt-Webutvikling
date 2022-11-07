@@ -1,0 +1,9 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table employee {
+  id Int [pk, increment, unique]
+  name String [not null]
+  rules String [not null]
+}

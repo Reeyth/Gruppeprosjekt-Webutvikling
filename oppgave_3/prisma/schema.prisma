@@ -10,3 +10,9 @@ datasource db {
 generator dbml {
   provider = "prisma-dbml-generator"
 }
+
+model employee {
+  id        Int      @id @default(autoincrement()) @unique
+  name      String
+  rules     String
+}

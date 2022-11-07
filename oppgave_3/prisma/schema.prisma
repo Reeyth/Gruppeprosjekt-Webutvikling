@@ -18,22 +18,23 @@ model Employee {
   day Day[]
 }
 model Day {
-  id String @id @unique
+  id Int @id @default(autoincrement()) @unique
   name String
   employee Employee @relation(fields: [employeeId], references: [id])
   employeeId Int
   week Week @relation(fields: [weekId], references: [id])
-  weekId String
+  weekId Int
+  lunch Lunch @relation(fields: [lunchId], references: [id])
+  lunchId Int
 }
 model Week {
-  id String @id @unique
-  name String
+  id Int @id @default(autoincrement()) @unique
+  name String @unique
   days Day[]
-  lunch Lunch @relation(fields: [lunchId], references: [id])
-  lunchId String
 }
 
 model Lunch {
-  id String @id @unique
-  week Week[]
+  id Int @id @default(autoincrement()) @unique
+  name String @unique
+  day Day[]
 }

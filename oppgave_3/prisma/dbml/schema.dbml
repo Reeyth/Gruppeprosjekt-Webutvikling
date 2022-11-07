@@ -10,29 +10,30 @@ Table Employee {
 }
 
 Table Day {
-  id String [pk, unique]
+  id Int [pk, increment, unique]
   name String [not null]
   employee Employee [not null]
   employeeId Int [not null]
   week Week [not null]
-  weekId String [not null]
+  weekId Int [not null]
+  lunch Lunch [not null]
+  lunchId Int [not null]
 }
 
 Table Week {
-  id String [pk, unique]
-  name String [not null]
+  id Int [pk, increment, unique]
+  name String [unique, not null]
   days Day [not null]
-  lunch Lunch [not null]
-  lunchId String [not null]
 }
 
 Table Lunch {
-  id String [pk, unique]
-  week Week [not null]
+  id Int [pk, increment, unique]
+  name String [unique, not null]
+  day Day [not null]
 }
 
 Ref: Day.employeeId > Employee.id
 
 Ref: Day.weekId > Week.id
 
-Ref: Week.lunchId > Lunch.id
+Ref: Day.lunchId > Lunch.id

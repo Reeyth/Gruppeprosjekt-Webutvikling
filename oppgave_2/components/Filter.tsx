@@ -9,6 +9,7 @@ type FilterProps = {
 const Filter: React.FC<FilterProps> = ({ handleSort, type }) => {
   return (
     <div id="filter">
+    <label htmlFor="none">Ingen</label>
       <input
         type="radio"
         value={TableType.DEFAULT}
@@ -16,28 +17,27 @@ const Filter: React.FC<FilterProps> = ({ handleSort, type }) => {
         onChange={() => handleSort(TableType.DEFAULT)}
         checked={type === TableType.DEFAULT}
       />
-      <label htmlFor="none">Ingen</label>
+      <label htmlFor="age">Alder</label>
       <input
         type="radio"
         value={TableType.AGE}
         name="filter"
         onChange={() => handleSort(TableType.AGE)}
       />
-      <label htmlFor="age">Alder</label>
+      <label htmlFor="gender">Kjønn</label>
       <input
         type="radio"
         value={TableType.GENDER}
         name="filter"
         onChange={() => handleSort(TableType.GENDER)}
       />
-      <label htmlFor="gender">Kjønn</label>
+      <label htmlFor="group">Gruppe</label>
       <input
         type="radio"
         value={TableType.GROUP}
         name="filter"
         onChange={() => handleSort(TableType.GROUP)}
       />
-      <label htmlFor="group">Gruppe</label>
     </div>
   )
 }

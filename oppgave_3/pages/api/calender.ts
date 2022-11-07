@@ -18,7 +18,6 @@ export default async function handler(
         INNER JOIN Week ON Day.weekId = Week.id
         INNER JOIN Lunch ON Day.lunchId = lunch.id
   `
-    console.log(data[0])
     return res.status(200).json(data)
     } catch (error) {
       console.error(error)
@@ -27,7 +26,8 @@ export default async function handler(
         await prisma.$disconnect()
       }
     }
-  } else {
+  } 
+  else {
     return res.status(400).json({ success: false, message: 'Bad request' })
   }
 }

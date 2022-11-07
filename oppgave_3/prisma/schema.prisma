@@ -11,8 +11,29 @@ generator dbml {
   provider = "prisma-dbml-generator"
 }
 
-model employee {
+model Employee {
   id        Int      @id @default(autoincrement()) @unique
   name      String
   rules     String
+  day Day[]
+}
+model Day {
+  id String @id @unique
+  name String
+  employee Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int
+  week Week @relation(fields: [weekId], references: [id])
+  weekId String
+}
+model Week {
+  id String @id @unique
+  name String
+  days Day[]
+  lunch Lunch @relation(fields: [lunchId], references: [id])
+  lunchId String
+}
+
+model Lunch {
+  id String @id @unique
+  week Week[]
 }

@@ -2,8 +2,37 @@
 //// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 //// ------------------------------------------------------
 
-Table employee {
+Table Employee {
   id Int [pk, increment, unique]
   name String [not null]
   rules String [not null]
+  day Day [not null]
 }
+
+Table Day {
+  id String [pk, unique]
+  name String [not null]
+  employee Employee [not null]
+  employeeId Int [not null]
+  week Week [not null]
+  weekId String [not null]
+}
+
+Table Week {
+  id String [pk, unique]
+  name String [not null]
+  days Day [not null]
+  lunch Lunch [not null]
+  lunchId String [not null]
+}
+
+Table Lunch {
+  id String [pk, unique]
+  week Week [not null]
+}
+
+Ref: Day.employeeId > Employee.id
+
+Ref: Day.weekId > Week.id
+
+Ref: Week.lunchId > Lunch.id

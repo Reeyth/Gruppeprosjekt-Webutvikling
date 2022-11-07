@@ -9,10 +9,7 @@ export default async function handler(
 ) {
     switch (req.method?.toUpperCase()) {
         case 'GET':
-            const id =
-            req.query.id instanceof Array
-              ? req.query.id.find((i) => i.includes('id'))
-              : req.query.id
+            const {id} = req.query
             if(!id) {
                 return res.status(400).json({ status: false, message: 'Id missing' })
             }

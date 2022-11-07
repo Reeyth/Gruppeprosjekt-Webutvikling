@@ -24,6 +24,10 @@ main {
     background: black;
     color: white;
   }
+  button:focus {
+    background-color: black;
+    color: white;
+  }
 }
 .days {
   display:flex;

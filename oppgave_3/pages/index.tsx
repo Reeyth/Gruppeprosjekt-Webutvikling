@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Weeks from '../components/Weeks'
+import LunchCalendar from '../components/LunchCalendar'
 
 const Home: NextPage = () => {
   const dataFetch = async () => {
@@ -13,10 +13,7 @@ const Home: NextPage = () => {
   }
   return (
     <main>
-      <h1>Lunsjkalender</h1>
-      <Weeks />
-      <h3>just a test, just remove</h3>
-      <button onClick={dataFetch}>Get data</button>
+      <LunchCalendar title="Lunsjkalender" />
     </main>
   )
 }

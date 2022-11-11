@@ -14,13 +14,13 @@ export default async function handler(
             return res.status(400).json({ status: 400, message: 'Id missing' })
         }
         const data = await prisma.$queryRaw<any>`
-          SELECT 
-          Employee.name as Employee_Name, Day.name as day, Lunch.name as lunch, Day.id
-          FROM Employee
-          INNER JOIN Day ON Employee.id = Day.employeeId
-          INNER JOIN Week ON Day.weekId = Week.id
-          INNER JOIN Lunch ON Day.lunchId = lunch.id
-          WHERE Week.id = ${weekId}
+        SELECT 
+        Employee.name as employee_name, Day.name as day, Lunch.name as lunch_type, Day.id as id, Day.weekId as week_number
+        FROM Employee
+        INNER JOIN Day ON Employee.id = Day.employeeId
+        INNER JOIN Week ON Day.weekId = Week.id
+        INNER JOIN Lunch ON Day.lunchId = lunch.id
+        WHERE Week.id = ${weekId}
     `
       return res.status(200).json(data)
       } catch (error) {

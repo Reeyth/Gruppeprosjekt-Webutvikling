@@ -27,6 +27,18 @@ main {
     }
   }
 }
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  label {
+    margin: 0.3rem;
+    font-size: 12px;
+  }
+}
 
 .lunch-table {
 

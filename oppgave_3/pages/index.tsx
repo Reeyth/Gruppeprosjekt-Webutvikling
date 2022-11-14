@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   const [week, setWeek] = useState<Day[]>([])
   const fetchWeek = async (week: any) => {
       try {
-          const response = await fetch(`/api/weeks/${week}`)
+          const response = await fetch(`/api/week/${week}`)
           const data = await response.json()
           data.week_number = { week }
           setWeek(data)

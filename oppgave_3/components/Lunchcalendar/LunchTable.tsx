@@ -37,7 +37,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, personOverwiew }) => {
             : (
                 <h2>Velg en uke</h2>
             )}
-            {personOverwiew[0] != null ? (
+            {/* {personOverwiew[0] != null ? (
                     <>
                     <table>
                     <thead>
@@ -61,7 +61,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, personOverwiew }) => {
                     )})}
                     </tbody>
                 </table>
-            </>) : null}
+            </>) : null} */}
         </div>
     )
 }

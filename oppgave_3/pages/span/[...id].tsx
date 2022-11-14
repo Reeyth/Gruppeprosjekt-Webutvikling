@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import LunchCalendar from '../../components/LunchCalendar';
 import WeekSpan from '../../components/Span';
 
-const Week = () => {
+const Span = () => {
     const router = useRouter()
-    const { index } = router.query
+    const index = router.query.id
     
     const [week, setWeek] = useState<Day[]>([])
     const fetchWeek = async (week: any) => {
         try {
-            const response = await fetch(`/api/week/${week}`)
+            const response = await fetch(`/api/span/${week[0]}/${week[1]}`)
             const data = await response.json()
             data.week_number = { week }
             setWeek(data)
@@ -23,6 +23,7 @@ const Week = () => {
     }
     useEffect(() => {
         fetchWeek(index)
+        console.log(index)
     }, [index])
     
     return (
@@ -33,4 +34,4 @@ const Week = () => {
     )
 }
 
-export default Week
+export default Span

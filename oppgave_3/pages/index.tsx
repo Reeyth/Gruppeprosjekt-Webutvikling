@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { useState } from "react";
 import LunchCalendar from '../components/LunchCalendar'
 import Search from '../components/Search/Search'
+import WeekSpan from '../components/Span';
 
 const Home: NextPage = () => {
 
@@ -32,6 +33,7 @@ const Home: NextPage = () => {
 
   return (
     <main>
+      <WeekSpan/>
       <Search search={search} setPerson={personDetails} handleSearch={handleSearch}/>
       <LunchCalendar week={week} personOverwiew={personOverwiew} title="Lunsjkalender" weekFetcher={fetchWeek}/>
     </main>

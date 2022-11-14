@@ -26,10 +26,12 @@ const Week = () => {
     }, [index])
     
     return (
-        <div>
-        <WeekSpan/>
-        <LunchCalendar week={week} weekFetcher={fetchWeek}/>
-        </div>
+        <main>
+            <div>
+            <WeekSpan/>
+            <LunchCalendar week={week} weekFetcher={fetchWeek}/>
+            </div>
+        </main>
     )
 }
 

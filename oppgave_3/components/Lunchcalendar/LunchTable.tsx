@@ -1,3 +1,4 @@
+import Link from 'next/link';
 type LunchTableProps = {
     week: Day[]
 };
@@ -23,7 +24,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
                                 <tr key={day.id}>
                                     <td>{day?.week_number}</td>
                                     <td>{day?.day}</td>
-                                    <td>{day?.employee_name}</td>
+                                    <td><Link href={`/employee/${day?.employee_name}`}>{day?.employee_name}</Link></td>
                                     <td>{day?.lunch_type}</td>
                                 </tr>
                             )

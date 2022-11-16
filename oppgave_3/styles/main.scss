@@ -79,3 +79,22 @@ main, div {
   margin: 0.5rem;
   padding: 0.5rem;
 }
+
+// fant en tilfeldig nav styling på nettet: https://codepen.io/WhisnuYs/pen/XWdpdGP
+nav {
+  a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-block;
+    width: 80px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  a:hover {
+    color: #fddb3a;
+  }
+  
+}

@@ -15,7 +15,7 @@ const LunchCalendar = (props : any) => {
         <>
         <h1>{props.title}</h1>
         <WeekSelection title="Uker" weeks={weeks} fetchWeek={props.weekFetcher} />
-        <LunchTable personOverwiew={props.personOverwiew} week={props.week} />
+        <LunchTable week={props.week} />
         </>
     )
 }

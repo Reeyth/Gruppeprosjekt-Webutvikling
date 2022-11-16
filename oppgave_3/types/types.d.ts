@@ -5,9 +5,3 @@ interface Day {
     employee_name: string
     lunch_type: string
 }
-interface personOverwiew {
-    week_number: number
-    employee_name: string
-    day: string
-    lunch_type: string
-}

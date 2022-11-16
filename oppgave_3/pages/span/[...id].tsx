@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react";
 import LunchCalendar from '../../components/LunchCalendar';
+import Search from '../../components/Search/Search';
 import WeekSpan from '../../components/Span';
 
 const Span = () => {
@@ -26,6 +27,7 @@ const Span = () => {
     return (
         <div>
         <WeekSpan/>
+        <Search/>
         <LunchCalendar week={week} weekFetcher={fetchWeek}/>
         </div>
     )

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react";
 import LunchCalendar from '../../components/LunchCalendar';
+import Search from '../../components/Search/Search';
 import WeekSpan from '../../components/Span';
 
 const Week = () => {
@@ -26,6 +27,7 @@ const Week = () => {
         <main>
             <div>
             <WeekSpan/>
+            <Search/>
             <LunchCalendar week={week} weekFetcher={fetchWeek}/>
             </div>
         </main>

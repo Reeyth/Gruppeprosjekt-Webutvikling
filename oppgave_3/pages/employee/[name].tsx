@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react";
 import LunchCalendar from '../../components/LunchCalendar';
+import Search from '../../components/Search/Search';
 import WeekSpan from '../../components/Span';
 
 const Span = () => {
@@ -12,8 +13,6 @@ const Span = () => {
             const response = await fetch(`/api/search/${name}`)
             const data = await response.json()
             setWeek(data)
-            console.log(name)
-            console.log(data)
         } catch(error) {
             console.error(error)
         }
@@ -25,7 +24,9 @@ const Span = () => {
     return (
         <div>
         <WeekSpan/>
+        <Search/>
         <LunchCalendar week={week} weekFetcher={fetchWeek}/>
+        {week.length === 0 ? (<p>Person not found</p>) : null}
         </div>
     )
 }

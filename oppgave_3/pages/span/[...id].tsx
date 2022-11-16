@@ -15,15 +15,12 @@ const Span = () => {
             const data = await response.json()
             data.week_number = { week }
             setWeek(data)
-            console.log(data)
-            console.log(week)
         } catch(error) {
             console.error(error)
         }
     }
     useEffect(() => {
         fetchWeek(index)
-        console.log(index)
     }, [index])
     
     return (

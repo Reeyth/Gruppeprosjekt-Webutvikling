@@ -1,18 +1,17 @@
 type LunchTableProps = {
     week: Day[]
-    personOverwiew: personOverwiew[]
 };
 
-const LunchTable: React.FC<LunchTableProps> = ({ week, personOverwiew }) => {
+const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
 
     return (
         <div className="lunch-table">
             {week[0] != null ? (
                 <>
-                <h2>Uke {week[0].week_number}</h2>
                 <table>
                     <thead>
                         <tr>
+                            <th>Uke</th>
                             <th>Dag</th>
                             <th>Navn</th>
                             <th>Lunsj</th>
@@ -20,12 +19,12 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, personOverwiew }) => {
                     </thead>
                     <tbody>
                         {week.map((day: Day) => {
-                            console.log(day)
                             return (
                                 <tr key={day.id}>
-                                    <td>{day.day}</td>
-                                    <td>{day.employee_name}</td>
-                                    <td>{day.lunch_type}</td>
+                                    <td>{day?.week_number}</td>
+                                    <td>{day?.day}</td>
+                                    <td>{day?.employee_name}</td>
+                                    <td>{day?.lunch_type}</td>
                                 </tr>
                             )
                         })}

@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react";
 import LunchCalendar from '../../components/LunchCalendar';
@@ -15,8 +14,6 @@ const Week = () => {
             const data = await response.json()
             data.week_number = { week }
             setWeek(data)
-            console.log(data)
-            console.log(week)
         } catch(error) {
             console.error(error)
         }

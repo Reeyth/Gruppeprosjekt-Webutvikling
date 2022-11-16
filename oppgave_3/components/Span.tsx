@@ -2,8 +2,8 @@ import { useState } from "react"
 
 const WeekSpan = () => {
     
-    const [weekTarget1, setWeekTarget1] = useState<Number>(0)
-    const [weekTarget2, setWeekTarget2] = useState<Number>(0)
+    const [weekTarget1, setWeekTarget1] = useState<Number>(1)
+    const [weekTarget2, setWeekTarget2] = useState<Number>(1)
 
     const handleWeek = (e: React.ChangeEvent<HTMLInputElement>) => {
         setWeekTarget1(Number(e.target.value))

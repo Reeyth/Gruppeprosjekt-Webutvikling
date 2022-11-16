@@ -28,7 +28,6 @@ const Home: NextPage = () => {
     const response = await fetch(`/api/search/${search}`)
     const data = await response.json()
     setPersonOverwiew(data)
-    console.log(personOverwiew)
 }
 
   return (

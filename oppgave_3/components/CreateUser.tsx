@@ -1,26 +1,30 @@
 import { useState } from "react"
 
-type Employee = {
-    name: String,
-    rules: String
-}
-
 const WeekSpan = () => {
     
     const [name, setName] = useState<String>('')
-    const [rules, setRules] = useState<String[]>([])
+    const [rules, setRules] = useState<String[]>(["*"])
+    const [ruleWeek, setRuleWeek] = useState<String>('')
+    const [status, setStatus] = useState<String>('')
 
     const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
     }
     const handleRules = (e: any) => {
-        setRules((prev) => [...prev, e.target.value])
-        console.log(rules)
+        if(rules[0] === "*"){
+            removeThis(0)
+        } 
+        else if(e.target.value === "*"){
+            setRules([e.target.value])
+            return
+        } 
+        setRules((prev) => [...prev, e.target.value]) 
+        
     }
-    const getDay = (index : number) => {
-        console.log(index)
-        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-        return days[index]
+    const getDay = (index : any) => {
+        if(index === "*") return "Alle dager"
+        const days = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag']
+        return days[index-1]
     }
     const removeThis = (index : any) => {
         if(rules.length === 0){
@@ -30,29 +34,72 @@ const WeekSpan = () => {
             setRules(newRules)
         }
     }
+    
+    const handleRuleweek = (e: any) => {
+        const value = e.target.value
+        setRuleWeek(value)
+    }
+    const handleSubmit = async () => {
+        let allRules : String = "days:" + rules.join("")
+        console.log(ruleWeek)
+        if (ruleWeek != "") {
+            allRules = allRules + "|week:" + ruleWeek
+        }
+        const response = await fetch('http://localhost:3000/api/create/employee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: name, rules: allRules})
+        })
+        const data = await response.json()
+        if(data.employee){
+            setStatus("Brukeren ble opprettet")
+        } else {
+            setStatus("Noe gikk galt")
+        }
+    }
 
     return (
         <>
         <div className="flexbox">
-        <form method="POST" action="api/create/employee">
-            <label htmlFor="name">Navn</label>
+        <div className="divwrapper">
+            <label htmlFor="name">Navn på ansatt</label>
             <input type="text" name="name" id="name" value={String(name)} onChange={handleName}/>
-            <label htmlFor="rules">Tilgjenglighet</label>
+            <h2>Tilgjenglighet</h2>
+            <div className="divider">
+            <div className="divtop">
+            <label htmlFor="rules">Dager</label>
             <select onChange={handleRules} id="rules" name="rules">
                 <option value="*">Alle dager</option>
-                <option value="1">Mandager</option>
-                <option value="2">Tirsdager</option>
-                <option value="3">Onsdager</option>
-                <option value="4">Torsdager</option>
-                <option value="5">Fredager</option>
+                <option disabled={rules.includes("1")} value="1">Mandager</option>
+                <option disabled={rules.includes("2")} value="2">Tirsdager</option>
+                <option disabled={rules.includes("3")} value="3">Onsdager</option>
+                <option disabled={rules.includes("4")} value="4">Torsdager</option>
+                <option disabled={rules.includes("5")} value="5">Fredager</option>
             </select>
-        </form>
+            </div>
+            <div className="divtop">
+            <label htmlFor="uker">Uker</label>
+            <select onChange={handleRuleweek} id="uker" name="uker">
+                <option value="">Når som helst</option>
+                <option value="odd">Hver oddetall uke</option>
+                <option value="even">Hver partall uke</option>
+            </select>
+            </div>
+            </div>
+
+        <div className="rulesDiv">
         {rules.length === 0 ? <p>Vennligst velg når du er tilgjenglig.</p> :
             rules.map((rule, index) => (
                 <>
-                <p key={Number(rule)-1}>{rule} - {getDay(Number(rule)-1)}</p><button onClick={() => removeThis(Number(index))}>Fjern</button>
+                <div key={index}><p>{rule} - {getDay(rule)}</p><button onClick={() => removeThis(index)}>Fjern</button></div>
                 </>
             ))}
+            </div>
+            <button disabled={!(rules.length != 0 && name)} onClick={() => handleSubmit()}>Submit</button>
+            {status ? <p>{status}</p> : null}
+        </div>
         </div>
 
 

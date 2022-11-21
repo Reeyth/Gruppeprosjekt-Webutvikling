@@ -7,10 +7,16 @@ const Nav = () => {
         <Link href="/">
           <a>Home</a>
         </Link>
+        <Link href="/search">
+          <a>Search</a>
+        </Link>
         <Link href="/create">
           <a>Register</a>
         </Link>
-        <Link href="/updateweek">
+        <Link href="/span">
+          <a>Between Weeks</a>
+        </Link>
+        <Link href="/update">
           <a>Update week</a>
         </Link>
         <Link href="/randomize">

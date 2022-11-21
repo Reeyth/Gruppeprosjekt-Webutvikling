@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from "react";
-import LunchCalendar from '../components/LunchCalendar'
 import Nav from '../components/Nav';
 import Search from '../components/Search/Search'
-import WeekSpan from '../components/Span';
+
 
 const Home: NextPage = () => {
 
@@ -12,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <main>
       <Nav/>
-      <LunchCalendar week={week} title="Lunsjkalender"/>
+      <Search/>
     </main>
   )
 }

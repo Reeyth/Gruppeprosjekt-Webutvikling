@@ -4,19 +4,24 @@ import { useState } from 'react';
 const UpdateWeek = (props : any) => {
 
     const [employeId, setEmployeeId] = useState<{[id : number] : any}>([{id: 0}, {id: 0}, {id: 0}, {id: 0} , {id: 0}]);
-
+    const [status, setstatus] = useState("");
     const handleEmployeeChange = (event: any, index : number) => {
         employeId[index] = Number(event.target.value);
     }
     const handleSubmit = async (idEmployee : Number, dayId : Number) => {
-        const response = await fetch(`/api/week/${dayId}/${idEmployee}`, {
+            const response = await fetch(`/api/week/${dayId}/${idEmployee}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(employeId)
-        })
-        const data = await response.json();
+        });
+        console.log(response.status)
+        if (response.status === 200) {
+            setstatus("Success");
+        } else {
+            setstatus("Error");
+        }
     }
 
     return(
@@ -54,6 +59,7 @@ const UpdateWeek = (props : any) => {
                     })}
             </tbody>
         </table>
+        <p>{status}</p>
         </div>
         </>
     )

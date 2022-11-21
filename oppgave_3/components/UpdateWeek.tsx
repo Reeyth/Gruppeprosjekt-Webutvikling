@@ -1,4 +1,3 @@
-import { employees } from '../data/employees';
 import { useState } from 'react';
 
 const UpdateWeek = (props : any) => {
@@ -46,7 +45,7 @@ const UpdateWeek = (props : any) => {
                     {day?.employee_name}   -     
                         <select onChange={(e) => handleEmployeeChange(e, index)}>
                             <option value={0} selected disabled hidden>Choose a new employeer</option>
-                            {employees.map((employee) => {
+                            {props.employees?.map((employee : any) => {
                                 return (
                                     <option disabled={day?.employee_name === employee.name} key={employee.id} value={employee.id}>{employee.name}</option>
                                 )

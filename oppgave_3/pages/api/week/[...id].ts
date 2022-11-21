@@ -20,9 +20,31 @@ export default async function handler(
         INNER JOIN Day ON Employee.id = Day.employeeId
         INNER JOIN Week ON Day.weekId = Week.id
         INNER JOIN Lunch ON Day.lunchId = lunch.id
-        WHERE Week.id = ${weekId}
+        WHERE Week.id = ${weekId[0]}
     `
       return res.status(200).json(data)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        async () => {
+          await prisma.$disconnect()
+        }
+      }
+    }
+
+    if(req.method === 'UPDATE') {
+      try {
+        const [dayId, employeeId] = [req.query.id, req.query.employeeId]
+        console.log(dayId, employeeId)
+        if(!dayId) {
+            return res.status(400).json({ status: 400, message: 'Id missing' })
+        }
+
+        const data = await prisma.$queryRaw<any>`
+        UPDATE Day
+        SET employeeId = ${employeeId}
+        WHERE Day.id = ${dayId}
+    `
       } catch (error) {
         console.error(error)
       } finally {

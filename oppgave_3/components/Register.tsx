@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const WeekSpan = () => {
+const Register = () => {
   const [name, setName] = useState<String>('')
   const [rules, setRules] = useState<String[]>(['*'])
   const [ruleWeek, setRuleWeek] = useState<String>('')
@@ -60,6 +60,7 @@ const WeekSpan = () => {
   return (
     <>
       <div className="flexbox">
+        <h2>Create an user.</h2>
         <div className="divwrapper">
           <label htmlFor="name">Navn på ansatt</label>
           <input
@@ -131,4 +132,4 @@ const WeekSpan = () => {
   )
 }
 
-export default WeekSpan
+export default Register

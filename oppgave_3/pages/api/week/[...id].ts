@@ -32,19 +32,21 @@ export default async function handler(
       }
     }
 
-    if(req.method === 'UPDATE') {
+    if(req.method === 'PUT') {
       try {
-        const [dayId, employeeId] = [req.query.id, req.query.employeeId]
-        console.log(dayId, employeeId)
-        if(!dayId) {
+        const info = req.query.id
+        if(!info) {
             return res.status(400).json({ status: 400, message: 'Id missing' })
         }
+        const dayId = info[0]
+        const employeeId = info[1]
 
         const data = await prisma.$queryRaw<any>`
         UPDATE Day
         SET employeeId = ${employeeId}
         WHERE Day.id = ${dayId}
     `
+      return res.status(200).json(data)
       } catch (error) {
         console.error(error)
       } finally {

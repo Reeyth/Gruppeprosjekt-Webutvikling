@@ -3,7 +3,21 @@ import { useState } from 'react';
 
 const UpdateWeek = (props : any) => {
 
-    const [employeId, setEmployeeId] = useState(0);
+    const [employeId, setEmployeeId] = useState<{[id : number] : any}>([{id: 0}, {id: 0}, {id: 0}, {id: 0} , {id: 0}]);
+
+    const handleEmployeeChange = (event: any, index : number) => {
+        employeId[index] = Number(event.target.value);
+    }
+    const handleSubmit = async (idEmployee : Number, dayId : Number) => {
+        const response = await fetch(`/api/week/${dayId}/${idEmployee}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(employeId)
+        })
+        const data = await response.json();
+    }
 
     return(
         <>
@@ -14,17 +28,19 @@ const UpdateWeek = (props : any) => {
                     <th>Dag</th>
                     <th>Navn</th>
                     <th>Lunsj</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-        {props.week.map((day: any) => {
+        {props.week.map((day: any, index : number) => {
             return (
                 <tr key={day.id}>
                     <td>{day?.day}</td>
-
-                    <td>
-                        <select onChange={(e) => setEmployeeId(e.target.value)}>
-                            <option value="0">{day?.employee_name}</option>
+                    <td>{day?.lunch_type}</td>
+                    <td className='changeEmployee'>
+                    {day?.employee_name}   -     
+                        <select onChange={(e) => handleEmployeeChange(e, index)}>
+                            <option value={0} selected disabled hidden>Choose a new employeer</option>
                             {employees.map((employee) => {
                                 return (
                                     <option disabled={day?.employee_name === employee.name} key={employee.id} value={employee.id}>{employee.name}</option>
@@ -32,7 +48,7 @@ const UpdateWeek = (props : any) => {
                             })}
                         </select>
                     </td>
-                    <td>{day?.lunch_type}</td>
+                    <td><button onClick={() => handleSubmit(employeId[index], day?.id)}>Submit</button></td>
                 </tr>
             )
                     })}

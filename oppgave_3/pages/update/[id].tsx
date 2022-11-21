@@ -4,17 +4,20 @@ import Nav from '../../components/Nav';
 import UpdateWeek from '../../components/UpdateWeek';
 
 const Id = ()  =>  {
-    
+
     const router = useRouter()
     const { id } = router.query
     
     const [week, setWeek] = useState<Day[]>([])
+    const [employees, setEmployees] = useState<any[]>([])
     const fetchWeek = async (weekNumber: any) => {
         try {
             const response = await fetch(`/api/week/${weekNumber}`)
             const data = await response.json()
+            const getAllEmployees = await fetch(`/api/allEmployees`)
+            const allEmployees = await getAllEmployees.json()
+            setEmployees(allEmployees)
             setWeek(data)
-            console.log(data)
         } catch(error) {
             console.error(error)
         }
@@ -27,7 +30,7 @@ const Id = ()  =>  {
         <>
         <Nav/>
         <h1>Update week {id}</h1>
-        <UpdateWeek week={week}/>
+        <UpdateWeek week={week} employees={employees}/>
         </>
     ) 
 }

@@ -1,22 +1,26 @@
-import { employees } from '../data/employees';
 import { useState } from 'react';
 
 const UpdateWeek = (props : any) => {
 
     const [employeId, setEmployeeId] = useState<{[id : number] : any}>([{id: 0}, {id: 0}, {id: 0}, {id: 0} , {id: 0}]);
-
+    const [status, setstatus] = useState("");
     const handleEmployeeChange = (event: any, index : number) => {
         employeId[index] = Number(event.target.value);
     }
     const handleSubmit = async (idEmployee : Number, dayId : Number) => {
-        const response = await fetch(`/api/week/${dayId}/${idEmployee}`, {
+            const response = await fetch(`/api/week/${dayId}/${idEmployee}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(employeId)
-        })
-        const data = await response.json();
+        });
+        console.log(response.status)
+        if (response.status === 200) {
+            setstatus("Success");
+        } else {
+            setstatus("Error");
+        }
     }
 
     return(
@@ -41,7 +45,7 @@ const UpdateWeek = (props : any) => {
                     {day?.employee_name}   -     
                         <select onChange={(e) => handleEmployeeChange(e, index)}>
                             <option value={0} selected disabled hidden>Choose a new employeer</option>
-                            {employees.map((employee) => {
+                            {props.employees?.map((employee : any) => {
                                 return (
                                     <option disabled={day?.employee_name === employee.name} key={employee.id} value={employee.id}>{employee.name}</option>
                                 )
@@ -54,6 +58,7 @@ const UpdateWeek = (props : any) => {
                     })}
             </tbody>
         </table>
+        <p>{status}</p>
         </div>
         </>
     )

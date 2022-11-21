@@ -10,11 +10,11 @@ const Nav = () => {
             <Link href="/create">
                 <a>Register</a>
             </Link>
-            <Link href="updateweek">
+            <Link href="/updateweek">
             <a>Update week</a>
             </Link>
-            <Link href="randomize">
-            <a>Randomize weeks</a>
+            <Link href="/randomize">
+            <a>Mix weeks</a>
             </Link>
             </>
         </nav>

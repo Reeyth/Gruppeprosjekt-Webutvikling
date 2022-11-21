@@ -14,7 +14,7 @@ const LunchCalendar = (props : any) => {
     return (
         <>
         <h1>{props.title}</h1>
-        <WeekSelection title="Uker" weeks={weeks} fetchWeek={props.weekFetcher} />
+        <WeekSelection title="Uker" weeks={weeks} />
         <LunchTable week={props.week} />
         </>
     )

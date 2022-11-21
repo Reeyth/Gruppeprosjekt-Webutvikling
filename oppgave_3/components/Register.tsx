@@ -60,6 +60,7 @@ const WeekSpan = () => {
   return (
     <>
       <div className="flexbox">
+        <h2>Create an user.</h2>
         <div className="divwrapper">
           <label htmlFor="name">Navn på ansatt</label>
           <input

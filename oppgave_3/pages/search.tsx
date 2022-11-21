@@ -11,6 +11,7 @@ const Home: NextPage = () => {
   return (
     <main>
       <Nav/>
+      <h2>Search for an user.</h2>
       <Search/>
     </main>
   )

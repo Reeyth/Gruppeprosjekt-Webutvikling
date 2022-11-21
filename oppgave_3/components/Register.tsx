@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const WeekSpan = () => {
+const Register = () => {
   const [name, setName] = useState<String>('')
   const [rules, setRules] = useState<String[]>(['*'])
   const [ruleWeek, setRuleWeek] = useState<String>('')
@@ -132,4 +132,4 @@ const WeekSpan = () => {
   )
 }
 
-export default WeekSpan
+export default Register

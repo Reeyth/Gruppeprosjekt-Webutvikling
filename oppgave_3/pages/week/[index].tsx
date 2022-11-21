@@ -2,8 +2,6 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from "react";
 import LunchCalendar from '../../components/LunchCalendar';
 import Nav from '../../components/Nav';
-import Search from '../../components/Search/Search';
-import WeekSpan from '../../components/Span';
 
 const Week = () => {
     const router = useRouter()
@@ -28,8 +26,6 @@ const Week = () => {
         <main>
             <div>
             <Nav/>
-            <WeekSpan/>
-            <Search/>
             <LunchCalendar week={week} weekFetcher={fetchWeek}/>
             </div>
         </main>

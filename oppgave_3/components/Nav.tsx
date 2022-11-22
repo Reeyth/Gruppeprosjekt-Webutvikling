@@ -22,6 +22,9 @@ const Nav = () => {
         <Link href="/randomize">
           <a>Mix weeks</a>
         </Link>
+        <Link href="/updateEmployee">
+          <a>Employee</a>
+        </Link>
       </>
     </nav>
   )

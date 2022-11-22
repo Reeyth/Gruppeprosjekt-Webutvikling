@@ -25,7 +25,27 @@ export default async function handler(
         case 'POST':
             console.log("post")
         case 'PUT':
-            console.log("put")
+            const idUser = req.query.id
+            if(!idUser) {
+                return res.status(400).json({ status: false, message: 'Id missing' })
+            }
+            try {
+                const data = await prisma.$queryRaw<any>`
+                UPDATE Employee
+                SET name = ${req.body.name}
+                WHERE Employee.id = ${idUser}
+                `
+                return res.status(200).json(data)
+            }
+            catch (error) {
+                console.error(error)
+            }
+            finally {
+                async () => {
+                    await prisma.$disconnect()
+                }
+            }
+
         case 'DELETE':
             console.log("delete")
         

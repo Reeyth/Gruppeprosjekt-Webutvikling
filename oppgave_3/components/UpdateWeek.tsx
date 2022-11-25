@@ -3,7 +3,6 @@ import { useState } from 'react';
 const UpdateWeek = (props : any) => {
 
     const [employeId, setEmployeeId] = useState<{[id : number] : any}>([{id: 0}, {id: 0}, {id: 0}, {id: 0} , {id: 0}]);
-    const [status, setstatus] = useState("");
     const handleEmployeeChange = (event: any, index : number) => {
         employeId[index] = Number(event.target.value);
     }
@@ -17,9 +16,9 @@ const UpdateWeek = (props : any) => {
         });
         console.log(response.status)
         if (response.status === 200) {
-            setstatus("Success");
+            window.location.reload();
         } else {
-            setstatus("Error");
+            alert("Det skjedde en feil i oppdateringen av uken");
         }
     }
 
@@ -42,7 +41,7 @@ const UpdateWeek = (props : any) => {
                     <td>{day?.day}</td>
                     <td>{day?.lunch_type}</td>
                     <td className='changeEmployee'>
-                    {day?.employee_name}   -     
+                    {day?.employee_name}
                         <select onChange={(e) => handleEmployeeChange(e, index)}>
                             <option value={0} selected disabled hidden>Velg en ny ansatt</option>
                             {props.employees?.map((employee : any) => {
@@ -58,7 +57,7 @@ const UpdateWeek = (props : any) => {
                     })}
             </tbody>
         </table>
-        <p>{status}</p>
+        <a href="http://localhost:3000/update">Gå tilbake</a>
         </div>
         </>
     )

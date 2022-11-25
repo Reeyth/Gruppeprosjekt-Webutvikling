@@ -29,7 +29,7 @@ const Id = ()  =>  {
     return (
         <>
         <Nav/>
-        <h1>Update week {id}</h1>
+        <h2>Oppdatering av uke {id}</h2>
         <UpdateWeek week={week} employees={employees}/>
         </>
     ) 

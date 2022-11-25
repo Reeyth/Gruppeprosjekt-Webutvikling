@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
-import { useEffect, useState } from "react";
 import Link from 'next/link';
-import Nav from '../../components/Nav';
+import Nav from '../components/Nav';
 
 
 const HomeUpdate: NextPage = () => {
@@ -10,7 +9,7 @@ const HomeUpdate: NextPage = () => {
   return (
     <main>
       <Nav/>
-      <h2>Which week would you like to update?</h2>
+      <h2>Hvilken uke ønsker du å oppdatere?</h2>
       <div className="week-selection">
       {weeks.map((week) => (
           <Link key={week} href={`/update/${week}`}><button>{week}</button></Link>

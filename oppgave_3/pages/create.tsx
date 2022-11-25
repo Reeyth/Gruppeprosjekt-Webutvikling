@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Register from '../components/Register'
 import Nav from '../components/Nav'
 
-const Create: NextPage = () => {
+const CreatePage: NextPage = () => {
   return (
     <main>
       <Nav />
@@ -11,4 +11,4 @@ const Create: NextPage = () => {
   )
 }
 
-export default Create
+export default CreatePage

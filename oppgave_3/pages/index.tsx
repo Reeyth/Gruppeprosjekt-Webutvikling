@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import LunchCalendar from '../components/LunchCalendar'
 import Nav from '../components/Nav';
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
 
   const [week, setWeek] = useState<Day[]>([])
 
@@ -15,4 +15,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default HomePage

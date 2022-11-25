@@ -36,7 +36,14 @@ const Register = () => {
     const value = e.target.value
     setRuleWeek(value)
   }
+
   const handleSubmit = async () => {
+
+    if(await userExists(name)) {
+      setStatus('En ansatt med dette navnet eksisterer allerede')
+      return
+    }
+
     let allRules: String = 'days:' + rules.join('')
     console.log(ruleWeek)
     if (ruleWeek != '') {
@@ -57,10 +64,22 @@ const Register = () => {
     }
   }
 
+  const userExists = async ( username: String ) => {
+    const response = await fetch('http://localhost:3000/api/employee/' + username)
+    const data = await response.json()
+    if(data.employee) {
+      return true
+    } else {
+      return false
+    }
+
+  }
+  
+
   return (
     <>
       <div className="flexbox">
-        <h2>Create an user.</h2>
+        <h2>Registrer en ny ansatt</h2>
         <div className="divwrapper">
           <label htmlFor="name">Navn på ansatt</label>
           <input
@@ -96,7 +115,7 @@ const Register = () => {
             <div className="divtop">
               <label htmlFor="uker">Uker</label>
               <select onChange={handleRuleweek} id="uker" name="uker">
-                <option value="">Når som helst</option>
+                <option value="">Alle uker</option>
                 <option value="odd">Hver oddetall uke</option>
                 <option value="even">Hver partall uke</option>
               </select>
@@ -123,7 +142,7 @@ const Register = () => {
             disabled={!(rules.length != 0 && name)}
             onClick={() => handleSubmit()}
           >
-            Submit
+            Registrer
           </button>
           {status ? <p>{status}</p> : null}
         </div>

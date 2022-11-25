@@ -1,11 +1,8 @@
 import type { NextPage } from 'next'
-import { useEffect, useState } from "react";
 import Nav from '../components/Nav';
 import WeekSpan from '../components/Span';
 
-const Span: NextPage = () => {
-
-  const [week, setWeek] = useState<Day[]>([])
+const SpanPage: NextPage = () => {
 
   return (
     <main>
@@ -15,4 +12,4 @@ const Span: NextPage = () => {
   )
 }
 
-export default Span
+export default SpanPage

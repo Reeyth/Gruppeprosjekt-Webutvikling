@@ -5,25 +5,28 @@ const Nav = () => {
     <nav>
       <>
         <Link href="/">
-          <a>Home</a>
+          <a>Hjem</a>
         </Link>
         <Link href="/search">
-          <a>Search</a>
+          <a>Søk</a>
         </Link>
         <Link href="/create">
-          <a>Register</a>
+          <a>Registrer</a>
         </Link>
         <Link href="/span">
-          <a>Between Weeks</a>
+          <a>Periode søk</a>
         </Link>
         <Link href="/update">
-          <a>Update week</a>
+          <a>Oppdater uke</a>
         </Link>
         <Link href="/randomize">
-          <a>Mix weeks</a>
+          <a>Miks uker</a>
+        </Link>
+        <Link href="/personnellist">
+          <a>Personalliste</a>
         </Link>
         <Link href="/updateEmployee">
-          <a>Employee</a>
+          <a>Ansatt</a>
         </Link>
       </>
     </nav>

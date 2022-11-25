@@ -14,7 +14,7 @@ const WeekSpan = () => {
 
     return (
         <>
-        <h2>Choose between two weeks.</h2>
+        <h2>Hent frem kalenderen i en periode mellom to uker</h2>
         <form action={`/span/${weekTarget1}/${weekTarget2}`}>
         <input value={Number(weekTarget1)} onChange={handleWeek} min="1" max="52" type="number"></input>
         <input value={Number(weekTarget2)} onChange={handleWeek2} min="1" max="52" type="number"></input>

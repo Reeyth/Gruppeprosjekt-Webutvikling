@@ -31,15 +31,15 @@ const ChangeName = (props : any) => {
     
         <div className='flexbox'>
         <form onSubmit={handleSubmit}>
-        <label htmlFor='user'>Select a user to change</label>
+        <label htmlFor='user'>Velg en ansatt å redigere</label>
         <select id='user' onChange={handleId}>
             {props.employees.map((employee: any) => (
                 <option key={employee.id} value={employee.id}>{employee.name}</option>
             ))}
         </select>
-        <label htmlFor='name'>Change name</label>
+        <label htmlFor='name'>Nytt navn</label>
         <input id="name" type="text" value={name} onChange={handleName}/>
-        <button>Submit</button>
+        <button>Oppdater</button>
         </form>
         </div>
         

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import ChangeName from '../components/ChangeName';
 import Nav from '../components/Nav';
 
-const UpdateEmployee: NextPage = () => {
+const UpdateEmployeePage: NextPage = () => {
 
     const [employees, setEmployees] = useState<any[]>([])
 
@@ -25,9 +25,8 @@ const UpdateEmployee: NextPage = () => {
     <main>
       <Nav/>
       <ChangeName employees={employees}/>
-
     </main>
   )
 }
 
-export default UpdateEmployee
+export default UpdateEmployeePage

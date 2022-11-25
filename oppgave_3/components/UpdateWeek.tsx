@@ -44,7 +44,7 @@ const UpdateWeek = (props : any) => {
                     <td className='changeEmployee'>
                     {day?.employee_name}   -     
                         <select onChange={(e) => handleEmployeeChange(e, index)}>
-                            <option value={0} selected disabled hidden>Choose a new employeer</option>
+                            <option value={0} selected disabled hidden>Velg en ny ansatt</option>
                             {props.employees?.map((employee : any) => {
                                 return (
                                     <option disabled={day?.employee_name === employee.name} key={employee.id} value={employee.id}>{employee.name}</option>
@@ -52,7 +52,7 @@ const UpdateWeek = (props : any) => {
                             })}
                         </select>
                     </td>
-                    <td><button onClick={() => handleSubmit(employeId[index], day?.id)}>Submit</button></td>
+                    <td><button onClick={() => handleSubmit(employeId[index], day?.id)}>Oppdater</button></td>
                 </tr>
             )
                     })}

@@ -4,17 +4,17 @@ import Nav from '../components/Nav';
 import Search from '../components/Search/Search'
 
 
-const Home: NextPage = () => {
+const SearchPage: NextPage = () => {
 
   const [week, setWeek] = useState<Day[]>([])
 
   return (
     <main>
       <Nav/>
-      <h2>Search for an user.</h2>
+      <h2>Søk etter en ansatt</h2>
       <Search/>
     </main>
   )
 }
 
-export default Home
+export default SearchPage

@@ -10,9 +10,9 @@ const Search = () => {
   return (
     <div className="flexbox">
       <form method="GET" action={`/employee/${search}`}>
-        <label htmlFor="person">Search for person</label>
+        <label htmlFor="person">Navn på ansatt</label>
         <input id="person" value={search} onChange={handleSearch} type="text" />
-        <button>Search</button>
+        <button>Søk</button>
       </form>
     </div>
   )

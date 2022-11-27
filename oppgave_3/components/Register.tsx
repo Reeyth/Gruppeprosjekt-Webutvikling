@@ -118,6 +118,8 @@ const Register = () => {
                 <option value="">Alle uker</option>
                 <option value="odd">Hver oddetall uke</option>
                 <option value="even">Hver partall uke</option>
+                <option value="3">Hver tredje uke</option>
+                <option value="4">Hver fjerde uke</option>
               </select>
             </div>
           </div>

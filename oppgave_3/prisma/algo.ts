@@ -35,15 +35,15 @@ const createLunchList = (options: any) => {
         for(const person of odd) {
             person.count = 0;
         }
-        if(vacations.includes(i)) {
-            continue
-        }
         for(let n = 0; n < batchSize; n++) {
             let employeesUsed : String[] = ["random"]
             weekNumber++
             let employeeList : any = null;
             n % 2 === 0 ? employeeList = even : employeeList = odd
             for(let j = 0; j < workDays; j++) {
+                if(vacations.includes(weekNumber)) {
+                    continue
+                }
                 employeeList = employeeList.sort(() => Math.random() > 0.5 ? 1 : -1)
                 .sort((a : any, b : any) => (a.rules.match(/(?!days:)([\^\d]+)/g) ? Number(b.rules.match(/(?!days:)([\^\d]+)/g)) - Number(a.rules.match(/(?!days:)([\^\d]+)/g)) : 0 ))
                 .sort((a : any, b : any) => a.count - b.count)

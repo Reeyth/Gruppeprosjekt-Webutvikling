@@ -29,17 +29,21 @@ const createLunchList = (options: any) => {
     const { vacations, yearSize, workDays, batchSize, maxOccurrences, days } = options
     let weekNumber = 0
     for(let i = 0; i <= yearSize/batchSize; i++) {
-        for(const person of even) {
-            person.occourance = 0;
-        }
-        for(const person of odd) {
-            person.occourance = 0;
+        for(const key of map.keys()) {
+            for(const person of map.get(key)) {
+                person.occourance = 0
+            }
         }
         for(let n = 0; n < batchSize; n++) {
             let employeesUsed : String[] = ["random"]
             weekNumber++
             let employeeList : any = null;
             n % 2 === 0 ? employeeList = even : employeeList = odd
+            for(const key of map.keys()) {
+                if(key !== "all" && key !== "even" && key !== "odd" && weekNumber % Number(key) === 0) {
+                    employeeList = [...employeeList, ...map.get(key)]
+                }
+            }
             for(let j = 0; j < workDays; j++) {
                 if(vacations.includes(weekNumber)) {
                     continue
@@ -80,9 +84,6 @@ const currentOptions = {
   ]
 }
 const randomizedLunchList = createLunchList(currentOptions)
-// let nameList = ["Trude", "Ali"]
-// let list = map.get('all')
-// console.log(!nameList.includes(list[5].name))
 
 const prisma = new PrismaClient()
 async function main() {

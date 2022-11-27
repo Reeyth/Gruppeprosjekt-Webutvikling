@@ -39,10 +39,10 @@ const Register = () => {
 
   const handleSubmit = async () => {
 
-    if(await userExists(name)) {
-      setStatus('En ansatt med dette navnet eksisterer allerede')
-      return
-    }
+    // if(await userExists(name)) {
+    //   setStatus('En ansatt med dette navnet eksisterer allerede')
+    //   return
+    // }
 
     let allRules: String = 'days:' + rules.join('')
     console.log(ruleWeek)
@@ -64,16 +64,16 @@ const Register = () => {
     }
   }
 
-  const userExists = async ( username: String ) => {
-    const response = await fetch('http://localhost:3000/api/employee/' + username)
-    const data = await response.json()
-    if(data.employee) {
-      return true
-    } else {
-      return false
-    }
+  // const userExists = async ( username: String ) => {
+  //   const response = await fetch('http://localhost:3000/api/employee/' + username)
+  //   const data = await response.json()
+  //   if(data.employee) {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
 
-  }
+  // }
   
 
   return (

@@ -28,7 +28,8 @@ const ChangeName = (props : any) => {
         }}
     
     return (
-    
+    <>
+        <h2>Ansatt</h2>
         <div className='flexbox'>
         <form onSubmit={handleSubmit}>
         <label htmlFor='user'>Velg en ansatt å redigere</label>
@@ -42,6 +43,7 @@ const ChangeName = (props : any) => {
         <button>Oppdater</button>
         </form>
         </div>
+    </>
         
     )
 }

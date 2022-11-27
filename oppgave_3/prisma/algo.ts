@@ -9,13 +9,13 @@ const feedMap = (employee: any) => {
   //https://regexr.com/ is your friend
   const rulesDays = employee.rules.match(/(?!days:)([\d]+)|\*|even|odd/g)
   if (rulesDays[1] !== undefined && map.has(rulesDays[1])) {
-    map.get(rulesDays[1]).push({ ...employee, count: 0 })
+    map.get(rulesDays[1]).push({ ...employee, count: 0, occourance: 0 })
     return
   } else if (rulesDays[1] !== undefined) {
-    map.set(rulesDays[1], [{ ...employee, count: 0}])
+    map.set(rulesDays[1], [{ ...employee, count: 0, occourance: 0 }])
     return
   }
-  map.get('all').push({ ...employee, count: 0 })
+  map.get('all').push({ ...employee, count: 0, occourance: 0 })
 }
 
 for (const employee of employees) {
@@ -30,10 +30,10 @@ const createLunchList = (options: any) => {
     let weekNumber = 0
     for(let i = 0; i <= yearSize/batchSize; i++) {
         for(const person of even) {
-            person.count = 0;
+            person.occourance = 0;
         }
         for(const person of odd) {
-            person.count = 0;
+            person.occourance = 0;
         }
         for(let n = 0; n < batchSize; n++) {
             let employeesUsed : String[] = ["random"]
@@ -45,10 +45,12 @@ const createLunchList = (options: any) => {
                     continue
                 }
                 employeeList = employeeList.sort(() => Math.random() > 0.5 ? 1 : -1)
-                .sort((a : any, b : any) => (a.rules.match(/(?!days:)([\^\d]+)/g) ? Math.random() > 0.5 ? -1 : -2 : 1 ))
+                .sort((a : any) => (a.rules.match(/(?!days:)([\^\d]+)/g) ? Math.random() > 0.5 ? -1 : -2 : 1 ))
                 .sort((a : any, b : any) => a.count - b.count)
-                .filter((a : any) => String(a.rules.match(regex)).includes(String(j+1)) && a.count < maxOccurrences && !a.name.includes(employeesUsed) || String(a.rules.match(regex)).includes('*') && a.count < maxOccurrences && !a.name.includes(employeesUsed))
+                .filter((a : any) => String(a.rules.match(regex)).includes(String(j+1)) && a.occourance < maxOccurrences || String(a.rules.match(regex)).includes('*') && a.occourance < maxOccurrences)
+                .filter((a : any) => !employeesUsed.includes(a.name))
                 employeeList[0].count++
+                employeeList[0].occourance++
                 employeesUsed.push(employeeList[0].name)
                 workWeeks.push({
                     name: days[j], 
@@ -78,6 +80,10 @@ const currentOptions = {
   ]
 }
 const randomizedLunchList = createLunchList(currentOptions)
+// let nameList = ["Trude", "Ali"]
+// let list = map.get('all')
+// console.log(!nameList.includes(list[5].name))
+
 const prisma = new PrismaClient()
 async function main() {
     for(const lunchDay of randomizedLunchList) {

@@ -45,7 +45,7 @@ const createLunchList = (options: any) => {
                     continue
                 }
                 employeeList = employeeList.sort(() => Math.random() > 0.5 ? 1 : -1)
-                .sort((a : any, b : any) => (a.rules.match(/(?!days:)([\^\d]+)/g) ? Number(b.rules.match(/(?!days:)([\^\d]+)/g)) - Number(a.rules.match(/(?!days:)([\^\d]+)/g)) : 0 ))
+                .sort((a : any, b : any) => (a.rules.match(/(?!days:)([\^\d]+)/g) ? Math.random() > 0.5 ? -1 : -2 : 1 ))
                 .sort((a : any, b : any) => a.count - b.count)
                 .filter((a : any) => String(a.rules.match(regex)).includes(String(j+1)) && a.count < maxOccurrences && !a.name.includes(employeesUsed) || String(a.rules.match(regex)).includes('*') && a.count < maxOccurrences && !a.name.includes(employeesUsed))
                 employeeList[0].count++

@@ -39,6 +39,7 @@ const createLunchList = (options: any) => {
             continue
         }
         for(let n = 0; n < batchSize; n++) {
+            let employeesUsed : String[] = ["random"]
             weekNumber++
             let employeeList : any = null;
             n % 2 === 0 ? employeeList = even : employeeList = odd
@@ -46,8 +47,9 @@ const createLunchList = (options: any) => {
                 employeeList = employeeList.sort(() => Math.random() > 0.5 ? 1 : -1)
                 .sort((a : any, b : any) => (a.rules.match(/(?!days:)([\^\d]+)/g) ? Number(b.rules.match(/(?!days:)([\^\d]+)/g)) - Number(a.rules.match(/(?!days:)([\^\d]+)/g)) : 0 ))
                 .sort((a : any, b : any) => a.count - b.count)
-                .filter((a : any) => String(a.rules.match(regex)).includes(String(j+1)) && a.count < maxOccurrences || String(a.rules.match(regex)).includes('*') && a.count < maxOccurrences)
+                .filter((a : any) => String(a.rules.match(regex)).includes(String(j+1)) && a.count < maxOccurrences && !a.name.includes(employeesUsed) || String(a.rules.match(regex)).includes('*') && a.count < maxOccurrences && !a.name.includes(employeesUsed))
                 employeeList[0].count++
+                employeesUsed.push(employeeList[0].name)
                 workWeeks.push({
                     name: days[j], 
                     employeeId: employeeList[0].id, 

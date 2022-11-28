@@ -9,5 +9,6 @@ export default async function handler(
 ) {
   const country = countries[Math.floor(Math.random() * countries.length)]
   
+// CHANGE: changed from 400 to 200
   return res.status(200).json({ success: true, data: country })
 }

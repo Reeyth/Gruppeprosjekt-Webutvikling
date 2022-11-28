@@ -10,3 +10,31 @@ datasource db {
 generator dbml {
   provider = "prisma-dbml-generator"
 }
+
+model Employee {
+  id        Int      @id @default(autoincrement()) @unique
+  name      String
+  rules     String
+  day Day[]
+}
+model Day {
+  id Int @id @default(autoincrement()) @unique
+  name String
+  employee Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int
+  week Week @relation(fields: [weekId], references: [id])
+  weekId Int
+  lunch Lunch @relation(fields: [lunchId], references: [id])
+  lunchId Int
+}
+model Week {
+  id Int @id @default(autoincrement()) @unique
+  name String @unique
+  days Day[]
+}
+
+model Lunch {
+  id Int @id @default(autoincrement()) @unique
+  name String @unique
+  day Day[]
+}

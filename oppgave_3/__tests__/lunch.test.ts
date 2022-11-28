@@ -1,7 +1,4 @@
-import { describe, expect, it } from 'vitest'
-
-describe('Lunch', () => {
-  it(`smoke test`, () => {
-    expect(true).toBe(true)
-  })
+it('should be 52 weeks', () => {
+  let i = 1;
+    expect(i).toBe(1);
 })

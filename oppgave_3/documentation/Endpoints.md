@@ -12,7 +12,6 @@
 [Week - /api/week](../pages/api/week/%5B...id%5D.ts)
 
 ---
-
 ## Methods
 
 
@@ -32,12 +31,13 @@
 > GET/PUT
 
 ---
-
 ## Status/Respons
+
 
 
 ---
 ## Pages
+
 
 
 ---

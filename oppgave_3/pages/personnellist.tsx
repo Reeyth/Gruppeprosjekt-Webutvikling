@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Nav from '../components/Nav';
 import PersonnelList from '../components/PersonnelList';
 
-const PeronnelListPage: NextPage = () => {
+const PersonnelListPage: NextPage = () => {
 
   return (
     <main>
@@ -12,4 +12,4 @@ const PeronnelListPage: NextPage = () => {
   )
 }
 
-export default PeronnelListPage
+export default PersonnelListPage

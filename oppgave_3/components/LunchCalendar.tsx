@@ -14,7 +14,7 @@ const LunchCalendar = (props : any) => {
     return (
         <>
         <h1>{props.title}</h1>
-        <WeekSelection title="Uker" weeks={weeks} />
+        <WeekSelection title="Uker" weeks={weeks} hyperlink="/week/"/>
         <LunchTable week={props.week} />
         </>
     )

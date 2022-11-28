@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import LunchCalendar from '../../components/LunchCalendar'
+import LunchTable from '../../components/Lunchcalendar/LunchTable'
 import Nav from '../../components/Nav'
 import Search from '../../components/Search/Search'
 
@@ -24,8 +24,9 @@ const Span = () => {
   return (
     <div>
       <Nav />
+      <h2>Søk etter en ansatt</h2>
       <Search />
-      <LunchCalendar week={week} weekFetcher={fetchWeek} />
+      <LunchTable week={week} />
       {week.length === 0 ? <p>Person not found</p> : null}
     </div>
   )

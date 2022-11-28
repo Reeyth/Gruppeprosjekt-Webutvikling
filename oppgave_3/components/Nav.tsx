@@ -19,14 +19,14 @@ const Nav = () => {
         <Link href="/update">
           <a>Oppdater uke</a>
         </Link>
-        <Link href="/randomize">
-          <a>Miks uker</a>
+        <Link href="/updateEmployee">
+          <a>Ansatt</a>
         </Link>
         <Link href="/personnellist">
           <a>Personalliste</a>
         </Link>
-        <Link href="/updateEmployee">
-          <a>Ansatt</a>
+        <Link href="/settings">
+          <a>Instillinger</a>
         </Link>
       </>
     </nav>

@@ -23,6 +23,40 @@ for (const employee of employees) {
 }
 
 
+const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number) => {
+  for (const key of mapOfEmployees.keys()) {
+    if (
+      key !== 'all' &&
+      key !== 'even' &&
+      key !== 'odd' &&
+      weekNumber % Number(key) === 0
+    ) {
+      listOfEmployees = [...listOfEmployees, ...mapOfEmployees.get(key)]
+    }
+  }
+  return listOfEmployees
+}
+
+export const validateBatch = (occourances : number, weekBatch: any[]) => {
+  let usedEmployees : any[] = []
+  for (const week of weekBatch) {
+    for(let day of week) {
+      if(day.occourance === undefined) {
+        day = { ...day, occourance: 1 }
+      }
+      if(usedEmployees.includes(day.employeeId)) {
+        day.occourance++
+      }
+      if(day.occourance > occourances) {
+        return false
+      }
+      usedEmployees.push(day.employeeId)
+    }
+  }
+  return true
+
+}
+
 export const createLunchList = (options: any, map : Map<any, any>) => {
   let regex = /(?!days:)([\d]+)|\*/g
   const workWeeks: any = []
@@ -37,21 +71,13 @@ export const createLunchList = (options: any, map : Map<any, any>) => {
         person.occourance = 0
       }
     }
+    let batchWeek : any[] = []
     for (let n = 0; n < batchSize; n++) {
       let employeesUsed: String[] = ['random']
       weekNumber++
       let employeeList: any = null
       n % 2 === 0 ? (employeeList = even) : (employeeList = odd)
-      for (const key of map.keys()) {
-        if (
-          key !== 'all' &&
-          key !== 'even' &&
-          key !== 'odd' &&
-          weekNumber % Number(key) === 0
-        ) {
-          employeeList = [...employeeList, ...map.get(key)]
-        }
-      }
+      employeeList = getAdditionalEmployees(employeeList, weekNumber)
       let week : any = []
       for (let j = 0; j < workDays; j++) {
         if (vacations.includes(weekNumber)) {
@@ -79,6 +105,10 @@ export const createLunchList = (options: any, map : Map<any, any>) => {
         })
       }
       workWeeks.push(week)
+      batchWeek.push(week)
+    }
+    if (!validateBatch(maxOccurrences, batchWeek)) {
+      throw Error("Batch not valid.")
     }
   }
   return workWeeks

@@ -42,8 +42,8 @@ const UpdateWeek = (props : any) => {
                     <td>{day?.lunch_type}</td>
                     <td className='changeEmployee'>
                     {day?.employee_name}
-                        <select onChange={(e) => handleEmployeeChange(e, index)}>
-                            <option value={0} selected disabled hidden>Velg en ny ansatt</option>
+                        <select defaultValue={'DEFAULT'} onChange={(e) => handleEmployeeChange(e, index)}>
+                            <option value="DEFAULT" disabled hidden>Velg en ny ansatt</option>
                             {props.employees?.map((employee : any) => {
                                 return (
                                     <option disabled={day?.employee_name === employee.name} key={employee.id} value={employee.id}>{employee.name}</option>

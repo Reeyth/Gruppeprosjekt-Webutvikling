@@ -5,7 +5,7 @@ main, div {
   margin: 0 auto;
 }
 
-.week-selection {
+.week-selection, .vacation-selection {
   button {
     background-color: black;
     color: white;
@@ -27,6 +27,7 @@ main, div {
     }
   }
 }
+
 .flexbox form, .flexbox .divwrapper {
   display: flex;
   flex-direction: column;
@@ -128,7 +129,7 @@ nav {
     margin: 0.5rem;
   }
 }
-h2 {
+h2, h3 {
   font-size: 1.5rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -157,6 +158,11 @@ h2 {
     background: black;
   }
 }
+
+h3 {
+  font-size: 1.2rem;
+}
+
 .rulesDiv {
   display: flex;
   justify-content: center;

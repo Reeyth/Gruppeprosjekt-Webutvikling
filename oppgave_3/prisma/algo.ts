@@ -38,19 +38,19 @@ const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number) => {
 }
 
 export const validateBatch = (occourances : number, weekBatch: any[]) => {
-  let usedEmployees : any[] = []
+  let usedEmployees : Map<Number, any> = new Map()
   for (const week of weekBatch) {
     for(let day of week) {
-      if(day.occourance === undefined) {
-        day = { ...day, occourance: 1 }
+      if(usedEmployees.has(day.employeeId)) {
+        usedEmployees.set(day.employeeId, usedEmployees.get(day.employeeId) + 1)
+      } else {
+        usedEmployees.set(day.employeeId, 1)
       }
-      if(usedEmployees.includes(day.employeeId)) {
-        day.occourance++
-      }
-      if(day.occourance > occourances) {
-        return false
-      }
-      usedEmployees.push(day.employeeId)
+    }
+  }
+  for(const key of usedEmployees.keys()) {
+    if(usedEmployees.get(key) > occourances) {
+      return false
     }
   }
   return true
@@ -132,22 +132,31 @@ const currentOptions = {
     'Søndag',
   ],
 }
-const randomizedLunchList = createLunchList(currentOptions, mapOfEmployees)
 
-const prisma = new PrismaClient()
-async function main() {
-  for (const week of randomizedLunchList) {
-    for(const day of week) {
-    try {
-      await prisma.day.create({
-        data: day,
-      })
-    } catch (e) {
-      console.log(e)
-    } finally {
-      await prisma.$disconnect()
-    }
-  }}
-}
-main()
+const batch = [
+  [{ employeeId: 1}, { employeeId: 2}, { employeeId: 3}, { employeeId: 4}, { employeeId: 5}],
+  [{ employeeId: 6}, { employeeId: 7}, { employeeId: 1}, { employeeId: 9}, { employeeId: 10}],
+  [{ employeeId: 11}, { employeeId: 12}, { employeeId: 13}, { employeeId: 14}, { employeeId: 15}],
+  [{ employeeId: 1}, { employeeId: 16}, { employeeId: 17}, { employeeId: 18}, { employeeId: 19}]
+]
+console.log(validateBatch(2, batch))
+
+// const randomizedLunchList = createLunchList(currentOptions, mapOfEmployees)
+
+// const prisma = new PrismaClient()
+// async function main() {
+//   for (const week of randomizedLunchList) {
+//     for(const day of week) {
+//     try {
+//       await prisma.day.create({
+//         data: day,
+//       })
+//     } catch (e) {
+//       console.log(e)
+//     } finally {
+//       await prisma.$disconnect()
+//     }
+//   }}
+// }
+// main()
 

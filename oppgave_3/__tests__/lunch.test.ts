@@ -74,6 +74,6 @@ describe('Validation', () => {
         [{ employeeId: 11}, { employeeId: 12}, { employeeId: 13}, { employeeId: 14}, { employeeId: 15}],
         [{ employeeId: 1}, { employeeId: 16}, { employeeId: 17}, { employeeId: 18}, { employeeId: 19}]
       ]
-      expect(validateBatch(opt.maxOccourances, batch)).toBe(false);
+      expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false);
     })
   })

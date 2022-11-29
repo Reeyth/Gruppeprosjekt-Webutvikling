@@ -61,8 +61,10 @@ describe('Validation', () => {
         const opt = { ...options, batchSize: 4, maxOccurrences: 1 }
         const employeemap = new Map();
         employeemap.set('all', []);
+        employeemap.set('even', []);
+        employeemap.set('odd', []);
         for(let i = 0; i < 3; i++) {
-          employeemap.get('all').push({ id: i, name: 'test' + i, occourance: 0, count: 0 });
+          employeemap.get('all').push({ id: i, name: 'test' + i, rules: "*", occourance: 0, count: 0 });
         }
         expect(() => { createLunchList(opt, employeemap); }).toThrow(TypeError);    
     })
@@ -87,5 +89,85 @@ describe('Validation', () => {
       ]
       expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false);
     })
-
+    it("Should fail when batchsize is greater than number of employees", () => {
+      const opt = { ...options, batchSize: 20, maxOccourances: 3 }
+      const employeemap = new Map();
+      employeemap.set('all', []);
+      employeemap.set('even', []);
+      employeemap.set('odd', []);
+      for(let i = 0; i < 15; i++) {
+        employeemap.get('all').push({ id: i, name: 'test' + i, rules: "*", occourance: 0, count: 0 });
+      }
+      expect(() => { createLunchList(opt, employeemap); }).toThrow(TypeError);    
+    })
+  })
+  describe('Validation employees', () => {
+  it("should pass if all employees match rule *", () => {
+    const workers = [
+      {
+        id: 1,
+        name: 'Trude',
+        rules: 'days:*',
+      },
+      {
+        id: 2,
+        name: 'Lars',
+        rules: '*',
+      },
+      {
+        id: 3,
+        name: 'Finn',
+        rules: '*',
+      },
+      {
+        id: 4,
+        name: 'Kaare',
+        rules: 'days:*|week:odd',
+      },
+      {
+        id: 5,
+        name: 'Olav',
+        rules: '*',
+      },
+      {
+        id: 6,
+        name: 'Sebastian',
+        rules: '*',
+      },
+    ]
+    for(const worker of workers) {
+      expect(worker.rules.match(/(?!days:)([\d]+)|\*/g)).toEqual(['*']);
+    }
+  })
+  it("Should pass if filter only shows relevant employees following by day.", () => {
+    const workers = [
+      {
+        id: 1,
+        name: 'Trude',
+        rules: 'days:123',
+      },
+      {
+        id: 2,
+        name: 'Lars',
+        rules: 'days:2',
+      },
+      {
+        id: 3,
+        name: 'Finn',
+        rules: 'days:3',
+      },
+      {
+        id: 4,
+        name: 'Kaare',
+        rules: 'days:4',
+      },
+    ]
+    const filtered = workers.filter(
+      (a: any) =>
+        (String(a.rules.match(/(?!days:)([\d]+)|\*/g)).includes(String(3))
+         ||
+        (String(a.rules.match(/(?!days:)([\d]+)|\*/g)).includes('*'))))
+        expect(filtered.length).toEqual(2);
+  })
+  
   })

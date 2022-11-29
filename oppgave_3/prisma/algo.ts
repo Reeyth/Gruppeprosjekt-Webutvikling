@@ -133,30 +133,22 @@ const currentOptions = {
   ],
 }
 
-const batch = [
-  [{ employeeId: 1}, { employeeId: 2}, { employeeId: 3}, { employeeId: 4}, { employeeId: 5}],
-  [{ employeeId: 6}, { employeeId: 7}, { employeeId: 1}, { employeeId: 9}, { employeeId: 10}],
-  [{ employeeId: 11}, { employeeId: 12}, { employeeId: 13}, { employeeId: 14}, { employeeId: 15}],
-  [{ employeeId: 1}, { employeeId: 16}, { employeeId: 17}, { employeeId: 18}, { employeeId: 19}]
-]
-console.log(validateBatch(2, batch))
+const randomizedLunchList = createLunchList(currentOptions, mapOfEmployees)
 
-// const randomizedLunchList = createLunchList(currentOptions, mapOfEmployees)
-
-// const prisma = new PrismaClient()
-// async function main() {
-//   for (const week of randomizedLunchList) {
-//     for(const day of week) {
-//     try {
-//       await prisma.day.create({
-//         data: day,
-//       })
-//     } catch (e) {
-//       console.log(e)
-//     } finally {
-//       await prisma.$disconnect()
-//     }
-//   }}
-// }
-// main()
+const prisma = new PrismaClient()
+async function main() {
+  for (const week of randomizedLunchList) {
+    for(const day of week) {
+    try {
+      await prisma.day.create({
+        data: day,
+      })
+    } catch (e) {
+      console.log(e)
+    } finally {
+      await prisma.$disconnect()
+    }
+  }}
+}
+main()
 

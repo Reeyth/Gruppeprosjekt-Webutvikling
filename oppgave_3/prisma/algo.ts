@@ -38,23 +38,31 @@ const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number) => {
 }
 
 export const validateBatch = (occourances : number, weekBatch: any[]) => {
-  let usedEmployees : Map<Number, any> = new Map()
+  let daysList : Map<String, any> = new Map()
   for (const week of weekBatch) {
     for(let day of week) {
-      if(usedEmployees.has(day.employeeId)) {
-        usedEmployees.set(day.employeeId, usedEmployees.get(day.employeeId) + 1)
+      if(daysList.has(day.employeeId) && daysList.get(day.employeeId).has(day.name)) {
+        daysList.get(day.employeeId).set(day.name, daysList.get(day.employeeId).get(day.name) + 1)
       } else {
-        usedEmployees.set(day.employeeId, 1)
+        daysList.set(day.employeeId, new Map())
+        for(const n of week) {
+          if(n.name === day.name) {
+            daysList.get(day.employeeId).set(day.name, 1)
+          } else {
+            daysList.get(day.employeeId).set(n.name, 0)
+          }
+        }
       }
     }
   }
-  for(const key of usedEmployees.keys()) {
-    if(usedEmployees.get(key) > occourances) {
-      return false
+  for(const key of daysList.keys()) {
+    for(const name of daysList.get(key).keys()) {
+      if(daysList.get(key).get(name) > occourances) {
+        return false
+      }
     }
   }
   return true
-
 }
 
 export const createLunchList = (options: any, map : Map<any, any>) => {
@@ -135,20 +143,20 @@ const currentOptions = {
 
 const randomizedLunchList = createLunchList(currentOptions, mapOfEmployees)
 
-const prisma = new PrismaClient()
-async function main() {
-  for (const week of randomizedLunchList) {
-    for(const day of week) {
-    try {
-      await prisma.day.create({
-        data: day,
-      })
-    } catch (e) {
-      console.log(e)
-    } finally {
-      await prisma.$disconnect()
-    }
-  }}
-}
-main()
+// const prisma = new PrismaClient()
+// async function main() {
+//   for (const week of randomizedLunchList) {
+//     for(const day of week) {
+//     try {
+//       await prisma.day.create({
+//         data: day,
+//       })
+//     } catch (e) {
+//       console.log(e)
+//     } finally {
+//       await prisma.$disconnect()
+//     }
+//   }}
+// }
+// main()
 

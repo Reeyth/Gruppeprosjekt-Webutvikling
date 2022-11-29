@@ -9,7 +9,9 @@ export const feedMap = (employee: any) => {
   //https://regexr.com/ is your friend
   const rulesDays = employee.rules.match(/(?!days:)([\d]+)|\*|even|odd/g)
   if (rulesDays[1] !== undefined && mapOfEmployees.has(rulesDays[1])) {
-    mapOfEmployees.get(rulesDays[1]).push({ ...employee, count: 0, occourance: 0 })
+    mapOfEmployees
+      .get(rulesDays[1])
+      .push({ ...employee, count: 0, occourance: 0 })
     return
   } else if (rulesDays[1] !== undefined) {
     mapOfEmployees.set(rulesDays[1], [{ ...employee, count: 0, occourance: 0 }])
@@ -21,7 +23,6 @@ export const feedMap = (employee: any) => {
 for (const employee of employees) {
   feedMap(employee)
 }
-
 
 const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number) => {
   for (const key of mapOfEmployees.keys()) {
@@ -37,16 +38,27 @@ const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number) => {
   return listOfEmployees
 }
 
-export const validateBatch = (occourances : number, weekBatch: any[]) => {
-  let daysList : Map<String, any> = new Map()
+export const validateBatch = (occourances: number, weekBatch: any[]) => {
+  let daysList: Map<String, any> = new Map()
+  let usedEmployees: Number[] = []
   for (const week of weekBatch) {
-    for(let day of week) {
-      if(daysList.has(day.employeeId) && daysList.get(day.employeeId).has(day.name)) {
-        daysList.get(day.employeeId).set(day.name, daysList.get(day.employeeId).get(day.name) + 1)
+    usedEmployees = []
+    for (let day of week) {
+      if(usedEmployees.includes(day.employeeId)) {
+        return false
+      }
+      usedEmployees.push(day.employeeId)
+      if (
+        daysList.has(day.employeeId) &&
+        daysList.get(day.employeeId).has(day.name)
+      ) {
+        daysList
+          .get(day.employeeId)
+          .set(day.name, daysList.get(day.employeeId).get(day.name) + 1)
       } else {
         daysList.set(day.employeeId, new Map())
-        for(const n of week) {
-          if(n.name === day.name) {
+        for (const n of week) {
+          if (n.name === day.name) {
             daysList.get(day.employeeId).set(day.name, 1)
           } else {
             daysList.get(day.employeeId).set(n.name, 0)
@@ -55,9 +67,9 @@ export const validateBatch = (occourances : number, weekBatch: any[]) => {
       }
     }
   }
-  for(const key of daysList.keys()) {
-    for(const name of daysList.get(key).keys()) {
-      if(daysList.get(key).get(name) > occourances) {
+  for (const key of daysList.keys()) {
+    for (const name of daysList.get(key).keys()) {
+      if (daysList.get(key).get(name) > occourances) {
         return false
       }
     }
@@ -65,7 +77,7 @@ export const validateBatch = (occourances : number, weekBatch: any[]) => {
   return true
 }
 
-export const createLunchList = (options: any, map : Map<any, any>) => {
+export const createLunchList = (options: any, map: Map<any, any>) => {
   let regex = /(?!days:)([\d]+)|\*/g
   const workWeeks: any = []
   let even: any = new Array(...map.get('all'), ...map.get('even'))
@@ -73,22 +85,22 @@ export const createLunchList = (options: any, map : Map<any, any>) => {
   const { vacations, yearSize, workDays, batchSize, maxOccurrences, days } =
     options
   let weekNumber = 0
-  for (let i = 0; i < yearSize / batchSize; i++) {
+  for (let i = 0; i < Math.round(yearSize / batchSize)+1; i++) {
     for (const key of map.keys()) {
       for (const person of map.get(key)) {
         person.occourance = 0
       }
     }
-    let batchWeek : any[] = []
+    let batchWeek: any[] = []
     for (let n = 0; n < batchSize; n++) {
       let employeesUsed: String[] = ['random']
       weekNumber++
       let employeeList: any = null
       n % 2 === 0 ? (employeeList = even) : (employeeList = odd)
       employeeList = getAdditionalEmployees(employeeList, weekNumber)
-      let week : any = []
+      let week: any = []
       for (let j = 0; j < workDays; j++) {
-        if (vacations.includes(weekNumber)) {
+        if (vacations.includes(weekNumber) || weekNumber > options.yearSize) {
           continue
         }
         employeeList = employeeList
@@ -112,17 +124,18 @@ export const createLunchList = (options: any, map : Map<any, any>) => {
           lunchId: faker.datatype.number({ min: 1, max: 22 }),
         })
       }
+      if (weekNumber > options.yearSize) {
+        continue
+      }
       workWeeks.push(week)
       batchWeek.push(week)
     }
     if (!validateBatch(maxOccurrences, batchWeek)) {
-      throw Error("Batch not valid.")
+      throw Error('Batch not valid.')
     }
   }
   return workWeeks
 }
-
-
 
 const currentOptions = {
   vacations: [8, 28, 29, 30, 31, 32, 40, 52],
@@ -143,20 +156,20 @@ const currentOptions = {
 
 const randomizedLunchList = createLunchList(currentOptions, mapOfEmployees)
 
-// const prisma = new PrismaClient()
-// async function main() {
-//   for (const week of randomizedLunchList) {
-//     for(const day of week) {
-//     try {
-//       await prisma.day.create({
-//         data: day,
-//       })
-//     } catch (e) {
-//       console.log(e)
-//     } finally {
-//       await prisma.$disconnect()
-//     }
-//   }}
-// }
-// main()
-
+const prisma = new PrismaClient()
+async function main() {
+  for (const week of randomizedLunchList) {
+    for (const day of week) {
+      try {
+        await prisma.day.create({
+          data: day,
+        })
+      } catch (e) {
+        console.log(e)
+      } finally {
+        await prisma.$disconnect()
+      }
+    }
+  }
+}
+main()

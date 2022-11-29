@@ -50,7 +50,7 @@ it("There should be no employees working when vacation", () => {
 })
 describe('Validation', () => {
   console.log('---Validation---');
-    it("Should fail if employee apperas more than once in the same week", () => {
+    it("Should fail if employee appears more than once in the same week", () => {
       let employeesUsed = [1]
         for(const day of data[0]) {
           day.employeeId = 1;
@@ -71,10 +71,10 @@ describe('Validation', () => {
     it("Should fail when batch of size 4 have more than 2 occurrences of employee", () => {
       const opt = { ...options, batchSize: 4, maxOccourances: 2 }
       const batch = [
-        [{ employeeId: 1}, { employeeId: 2}, { employeeId: 3}, { employeeId: 4}, { employeeId: 5}],
-        [{ employeeId: 6}, { employeeId: 7}, { employeeId: 8}, { employeeId: 1}, { employeeId: 10}],
-        [{ employeeId: 11}, { employeeId: 12}, { employeeId: 13}, { employeeId: 14}, { employeeId: 15}],
-        [{ employeeId: 1}, { employeeId: 16}, { employeeId: 17}, { employeeId: 18}, { employeeId: 19}]
+        [{ employeeId: 1, name: "Mandag"}, { employeeId: 2, name: "Tirsdag"}, { employeeId: 3, name: "Onsdag"}, { employeeId: 14, name: "Torsdag"}, { employeeId: 15, name: "Fredag"}],
+        [{ employeeId: 4, name: "Mandag"}, { employeeId: 5, name: "Tirsdag"}, { employeeId: 7, name: "Onsdag"}, { employeeId: 41, name: "Torsdag"}, { employeeId: 23, name: "Fredag"}],
+        [{ employeeId: 4, name: "Mandag"}, { employeeId: 6, name: "Tirsdag"}, { employeeId: 9, name: "Onsdag"}, { employeeId: 13, name: "Torsdag"}, { employeeId: 22, name: "Fredag"}],
+        [{ employeeId: 4, name: "Mandag"}, { employeeId: 1, name: "Tirsdag"}, { employeeId: 8, name: "Onsdag"}, { employeeId: 17, name: "Torsdag"}, { employeeId: 51, name: "Fredag"}]
       ]
       expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false);
     })
@@ -82,10 +82,10 @@ describe('Validation', () => {
     it("Should fail when batch of size 4 have more than 3 occurrences of employee", () => {
       const opt = { ...options, batchSize: 4, maxOccourances: 3 }
       const batch = [
-        [{ employeeId: 1}, { employeeId: 2}, { employeeId: 3}, { employeeId: 4}, { employeeId: 5}],
-        [{ employeeId: 6}, { employeeId: 7}, { employeeId: 8}, { employeeId: 1}, { employeeId: 10}],
-        [{ employeeId: 11}, { employeeId: 1}, { employeeId: 13}, { employeeId: 14}, { employeeId: 15}],
-        [{ employeeId: 1}, { employeeId: 16}, { employeeId: 17}, { employeeId: 18}, { employeeId: 19}]
+        [{ employeeId: 1, name: "Mandag"}, { employeeId: 2, name: "Tirsdag"}, { employeeId: 3, name: "Onsdag"}, { employeeId: 4, name: "Torsdag"}, { employeeId: 5, name: "Fredag"}],
+        [{ employeeId: 1, name: "Mandag"}, { employeeId: 7, name: "Tirsdag"}, { employeeId: 8, name: "Onsdag"}, { employeeId: 1, name: "Torsdag"}, { employeeId: 10, name: "Fredag"}],
+        [{ employeeId: 1, name: "Mandag"}, { employeeId: 12, name: "Tirsdag"}, { employeeId: 13, name: "Onsdag"}, { employeeId: 14, name: "Torsdag"}, { employeeId: 15, name: "Fredag"}],
+        [{ employeeId: 1, name: "Mandag"}, { employeeId: 16, name: "Tirsdag"}, { employeeId: 17, name: "Onsdag"}, { employeeId: 18, name: "Torsdag"}, { employeeId: 19, name: "Fredag"}]
       ]
       expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false);
     })
@@ -169,5 +169,16 @@ describe('Validation', () => {
         (String(a.rules.match(/(?!days:)([\d]+)|\*/g)).includes('*'))))
         expect(filtered.length).toEqual(2);
   })
+  it("Should fail if an invalid rule is applied to employee", () => {
+    const worker = {name: 'Lars', rules: 'week:blablabla'}
+
+    expect(() => { feedMap(worker); }).toThrow(TypeError);
+
+  })
   
+  it("Should pass if an employee is present more than twice in a week", () => {
+
+    
+  })
+
   })

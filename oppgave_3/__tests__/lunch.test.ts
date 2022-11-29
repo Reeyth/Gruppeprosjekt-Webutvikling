@@ -66,14 +66,26 @@ describe('Validation', () => {
         }
         expect(() => { createLunchList(opt, employeemap); }).toThrow(TypeError);    
     })
-    it("Should fail when batch of size 4 have more than 1 occurrences of employee", () => {
-      const opt = { ...options, batchSize: 4, maxOccourances: 1 }
+    it("Should fail when batch of size 4 have more than 2 occurrences of employee", () => {
+      const opt = { ...options, batchSize: 4, maxOccourances: 2 }
       const batch = [
         [{ employeeId: 1}, { employeeId: 2}, { employeeId: 3}, { employeeId: 4}, { employeeId: 5}],
-        [{ employeeId: 6}, { employeeId: 7}, { employeeId: 8}, { employeeId: 9}, { employeeId: 10}],
+        [{ employeeId: 6}, { employeeId: 7}, { employeeId: 8}, { employeeId: 1}, { employeeId: 10}],
         [{ employeeId: 11}, { employeeId: 12}, { employeeId: 13}, { employeeId: 14}, { employeeId: 15}],
         [{ employeeId: 1}, { employeeId: 16}, { employeeId: 17}, { employeeId: 18}, { employeeId: 19}]
       ]
       expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false);
     })
+
+    it("Should fail when batch of size 4 have more than 3 occurrences of employee", () => {
+      const opt = { ...options, batchSize: 4, maxOccourances: 3 }
+      const batch = [
+        [{ employeeId: 1}, { employeeId: 2}, { employeeId: 3}, { employeeId: 4}, { employeeId: 5}],
+        [{ employeeId: 6}, { employeeId: 7}, { employeeId: 8}, { employeeId: 1}, { employeeId: 10}],
+        [{ employeeId: 11}, { employeeId: 1}, { employeeId: 13}, { employeeId: 14}, { employeeId: 15}],
+        [{ employeeId: 1}, { employeeId: 16}, { employeeId: 17}, { employeeId: 18}, { employeeId: 19}]
+      ]
+      expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false);
+    })
+
   })

@@ -1,6 +1,13 @@
 import Link from 'next/link'
 
 const Nav = () => {
+
+  const runDemo = async () => {
+    const response = await fetch('/api/demo')
+    const data = await response.json()
+    document.location.reload()
+  }
+
   return (
     <nav>
       <>
@@ -28,6 +35,7 @@ const Nav = () => {
         <Link href="/settings">
           <a>Instillinger</a>
         </Link>
+        <button onClick={() => runDemo()}>Demo</button>
       </>
     </nav>
   )

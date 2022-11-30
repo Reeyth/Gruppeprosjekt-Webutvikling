@@ -1,15 +1,15 @@
 import { employees } from '../data/employees'
 import {
   feedMap,
-  mapOfEmployees,
   createLunchList,
   validateBatch,
-} from '../prisma/algo'
+} from '../hooks/algo'
 
 it('should return a list of employees', () => {
+  const mapOfEmployees = new Map()
   mapOfEmployees.set('all', [])
   for (const employee of employees) {
-    feedMap(employee)
+    feedMap(employee, mapOfEmployees)
   }
   for (const key of mapOfEmployees.keys()) {
     expect(mapOfEmployees.get(key).length).toBeGreaterThan(0)
@@ -31,6 +31,11 @@ const options = {
     'Lørdag',
     'Søndag',
   ],
+}
+const mapOfEmployees = new Map()
+mapOfEmployees.set('all', [])
+for (const employee of employees) {
+  feedMap(employee, mapOfEmployees)
 }
 const data = createLunchList(options, mapOfEmployees)
 
@@ -225,9 +230,9 @@ describe('Validation employees', () => {
   })
   it('Should fail if an invalid rule is applied to employee', () => {
     const worker = { name: 'Lars', rules: 'week:blablabla' }
-
+    const workerMap = new Map()
     expect(() => {
-      feedMap(worker)
+      feedMap(worker, workerMap)
     }).toThrow(TypeError)
   })
 

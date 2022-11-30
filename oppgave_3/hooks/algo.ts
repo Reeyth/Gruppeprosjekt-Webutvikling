@@ -2,37 +2,37 @@ import { employees } from '../data/employees'
 import { faker } from '@faker-js/faker'
 import { PrismaClient } from '@prisma/client'
 
-export const mapOfEmployees = new Map()
+const mapOfEmployees = new Map()
 mapOfEmployees.set('all', [])
 
-export const feedMap = (employee: any) => {
+export const feedMap = (employee: any, map : Map<any, any>) => {
   //https://regexr.com/ is your friend
   const rulesDays = employee.rules.match(/(?!days:)([\d]+)|\*|even|odd/g)
-  if (rulesDays[1] !== undefined && mapOfEmployees.has(rulesDays[1])) {
-    mapOfEmployees
+  if (rulesDays[1] !== undefined && map.has(rulesDays[1])) {
+    map
       .get(rulesDays[1])
       .push({ ...employee, count: 0, occourance: 0 })
     return
   } else if (rulesDays[1] !== undefined) {
-    mapOfEmployees.set(rulesDays[1], [{ ...employee, count: 0, occourance: 0 }])
+    map.set(rulesDays[1], [{ ...employee, count: 0, occourance: 0 }])
     return
   }
-  mapOfEmployees.get('all').push({ ...employee, count: 0, occourance: 0 })
+  map.get('all').push({ ...employee, count: 0, occourance: 0 })
 }
 
 for (const employee of employees) {
-  feedMap(employee)
+  feedMap(employee, mapOfEmployees)
 }
 
-const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number) => {
-  for (const key of mapOfEmployees.keys()) {
+const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number, map : Map<any, any>) => {
+  for (const key of map.keys()) {
     if (
       key !== 'all' &&
       key !== 'even' &&
       key !== 'odd' &&
       weekNumber % Number(key) === 0
     ) {
-      listOfEmployees = [...listOfEmployees, ...mapOfEmployees.get(key)]
+      listOfEmployees = [...listOfEmployees, ...map.get(key)]
     }
   }
   return listOfEmployees
@@ -97,7 +97,7 @@ export const createLunchList = (options: any, map: Map<any, any>) => {
       weekNumber++
       let employeeList: any = null
       n % 2 === 0 ? (employeeList = even) : (employeeList = odd)
-      employeeList = getAdditionalEmployees(employeeList, weekNumber)
+      employeeList = getAdditionalEmployees(employeeList, weekNumber, map)
       let week: any = []
       for (let j = 0; j < workDays; j++) {
         if (vacations.includes(weekNumber) || weekNumber > options.yearSize) {
@@ -153,23 +153,3 @@ const currentOptions = {
     'Søndag',
   ],
 }
-
-const randomizedLunchList = createLunchList(currentOptions, mapOfEmployees)
-
-const prisma = new PrismaClient()
-async function main() {
-  for (const week of randomizedLunchList) {
-    for (const day of week) {
-      try {
-        await prisma.day.create({
-          data: day,
-        })
-      } catch (e) {
-        console.error(e)
-      } finally {
-        await prisma.$disconnect()
-      }
-    }
-  }
-}
-main()

@@ -13,7 +13,8 @@
 
 ---
 ## Methods
-
+[Demo](../pages/api/demo.ts)
+> GET
 
 [Create](../pages/api/create/employee.ts)
 > POST

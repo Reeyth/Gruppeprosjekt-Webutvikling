@@ -39,9 +39,10 @@ useEffect(() => {
           disabled={vacations.includes(week)}
           style={
             vacations.includes(week) ? { 
-              backgroundColor: "red"
+              backgroundColor: "red",
             } : {}
-          }>{week}</button>
+          }
+          > {week} </button>
         </Link>
       ))}
     </div>

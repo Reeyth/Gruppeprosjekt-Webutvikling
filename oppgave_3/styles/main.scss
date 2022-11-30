@@ -42,6 +42,10 @@ main, div {
 }
 
 .lunch-table, .employee-table {
+
+  width: 100%;
+  text-align: center;
+
   table {
     width: 80%;
     border-collapse: collapse;
@@ -61,6 +65,29 @@ main, div {
     }
 
     a {
+      color: black;
+    }
+  }
+
+  .export-to-excel-button, .return-to-week-selection-button {
+
+    width: 20%;
+    text-align: center;
+  
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 12px;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: lightgrey;
+      color: black;
+    }
+  
+    &:focus {
+      background-color: lightgrey;
       color: black;
     }
   }

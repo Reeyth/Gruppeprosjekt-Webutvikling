@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
-import { settings } from '../../../../data/settings'
+import { settings, writeSettings } from '../../../../data/settings'
 import { runInNewContext } from 'vm'
 
 const prisma = new PrismaClient()
@@ -31,22 +31,27 @@ export default async function handler(
   } else if (req.method === 'POST') {
     try {
       const vacationId = req.query.id
-      if (!vacationId) {
-        return res.status(400).json({ status: 400, message: 'Id missing' })
+
+      if(!vacationId) {
+          return res.status(400).json({ success: false, message: 'Id missing' })
       }
 
-      if(parseInt(vacationId[0]) > 52 || parseInt(vacationId[0]) < 1) {
-        return res.status(400).json({ status: 400, message: 'Id out of range (1-52)' })
+      const id = parseInt(vacationId[0])
+
+      if(id > 52 || id < 1) {
+          return res.status(400).json({ success: false, message: 'Id out of range (1-52)' })
       }
 
-      if(settings.vacations.includes(parseInt(vacationId[0]))) {
-        return res.status(400).json({ status: 400, message: 'Vacation already exists' })
+      if(settings.vacations.includes(id)) {
+          return res.status(400).json({ success: false, message: 'Vacation already exists' })
       }
 
-      settings.vacations.push(parseInt(vacationId[0]))
+      settings.vacations.push(id)
       settings.vacations.sort((a, b) => a - b)
+      
+      writeSettings()
 
-      return res.status(200).json({ status: 200, data: settings.vacations, message: 'Vacation added' })
+      res.status(200).json({ success: true, data: settings.vacations })
     } catch (error) {
       console.error(error)
     } finally {
@@ -55,24 +60,29 @@ export default async function handler(
       }
     }
   } else if (req.method === 'DELETE') {
-
     try {
       const vacationId = req.query.id
-      if (!vacationId) {
-        return res.status(400).json({ status: 400, message: 'Id missing' })
+
+      if(!vacationId) {
+          return res.status(400).json({ success: false, message: 'Id missing' })
       }
 
-      if(parseInt(vacationId[0]) > 52 || parseInt(vacationId[0]) < 1) {
-        return res.status(400).json({ status: 400, message: 'Id out of range (1-52)' })
+      const id = parseInt(vacationId[0])
+
+      if(id > 52 || id < 1) {
+          return res.status(400).json({ success: false, message: 'Id out of range (1-52)' })
       }
 
-      if(!settings.vacations.includes(parseInt(vacationId[0]))) {
-        return res.status(400).json({ status: 400, message: 'Vacation does not exists' })
+      if(!settings.vacations.includes(id)) {
+        return res.status(400).json({ success: false, message: 'Vacation does not exists' })
       }
 
-      settings.vacations.splice(settings.vacations.indexOf(parseInt(vacationId[0])), 1)
+      settings.vacations.splice(settings.vacations.indexOf(id), 1)
+
+      writeSettings()
 
       return res.status(200).json({ status: 200, data: settings.vacations, message: 'Vacation deleted' })
+
     } catch (error) {
       console.error(error)
     } finally {

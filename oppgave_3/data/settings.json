@@ -1,0 +1,68 @@
+{
+  "settingsJson": {
+    "settings": {
+      "isDefault": true,
+      "vacations": [
+        2,
+        5,
+        8,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        48,
+        49,
+        52
+      ],
+      "yearSize": 52,
+      "workDays": 5,
+      "batchSize": 4,
+      "maxOccurrences": 4,
+      "days": [
+        "Mandag",
+        "Tirsdag",
+        "Onsdag",
+        "Torsdag",
+        "Fredag",
+        "Lørdag",
+        "Søndag"
+      ]
+    },
+    "defaultSettings": {
+      "isDefault": true,
+      "vacations": [
+        8,
+        28,
+        29,
+        30,
+        31,
+        32,
+        40,
+        52
+      ],
+      "yearSize": 52,
+      "workDays": 5,
+      "batchSize": 4,
+      "maxOccurrences": 4,
+      "days": [
+        "Mandag",
+        "Tirsdag",
+        "Onsdag",
+        "Torsdag",
+        "Fredag",
+        "Lørdag",
+        "Søndag"
+      ]
+    }
+  }
+}

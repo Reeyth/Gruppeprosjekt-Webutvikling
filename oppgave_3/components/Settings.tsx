@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { restoreSettings } from '../data/settings'
 
 type SettingsProps = {
 };
@@ -8,13 +9,13 @@ const Settings: React.FC<SettingsProps> = ( ) => {
     const [vacations, setVacations] = useState<number[]>([])
 
     const fetchVacations = async () => {
-    try {
-        const response = await fetch(`/api/settings/vacations`)
-        const data = await response.json()
-        setVacations(data.data)
-    } catch (error) {
-        console.error(error)
-    }
+        try {
+            const response = await fetch(`/api/settings/vacations`)
+            const data = await response.json()
+            setVacations(data.data)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     useEffect(() => {
@@ -27,8 +28,10 @@ const Settings: React.FC<SettingsProps> = ( ) => {
                 method: 'DELETE'
             })
             const data = await response.json()
+            console.log(data)
             setVacations(data.data)
         } else {
+            console.log(vacations)
             const response = await fetch(`/api/settings/vacations/${week}`, {
                 method: 'POST'
             })
@@ -37,6 +40,13 @@ const Settings: React.FC<SettingsProps> = ( ) => {
         }
     }
 
+    const handleRestore = async () => {
+        const response = await fetch(`/api/settings/restore`, {
+            method: 'POST'
+        })
+        const data = await response.json()
+        setVacations(data.data)
+    }
 
     const weeks = Array.from(Array(52).keys()).map((i) => i + 1)
 
@@ -64,9 +74,7 @@ const Settings: React.FC<SettingsProps> = ( ) => {
                 ))
             }
             </div>
-
         </div>
-
     )
 }
 

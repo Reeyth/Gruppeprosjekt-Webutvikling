@@ -1,16 +1,17 @@
-export const settings = {
-        vacations: [8, 28, 29, 30, 31, 32, 40, 52],
-        yearSize: 52,
-        workDays: 5,
-        batchSize: 4,
-        maxOccurrences: 4,
-        days: [
-          'Mandag',
-          'Tirsdag',
-          'Onsdag',
-          'Torsdag',
-          'Fredag',
-          'Lørdag',
-          'Søndag',
-        ]
+import settingsFile from '../data/settings.json'
+
+export let settings = settingsFile.settingsJson.settings
+export const defaultSettings = settingsFile.settingsJson.defaultSettings
+
+// Write settings to json file
+export function writeSettings() {
+    const fs = require('fs')
+    const path = require('path')
+    const filePath = path.join(process.cwd(), 'data', 'settings.json')
+    const data = JSON.stringify({ settingsJson: {settings, defaultSettings } }, null, 2)
+    fs.writeFileSync(filePath, data)
+}
+
+export function restoreSettings() {
+    settings = { ...defaultSettings }
 }

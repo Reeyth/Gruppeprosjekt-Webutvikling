@@ -55,20 +55,13 @@ it('There should be no employees working when vacation', () => {
 })
 describe('Validation', () => {
   console.log('---Validation---')
-  it('Should fail if employee appears more than once in the same week', () => {
-    let employeesUsed = [1]
-    for (const day of data[0]) {
-      day.employeeId = 1
-      expect(employeesUsed.includes(1)).toBe<boolean>(true)
-    }
-  })
   it('Should fail when batch of size 4 and maxOccournce 1 when not enough employees.', () => {
-    const opt = { ...options, batchSize: 4, maxOccurrences: 1 }
+    const opt = { ...options, batchSize: 7, maxOccurrences: 1 }
     const employeemap = new Map()
     employeemap.set('all', [])
     employeemap.set('even', [])
     employeemap.set('odd', [])
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 6; i++) {
       employeemap
         .get('all')
         .push({ id: i, name: 'test' + i, rules: '*', occourance: 0, count: 0 })
@@ -238,7 +231,7 @@ describe('Validation employees', () => {
     }).toThrow(TypeError)
   })
 
-  it('Should fail if an employee is present more than twice in a week', () => {
+  it('Should fail if an employee is present more than once in a week', () => {
     const opt = { ...options, batchSize: 2, maxOccourances: 3 }
     const batch = [
       [

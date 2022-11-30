@@ -1,11 +1,13 @@
 @import './globals.scss';
 
-main, div {
+main,
+div {
   max-width: 1080px;
   margin: 0 auto;
 }
 
-.week-selection, .vacation-selection {
+.week-selection,
+.vacation-selection {
   button {
     background-color: black;
     color: white;
@@ -28,7 +30,8 @@ main, div {
   }
 }
 
-.flexbox form, .flexbox .divwrapper {
+.flexbox form,
+.flexbox .divwrapper {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -41,8 +44,8 @@ main, div {
   }
 }
 
-.lunch-table, .employee-table {
-
+.lunch-table,
+.employee-table {
   width: 100%;
   text-align: center;
 
@@ -69,23 +72,23 @@ main, div {
     }
   }
 
-  .export-to-excel-button, .return-to-week-selection-button {
-
+  .export-to-excel-button,
+  .return-to-week-selection-button {
     width: 20%;
     text-align: center;
-  
+
     background-color: black;
     border: none;
     color: white;
     padding: 12px 24px;
     font-size: 12px;
     cursor: pointer;
-  
+
     &:hover {
       background-color: lightgrey;
       color: black;
     }
-  
+
     &:focus {
       background-color: lightgrey;
       color: black;
@@ -93,9 +96,8 @@ main, div {
   }
 }
 
-
 .days {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0.5rem;
@@ -103,7 +105,7 @@ main, div {
 }
 .daysGray {
   background: #f2f2f2;
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0.5rem;
@@ -112,7 +114,6 @@ main, div {
 
 // fant en tilfeldig nav styling på nettet: https://codepen.io/WhisnuYs/pen/XWdpdGP
 nav {
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -133,7 +134,6 @@ nav {
   a:hover {
     color: #fddb3a;
   }
-  
 }
 .divider {
   display: flex;
@@ -156,7 +156,8 @@ nav {
     margin: 0.5rem;
   }
 }
-h2, h3 {
+h2,
+h3 {
   font-size: 1.5rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -167,7 +168,7 @@ h2, h3 {
   color: black;
   text-align: center;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -176,7 +177,7 @@ h2, h3 {
     background: black;
   }
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     right: 0;
@@ -200,7 +201,7 @@ h3 {
   color: black;
   font-size: 1.5rem;
   div {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -210,12 +211,42 @@ h3 {
       padding: 1rem;
     }
   }
-  }
+}
 
 form {
   text-align: center;
 }
+
 .changeEmployee select {
   float: right;
-  
+}
+
+.span-selection {
+
+  label, input {
+    font-size: 1.3rem;
+    margin: 0.5rem;
+  }
+
+  .submit-span-selection {
+    text-align: center;
+
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: lightgrey;
+      color: black;
+    }
+
+    &:focus {
+      background-color: lightgrey;
+      color: black;
+    }
+  }
+
 }

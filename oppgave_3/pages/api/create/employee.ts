@@ -8,7 +8,6 @@ export default async function handler(
   res: NextApiResponse<Response>
 ) {
     const { name, rules } = req.body
-    console.log(name, rules)
     const employee = await prisma.employee.create({
         data: {
         name: name,

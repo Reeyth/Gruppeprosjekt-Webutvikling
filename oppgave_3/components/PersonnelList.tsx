@@ -8,7 +8,6 @@ const PersonnelList = () => {
             const response = await fetch(`/api/allEmployees`)
             const data = await response.json()
             setEmployees(data)
-            console.log(data)
         } catch(error) {
             console.error(error)
         }

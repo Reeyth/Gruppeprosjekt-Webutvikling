@@ -165,7 +165,7 @@ async function main() {
           data: day,
         })
       } catch (e) {
-        console.log(e)
+        console.error(e)
       } finally {
         await prisma.$disconnect()
       }

@@ -45,7 +45,6 @@ const Register = () => {
     // }
 
     let allRules: String = 'days:' + rules.join('')
-    console.log(ruleWeek)
     if (ruleWeek != '') {
       allRules = allRules + '|week:' + ruleWeek
     }

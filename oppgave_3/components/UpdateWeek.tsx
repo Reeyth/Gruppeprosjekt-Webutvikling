@@ -19,7 +19,6 @@ const UpdateWeek = (props: any) => {
       },
       body: JSON.stringify(employeId),
     })
-    console.log(response.status)
     if (response.status === 200) {
       window.location.reload()
     } else {

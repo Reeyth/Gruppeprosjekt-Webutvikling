@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import settings from '../../data/settings.json'
 import { employees } from '../../data/employees'
 import { feedMap, createLunchList } from '../../hooks/algo'
-
+import { foodList } from '../../data/foodList'
 
 const prisma = new PrismaClient()
 
@@ -11,37 +11,58 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-    if (req.method === 'GET') {
-        const mapOfEmployees = new Map()
-        mapOfEmployees.set('all', [])
-        for (const employee of employees) {
-        feedMap(employee, mapOfEmployees)
-        }
-        const options = settings.settingsJson.defaultSettings
-        const weeks = createLunchList(options, mapOfEmployees)
-        try {
-            await prisma.$queryRaw`
-            DELETE FROM Day;`
-            await prisma.$queryRaw`
+  if (req.method === 'GET') {
+    const mapOfEmployees = new Map()
+    mapOfEmployees.set('all', [])
+    for (const employee of employees) {
+      feedMap(employee, mapOfEmployees)
+    }
+    try {
+      await prisma.day.deleteMany()
+      await prisma.lunch.deleteMany()
+      await prisma.week.deleteMany()
+      await prisma.employee.deleteMany()
+      await prisma.$queryRaw`
             DELETE FROM sqlite_sequence;`
-            for(const week of weeks) {
-                for(const day of week) {
-                    await prisma.day.create({
-                        data: day
-                    })
-                }
-            }
-        } catch (error) {
-            console.error(error)
-        } finally {
-            async () => {
-                await prisma.$disconnect()
-            }
+      for (let i = 1; i <= 52; i++) {
+        await prisma.week.create({
+          data: {
+            id: i,
+            name: `Week ${i}`,
+          },
+        })
+      }
+      let foodId = 0
+      for (let i = 0; i < foodList.length; i++) {
+        await prisma.lunch.create({
+          data: {
+            id: i + 1,
+            name: foodList[i],
+          },
+        })
+      }
+        for (const employee of employees) {
+            await prisma.employee.create({
+                data: employee
+            })}
+      const options = settings.settingsJson.defaultSettings
+      const weeks = createLunchList(options, mapOfEmployees)
+      for (const week of weeks) {
+        for (const day of week) {
+          await prisma.day.create({
+            data: day,
+          })
         }
-        res.status(200).json({ message: 'Success' })
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      ;async () => {
+        await prisma.$disconnect()
+      }
     }
-    else {
-        res.status(405).json({ message: 'Method not allowed' })
-    }
-
+    res.status(200).json({ message: 'Success' })
+  } else {
+    res.status(405).json({ message: 'Method not allowed' })
+  }
 }

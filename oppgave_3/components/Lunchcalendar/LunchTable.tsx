@@ -1,15 +1,51 @@
 import Link from 'next/link';
+import ExcelJS from 'exceljs';
+import saveAs from 'file-saver';
+
 type LunchTableProps = {
     week: Day[]
 };
 
 const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
 
+    const exportToExcel = () => {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Lunsjliste');
+
+        workbook.modified = new Date();
+
+        worksheet.columns = [
+            { header: 'Uke', key: 'week', width: 10 },
+            { header: 'Dag', key: 'day', width: 10 },
+            { header: 'Navn', key: 'name', width: 10 },
+            { header: 'Lunsj', key: 'lunch', width: 10 },
+        ];
+
+        week.forEach((day, index) => {
+            worksheet.addRow({
+                week: day.week_number,
+                day: day.day,
+                name: day.employee_name,
+                lunch: day.lunch_type,
+            });
+        });
+
+        // Save Excel file
+
+        workbook.xlsx.writeBuffer().then((data) => {
+            const blob = new Blob([data], {
+                type:
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            });
+            saveAs(blob, 'Lunsjliste.xlsx');
+        });
+    };
+
     return (
         <div className="lunch-table">
             {week[0] != null ? (
                 <>
-                <table>
+                <table >
                     <thead>
                         <tr>
                             <th>Uke</th>
@@ -32,6 +68,8 @@ const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
                         
                     </tbody>
                 </table>
+
+                <button className="export-to-excel-button" onClick={exportToExcel}>Eksporter til Excel</button>
             </>
             )
             : (

@@ -40,7 +40,8 @@ export default async function handler(
         }
         res.status(200).json({ message: 'Success' })
     }
-    if (req.method === 'POST') {
-        res.status(400).json({ message: 'Bad request' })
+    else {
+        res.status(405).json({ message: 'Method not allowed' })
     }
+
 }

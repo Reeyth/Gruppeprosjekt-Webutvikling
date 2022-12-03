@@ -60,7 +60,8 @@ const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
                                 <tr key={day.id}>
                                     <td>{day?.week_number}</td>
                                     <td>{day?.day}</td>
-                                    <td><Link href={`/employee/${day?.employee_name}`}>{day?.employee_name}</Link></td>
+                                    {day?.overwrite_employee != null ? (<td><Link href={`/employee/${day?.overwrite_employee}`}>{day?.overwrite_employee}</Link></td>)
+                                    : <td><Link href={`/employee/${day?.employee_name}`}>{day?.employee_name}</Link></td>}
                                     <td>{day?.lunch_type}</td>
                                 </tr>
                             )

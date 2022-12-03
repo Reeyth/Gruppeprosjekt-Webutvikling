@@ -7,10 +7,10 @@ CREATE TABLE "Employee" (
 
 -- CreateTable
 CREATE TABLE "Day" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
     "employeeId" INTEGER NOT NULL,
-    "weekId" TEXT NOT NULL,
+    "weekId" INTEGER NOT NULL,
     "lunchId" INTEGER NOT NULL,
     CONSTRAINT "Day_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employee" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Day_weekId_fkey" FOREIGN KEY ("weekId") REFERENCES "Week" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -19,7 +19,7 @@ CREATE TABLE "Day" (
 
 -- CreateTable
 CREATE TABLE "Week" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL
 );
 
@@ -27,6 +27,12 @@ CREATE TABLE "Week" (
 CREATE TABLE "Lunch" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Overwrite" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "employee" INTEGER NOT NULL
 );
 
 -- CreateIndex
@@ -46,3 +52,9 @@ CREATE UNIQUE INDEX "Lunch_id_key" ON "Lunch"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Lunch_name_key" ON "Lunch"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Overwrite_id_key" ON "Overwrite"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Overwrite_employee_key" ON "Overwrite"("employee");

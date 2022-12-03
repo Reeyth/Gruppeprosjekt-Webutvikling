@@ -15,11 +15,13 @@ export default async function handler(
         }
         const data = await prisma.$queryRaw<any>`
         SELECT 
-        Employee.name as employee_name, Day.name as day, Lunch.name as lunch_type, Day.id as id, Day.weekId as week_number
+        Employee.name as employee_name, Day.name as day, Lunch.name as lunch_type, Day.id as id, Day.weekId as week_number, Overwrite.employee as overwrite_employee_id, owEmployee.name as overwrite_employee
         FROM Employee
         INNER JOIN Day ON Employee.id = Day.employeeId
         INNER JOIN Week ON Day.weekId = Week.id
         INNER JOIN Lunch ON Day.lunchId = lunch.id
+		    LEFT JOIN Overwrite ON Day.id = Overwrite.id
+		    LEFT JOIN Employee as owEmployee ON Overwrite.employee = owEmployee.id
         WHERE Week.id = ${weekId[0]}
     `
       return res.status(200).json(data)
@@ -33,22 +35,29 @@ export default async function handler(
     }
 
     if(req.method === 'PUT') {
+      const info : any = req.query.id
+      const dayId = info[0]
+      const employeeId = info[1]
       try {
-        const info = req.query.id
         if(!info) {
             return res.status(400).json({ status: 400, message: 'Id missing' })
         }
-        const dayId = info[0]
-        const employeeId = info[1]
 
         const data = await prisma.$queryRaw<any>`
-        UPDATE Day
+        UPDATE Overwrite
         SET employeeId = ${employeeId}
         WHERE Day.id = ${dayId}
     `
       return res.status(200).json(data)
-      } catch (error) {
-        console.error(error)
+      } catch (error : any) {
+        if(error?.message.includes('no such column: employeeId')) {
+          const data = await prisma.$queryRaw<any>`
+          INSERT INTO Overwrite (id, employee)
+          VALUES (${employeeId}, ${dayId})
+        `
+        } else {
+          console.error(error)
+        }
       } finally {
         async () => {
           await prisma.$disconnect()

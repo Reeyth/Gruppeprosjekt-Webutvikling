@@ -34,7 +34,7 @@ Table Lunch {
 
 Table Overwrite {
   id Int [pk, unique]
-  employee Int [unique, not null]
+  employee Int [not null]
 }
 
 Ref: Day.employeeId > Employee.id

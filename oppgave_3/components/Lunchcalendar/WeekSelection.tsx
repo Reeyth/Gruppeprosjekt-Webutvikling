@@ -14,9 +14,9 @@ const [vacations, setVacations] = useState<number[]>([])
 
 const fetchVacations = async () => {
   try {
-    const response = await fetch(`/api/settings/vacations`)
+    const response = await fetch(`/api/settings/settings`)
     const data = await response.json()
-    setVacations(data.data)
+    setVacations(data.data.vacations)
   } catch (error) {
     console.error(error)
   }

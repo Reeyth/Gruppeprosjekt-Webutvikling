@@ -7,13 +7,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Response>
 ) {
-    if(req.method === 'GET') {
-      try {
-        const weekId = req.query.id
-        if(!weekId) {
-            return res.status(400).json({ status: 400, message: 'Id missing' })
-        }
-        const data = await prisma.$queryRaw<any>`
+  if (req.method === 'GET') {
+    try {
+      const weekId = req.query.id
+      if (!weekId) {
+        return res.status(400).json({ status: 400, message: 'Id missing' })
+      }
+      const data = await prisma.$queryRaw<any>`
         SELECT 
         Employee.name as employee_name, Day.name as day, Lunch.name as lunch_type, Day.id as id, Day.weekId as week_number, Overwrite.employee as overwrite_employee_id, owEmployee.name as overwrite_employee
         FROM Employee
@@ -25,43 +25,45 @@ export default async function handler(
         WHERE Week.id = ${weekId[0]}
     `
       return res.status(200).json(data)
-      } catch (error) {
-        console.error(error)
-      } finally {
-        async () => {
-          await prisma.$disconnect()
-        }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      ;async () => {
+        await prisma.$disconnect()
       }
     }
+  }
 
-    if(req.method === 'PUT') {
-      const info : any = req.query.id
-      const dayId = info[0]
-      const employeeId = info[1]
-      try {
-        if(!info) {
-            return res.status(400).json({ status: 400, message: 'Id missing' })
-        }
+  if (req.method === 'PUT') {
+    const info: any = req.query.id
 
-        const data = await prisma.$queryRaw<any>`
-        UPDATE Overwrite
-        SET employee = ${employeeId}
-        WHERE Overwrite.id = ${dayId}
+    const dayId = info[0]
+    const employeeId = info[1]
+    try {
+      if (!info) {
+        return res.status(400).json({ status: 400, message: 'Id missing' })
+      }
+
+      const data = await prisma.$queryRaw<any>`
+        INSERT INTO Overwrite (id, employee)
+        VALUES (${dayId}, ${employeeId})
+        ON CONFLICT(id) DO UPDATE SET employee = ${employeeId}
     `
+
       return res.status(200).json(data)
-      } catch (error : any) {
-        if(error?.message.includes('no such column: employeeId')) {
-          const data = await prisma.$queryRaw<any>`
+    } catch (error: any) {
+      if (error?.message.includes('no such column: employeeId')) {
+        const data = await prisma.$queryRaw<any>`
           INSERT INTO Overwrite (id, employee)
           VALUES (${dayId}, ${employeeId})
         `
-        } else {
-          console.error(error)
-        }
-      } finally {
-        async () => {
-          await prisma.$disconnect()
-        }
+      } else {
+        console.error(error)
+      }
+    } finally {
+      ;async () => {
+        await prisma.$disconnect()
       }
     }
+  }
 }

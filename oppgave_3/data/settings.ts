@@ -11,7 +11,3 @@ export function writeSettings() {
     const data = JSON.stringify({ settingsJson: {settings, defaultSettings } }, null, 2)
     fs.writeFileSync(filePath, data)
 }
-
-export function restoreSettings() {
-    settings = { ...defaultSettings }
-}

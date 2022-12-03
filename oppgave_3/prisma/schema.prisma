@@ -41,5 +41,5 @@ model Lunch {
 
 model Overwrite {
   id Int @id @unique
-  employee Int @unique
+  employee Int
 }

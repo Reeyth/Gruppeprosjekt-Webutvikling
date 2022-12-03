@@ -10,6 +10,7 @@ const Span = () => {
     
     const [week, setWeek] = useState<Day[]>([])
     const fetchWeek = async (week: any) => {
+        if(week === undefined) return
         try {
             const response = await fetch(`/api/span/${week[0]}/${week[1]}`)
             const data = await response.json()

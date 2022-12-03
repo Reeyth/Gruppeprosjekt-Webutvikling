@@ -33,19 +33,25 @@ const UpdateWeek = (props: any) => {
           <thead>
             <tr>
               <th>Dag</th>
-              <th>Navn</th>
               <th>Lunsj</th>
+              <th>Navn</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {props.week.map((day: any, index: number) => {
+            {props.week.map((day: Day, index: number) => {
               return (
                 <tr key={day.id}>
                   <td>{day?.day}</td>
                   <td>{day?.lunch_type}</td>
                   <td className="changeEmployee">
-                    {day?.employee_name}
+                    {day?.overwrite_employee != null ? (
+                        <>
+                          {day?.overwrite_employee} <span className="employee-original">&#40;{day?.employee_name}&#41;</span>
+                        </>
+                      ) : (
+                        <>{day?.employee_name}</>
+                      )}
                     <select
                       defaultValue={'DEFAULT'}
                       onChange={(e) => handleEmployeeChange(e, index)}
@@ -78,6 +84,7 @@ const UpdateWeek = (props: any) => {
             })}
           </tbody>
         </table>
+        <p className="paragraph-info">* Den ansatte som originalt var tildelt en dag vises i <span className="employee-original">rødt</span>.</p>
         <a className="return-to-week-selection-button" href="http://localhost:3000/update">Gå tilbake</a>
       </div>
     </>

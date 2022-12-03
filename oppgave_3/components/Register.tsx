@@ -94,19 +94,19 @@ const Register = () => {
               <label htmlFor="rules">Dager</label>
               <select onChange={handleRules} id="rules" name="rules">
                 <option value="*">Alle dager</option>
-                <option key={"ValueOne"} disabled={rules.includes('1')} value="1">
+                <option disabled={rules.includes('1')} value="1">
                   Mandager
                 </option>
-                <option key={"ValueTwo"} disabled={rules.includes('2')} value="2">
+                <option disabled={rules.includes('2')} value="2">
                   Tirsdager
                 </option>
-                <option key={"ValueThree"} disabled={rules.includes('3')} value="3">
+                <option disabled={rules.includes('3')} value="3">
                   Onsdager
                 </option>
-                <option key={"ValueFour"} disabled={rules.includes('4')} value="4">
+                <option disabled={rules.includes('4')} value="4">
                   Torsdager
                 </option>
-                <option key={"ValueFive"} disabled={rules.includes('5')} value="5">
+                <option disabled={rules.includes('5')} value="5">
                   Fredager
                 </option>
               </select>

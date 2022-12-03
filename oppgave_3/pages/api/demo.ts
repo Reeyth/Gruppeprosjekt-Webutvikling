@@ -13,10 +13,9 @@ export default async function handler(
 ) {
   if (req.method === 'GET') {
     const mapOfEmployees = new Map()
-    mapOfEmployees.set('all', [])
-    for (const employee of employees) {
-      feedMap(employee, mapOfEmployees)
-    }
+    const options = settings.settingsJson.defaultSettings
+    feedMap(employees, mapOfEmployees, options.workDays, options.days)
+
     try {
       await prisma.day.deleteMany()
       await prisma.lunch.deleteMany()
@@ -45,7 +44,6 @@ export default async function handler(
             await prisma.employee.create({
                 data: employee
             })}
-      const options = settings.settingsJson.defaultSettings
       const weeks = createLunchList(options, mapOfEmployees)
       for (const week of weeks) {
         for (const day of week) {

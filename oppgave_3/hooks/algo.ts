@@ -1,28 +1,50 @@
 import { employees } from '../data/employees'
 import { faker } from '@faker-js/faker'
-import { PrismaClient } from '@prisma/client'
 
-const mapOfEmployees = new Map()
-mapOfEmployees.set('all', [])
+const currentOptions : any = {
+  vacations: [8, 28, 29, 30, 31, 32, 40, 52],
+  yearSize: 52,
+  workDays: 5,
+  batchSize: 4,
+  maxOccurrences: 4,
+  days: [
+    'Mandag',
+    'Tirsdag',
+    'Onsdag',
+    'Torsdag',
+    'Fredag',
+    'Lørdag',
+    'Søndag',
+  ],
+}
 
-export const feedMap = (employee: any, map : Map<any, any>) => {
+
+export const feedMap = (employees: any[], map : Map<any, any>, workdays : number, days : any[]) => {
+  map.set('all', [])
+  for(const employee of employees) {
   //https://regexr.com/ is your friend
   const rulesDays = employee.rules.match(/(?!days:)([\d]+)|\*|even|odd/g)
   if (rulesDays[1] !== undefined && map.has(rulesDays[1])) {
     map
       .get(rulesDays[1])
-      .push({ ...employee, count: 0, occourance: 0 })
-    return
+      .push({ ...employee, count: 0, days: new Map() })
   } else if (rulesDays[1] !== undefined) {
-    map.set(rulesDays[1], [{ ...employee, count: 0, occourance: 0 }])
-    return
+    map.set(rulesDays[1], [{ ...employee, count: 0, days: new Map() }])
+  } else {
+    map.get('all').push({ ...employee, count: 0, days: new Map() })
   }
-  map.get('all').push({ ...employee, count: 0, occourance: 0 })
 }
+for(const key of map.keys()){
+  for(const employee of map.get(key)){
+    for(let i = 0; i < workdays; i++) {
+      employee.days.set(days[i], 0)
+    }
+  }
+}
+}
+  const mapOfEmployees = new Map()
+  feedMap(employees, mapOfEmployees, currentOptions.workDays, currentOptions.days)
 
-for (const employee of employees) {
-  feedMap(employee, mapOfEmployees)
-}
 
 const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number, map : Map<any, any>) => {
   for (const key of map.keys()) {
@@ -88,7 +110,9 @@ export const createLunchList = (options: any, map: Map<any, any>) => {
   for (let i = 0; i < Math.round(yearSize / batchSize)+1; i++) {
     for (const key of map.keys()) {
       for (const person of map.get(key)) {
-        person.occourance = 0
+        for(const day of person.days.keys()) {
+          person.days.set(day, 0)
+        }
       }
     }
     let batchWeek: any[] = []
@@ -96,30 +120,29 @@ export const createLunchList = (options: any, map: Map<any, any>) => {
       let employeesUsed: String[] = ['random']
       weekNumber++
       let employeeList: any = null
-      n % 2 === 0 ? (employeeList = even) : (employeeList = odd)
+      weekNumber % 2 === 0 ? (employeeList = even) : (employeeList = odd)
       employeeList = getAdditionalEmployees(employeeList, weekNumber, map)
       let week: any = []
       for (let j = 0; j < workDays; j++) {
         if (vacations.includes(weekNumber) || weekNumber > options.yearSize) {
           continue
         }
-        employeeList = employeeList
+        let employee = employeeList
           .sort(() => (Math.random() > 0.5 ? 1 : -1))
           .sort((a: any, b: any) => a.count - b.count)
           .filter(
             (a: any) =>
-              (String(a.rules.match(regex)).includes(String(j + 1)) &&
-                a.occourance < maxOccurrences) ||
-              (String(a.rules.match(regex)).includes('*') &&
-                a.occourance < maxOccurrences)
+              String(a.rules.match(/([\d]+)/g)).includes(String(j+1)) ||
+              String(a.rules.match(regex)).includes('*')
           )
           .filter((a: any) => !employeesUsed.includes(a.name))
-        employeeList[0].count++
-        employeeList[0].occourance++
-        employeesUsed.push(employeeList[0].name)
+          .filter((a: any) => a.days.get(days[j]) <= maxOccurrences)
+          employee[0].count++
+          employee[0].days.set(days[j], employee[0].days.get(days[j]) + 1)
+        employeesUsed.push(employee[0].name)
         week.push({
           name: days[j],
-          employeeId: employeeList[0].id,
+          employeeId: employee[0].id,
           weekId: weekNumber,
           lunchId: faker.datatype.number({ min: 1, max: 22 }),
         })
@@ -137,19 +160,7 @@ export const createLunchList = (options: any, map: Map<any, any>) => {
   return workWeeks
 }
 
-const currentOptions = {
-  vacations: [8, 28, 29, 30, 31, 32, 40, 52],
-  yearSize: 52,
-  workDays: 5,
-  batchSize: 4,
-  maxOccurrences: 4,
-  days: [
-    'Mandag',
-    'Tirsdag',
-    'Onsdag',
-    'Torsdag',
-    'Fredag',
-    'Lørdag',
-    'Søndag',
-  ],
-}
+createLunchList(currentOptions, mapOfEmployees)
+
+
+

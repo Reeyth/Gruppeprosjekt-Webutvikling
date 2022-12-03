@@ -5,17 +5,6 @@ import {
   validateBatch,
 } from '../hooks/algo'
 
-it('should return a list of employees', () => {
-  const mapOfEmployees = new Map()
-  mapOfEmployees.set('all', [])
-  for (const employee of employees) {
-    feedMap(employee, mapOfEmployees)
-  }
-  for (const key of mapOfEmployees.keys()) {
-    expect(mapOfEmployees.get(key).length).toBeGreaterThan(0)
-  }
-})
-
 const options = {
   vacations: [8, 28, 29, 30, 31, 32, 40, 52],
   yearSize: 52,
@@ -32,11 +21,19 @@ const options = {
     'Søndag',
   ],
 }
+
+it('should return a list of employees', () => {
+  const mapOfEmployees = new Map()
+  feedMap(employees, mapOfEmployees, options.workDays, options.days)
+ 
+  for (const key of mapOfEmployees.keys()) {
+    expect(mapOfEmployees.get(key).length).toBeGreaterThan(0)
+  }
+})
+
 const mapOfEmployees = new Map()
-mapOfEmployees.set('all', [])
-for (const employee of employees) {
-  feedMap(employee, mapOfEmployees)
-}
+feedMap(employees, mapOfEmployees, options.workDays, options.days)
+
 const data = createLunchList(options, mapOfEmployees)
 
 it('should be 52 weeks', () => {
@@ -229,10 +226,10 @@ describe('Validation employees', () => {
     expect(filtered.length).toEqual(2)
   })
   it('Should fail if an invalid rule is applied to employee', () => {
-    const worker = { name: 'Lars', rules: 'week:blablabla' }
+    const worker = [{ name: 'Lars', rules: 'week:blablabla' }]
     const workerMap = new Map()
     expect(() => {
-      feedMap(worker, workerMap)
+      feedMap(worker, workerMap, options.workDays, options.days)
     }).toThrow(TypeError)
   })
 

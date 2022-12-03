@@ -45,8 +45,8 @@ export default async function handler(
 
         const data = await prisma.$queryRaw<any>`
         UPDATE Overwrite
-        SET employeeId = ${employeeId}
-        WHERE Day.id = ${dayId}
+        SET employee = ${employeeId}
+        WHERE Overwrite.id = ${dayId}
     `
       return res.status(200).json(data)
       } catch (error : any) {

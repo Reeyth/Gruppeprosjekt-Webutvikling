@@ -53,7 +53,7 @@ export default async function handler(
         if(error?.message.includes('no such column: employeeId')) {
           const data = await prisma.$queryRaw<any>`
           INSERT INTO Overwrite (id, employee)
-          VALUES (${employeeId}, ${dayId})
+          VALUES (${dayId}, ${employeeId})
         `
         } else {
           console.error(error)

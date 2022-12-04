@@ -13,6 +13,7 @@ const Span = () => {
     try {
       const response = await fetch(`/api/search/${name}`)
       const data = await response.json()
+      setWeek(data)
       return data
     } catch (error) {
       console.error(error)
@@ -20,13 +21,8 @@ const Span = () => {
   }
   
   useEffect(() => {
-    const tableData = async () => {
-      const data = await fetchWeek(name)
-      setWeek(data)
-    }
-
-    tableData()
-  }, [name])
+    fetchWeek(name)
+  })
 
 
   return (

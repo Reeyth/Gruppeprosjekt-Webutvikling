@@ -7,15 +7,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  if(req.method === 'GET') {
+  if (req.method === 'GET') {
     try {
       const data = await prisma.$queryRaw<any>`
-        SELECT 
-          *
+        SELECT *
         FROM Employee
-
   `
-    return res.status(200).json(data)
+      return res.status(200).json(data)
     } catch (error) {
       console.error(error)
     } finally {
@@ -23,8 +21,7 @@ export default async function handler(
         await prisma.$disconnect()
       }
     }
-  } 
-  else {
+  } else {
     return res.status(400).json({ success: false, message: 'Bad request' })
   }
 }

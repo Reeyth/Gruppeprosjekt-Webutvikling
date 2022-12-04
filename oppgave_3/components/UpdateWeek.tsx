@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Employee } from '../types'
 
 const UpdateWeek = (props: any) => {
   const [employeId, setEmployeeId] = useState<{ [id: number]: any }>([
@@ -61,7 +62,7 @@ const UpdateWeek = (props: any) => {
                       <option value="DEFAULT" disabled hidden>
                         Velg en ny ansatt
                       </option>
-                      {props.employees?.map((employee: any) => {
+                      {props.employees?.map((employee: Employee) => {
                         return (
                           <option
                             disabled={day?.employee_name === employee.name}

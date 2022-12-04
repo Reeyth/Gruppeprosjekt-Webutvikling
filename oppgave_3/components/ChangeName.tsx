@@ -11,7 +11,7 @@ const ChangeName = (props : any) => {
         setId(event.target.value)
     }
 
-    const handleName = (event: any) => {
+    const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
     }
 

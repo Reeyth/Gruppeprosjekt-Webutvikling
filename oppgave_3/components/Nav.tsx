@@ -8,6 +8,11 @@ const Nav = () => {
     document.location.reload()
   }
 
+  const runAlgo = async () => {
+    const responseAlgo = await fetch('/api/algo')
+    const data = await responseAlgo.json()
+  }
+
   return (
     <nav>
       <>
@@ -36,6 +41,7 @@ const Nav = () => {
           <a>Instillinger</a>
         </Link>
         <button onClick={() => runDemo()}>Demo</button>
+        <button onClick={() => runAlgo()}>Algoritme</button>
       </>
     </nav>
   )

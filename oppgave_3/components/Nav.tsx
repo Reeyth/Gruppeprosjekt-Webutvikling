@@ -1,17 +1,31 @@
 import Link from 'next/link'
+import { useState } from 'react'
 
 const Nav = () => {
+
+  const [success, setSuccess] = useState(false)
 
   const runDemo = async () => {
     const response = await fetch('/api/demo')
     const data = await response.json()
-    document.location.reload()
+    if(data.success === true) {
+      setSuccess(true)
+      document.location.reload()
+    } else {
+      alert('Det skjedde en feil i oppdateringen')
+    }
   }
 
   const runAlgo = async () => {
     const responseAlgo = await fetch('/api/algo')
     const data = await responseAlgo.json()
-    document.location.reload()
+    console.log((data))
+    if(data.success === true) {
+      setSuccess(true)
+      document.location.reload()
+    } else {
+      alert('Det skjedde en feil i oppdateringen')
+    }
   }
 
   return (
@@ -42,6 +56,7 @@ const Nav = () => {
           <a>Instillinger</a>
         </Link>
         <button onClick={() => runDemo()}>Demo</button>
+        {success ? <p>Suksess, oppdaterer...</p> : null}
         <button onClick={() => runAlgo()}>Algoritme</button>
       </>
     </nav>

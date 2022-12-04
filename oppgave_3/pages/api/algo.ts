@@ -27,8 +27,9 @@ export default async function handler(
           })
         }
       }
-    } catch (error) {
+    } catch (error : any) {
       console.error(error)
+      return(res.status(500).json({ error: error?.message }))
     } finally {
       ;async () => {
         await prisma.$disconnect()

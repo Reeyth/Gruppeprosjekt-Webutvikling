@@ -38,7 +38,6 @@ const Register = () => {
   }
 
   const handleSubmit = async () => {
-
     // if(await userExists(name)) {
     //   setStatus('En ansatt med dette navnet eksisterer allerede')
     //   return
@@ -73,7 +72,6 @@ const Register = () => {
   //   }
 
   // }
-  
 
   return (
     <>
@@ -128,14 +126,12 @@ const Register = () => {
               <p>Vennligst velg når du er tilgjenglig.</p>
             ) : (
               rules.map((rule, index) => (
-                <>
-                  <div key={index}>
-                    <p>
-                      {rule} - {getDay(rule)}
-                    </p>
-                    <button onClick={() => removeThis(index)}>Fjern</button>
-                  </div>
-                </>
+                <div key={index}>
+                  <p>
+                    {rule} - {getDay(rule)}
+                  </p>
+                  <button onClick={() => removeThis(index)}>Fjern</button>
+                </div>
               ))
             )}
           </div>

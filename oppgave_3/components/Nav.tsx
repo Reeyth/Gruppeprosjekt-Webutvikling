@@ -11,6 +11,7 @@ const Nav = () => {
   const runAlgo = async () => {
     const responseAlgo = await fetch('/api/algo')
     const data = await responseAlgo.json()
+    document.location.reload()
   }
 
   return (

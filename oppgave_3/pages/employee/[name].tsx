@@ -7,13 +7,16 @@ import Search from '../../components/Search/Search'
 const Span = () => {
   const router = useRouter()
   const name = router.query.name
+
   const [week, setWeek] = useState<Day[]>([])
+  const [response, setResponse] = useState<string>('')
 
   const fetchWeek = async (name: any) => {
     try {
       const response = await fetch(`/api/search/${name}`)
       const data = await response.json()
-      setWeek(data)
+      setWeek(data.data)
+      setResponse(data.message)
       return data
     } catch (error) {
       console.error(error)
@@ -22,7 +25,7 @@ const Span = () => {
   
   useEffect(() => {
     fetchWeek(name)
-  })
+  }, [name])
 
 
   return (
@@ -30,7 +33,7 @@ const Span = () => {
       <Nav />
       <h2>Søk etter en ansatt</h2>
       <Search />
-      <LunchTable week={week} response="Fant ikke ansatt, har du skrevet riktig navn?"/>
+      <LunchTable week={week} response={response}/>
     </div>
   )
 }

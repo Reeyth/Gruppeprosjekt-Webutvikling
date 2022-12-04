@@ -1,25 +1,7 @@
-import { employees } from '../data/employees'
 import { faker } from '@faker-js/faker'
+import { Employee, Week, Options } from '../types/index'
 
-const currentOptions : any = {
-  vacations: [8, 28, 29, 30, 31, 32, 40, 52],
-  yearSize: 52,
-  workDays: 5,
-  batchSize: 4,
-  maxOccurrences: 4,
-  days: [
-    'Mandag',
-    'Tirsdag',
-    'Onsdag',
-    'Torsdag',
-    'Fredag',
-    'Lørdag',
-    'Søndag',
-  ],
-}
-
-
-export const feedMap = (employees: any[], map : Map<any, any>, workdays : number, days : any[]) => {
+export const feedMap = (employees: any[], map : Map<String | number, any>, workdays : number, days : String[]) => {
   map.set('all', [])
   for(const employee of employees) {
   //https://regexr.com/ is your friend
@@ -42,11 +24,8 @@ for(const key of map.keys()){
   }
 }
 }
-  const mapOfEmployees = new Map()
-  feedMap(employees, mapOfEmployees, currentOptions.workDays, currentOptions.days)
 
-
-const getAdditionalEmployees = (listOfEmployees: any[], weekNumber: number, map : Map<any, any>) => {
+const getAdditionalEmployees = (listOfEmployees: Employee[], weekNumber: number, map : Map<String | number, any>) => {
   for (const key of map.keys()) {
     if (
       key !== 'all' &&
@@ -99,13 +78,12 @@ export const validateBatch = (occourances: number, weekBatch: any[]) => {
   return true
 }
 
-export const createLunchList = (options: any, map: Map<any, any>) => {
+export const createLunchList = (options: Options, map: Map<String | number, any>) => {
   let regex = /(?!days:)([\d]+)|\*/g
-  const workWeeks: any = []
-  let even: any = new Array(...map.get('all'), ...map.get('even'))
-  let odd: any = new Array(...map.get('all'), ...map.get('odd'))
-  const { vacations, yearSize, workDays, batchSize, maxOccurrences, days } =
-    options
+  const workWeeks: Week[] = []
+  let even: Employee[] = new Array(...map.get('all'), ...map.get('even'))
+  let odd: Employee[] = new Array(...map.get('all'), ...map.get('odd'))
+  const { vacations, yearSize, workDays, batchSize, maxOccurrences, days } = options
   let weekNumber = 0
   for (let i = 0; i < Math.round(yearSize / batchSize)+1; i++) {
     for (const key of map.keys()) {
@@ -115,7 +93,7 @@ export const createLunchList = (options: any, map: Map<any, any>) => {
         }
       }
     }
-    let batchWeek: any[] = []
+    let batchWeek: Week[] = []
     for (let n = 0; n < batchSize; n++) {
       let employeesUsed: String[] = ['random']
       weekNumber++
@@ -129,13 +107,13 @@ export const createLunchList = (options: any, map: Map<any, any>) => {
         }
         let employee = employeeList
           .sort(() => (Math.random() > 0.5 ? 1 : -1))
-          .sort((a: any, b: any) => a.count - b.count)
+          .sort((a: Employee, b: Employee) => a.count - b.count)
           .filter(
-            (a: any) =>
+            (a: Employee) =>
               String(a.rules.match(/([\d]+)/g)).includes(String(j+1)) ||
               String(a.rules.match(regex)).includes('*')
           )
-          .filter((a: any) => !employeesUsed.includes(a.name))
+          .filter((a: Employee) => !employeesUsed.includes(a.name))
           .filter((a: any) => a.days.get(days[j]) <= maxOccurrences)
           employee[0].count++
           employee[0].days.set(days[j], employee[0].days.get(days[j]) + 1)
@@ -160,7 +138,7 @@ export const createLunchList = (options: any, map: Map<any, any>) => {
   return workWeeks
 }
 
-createLunchList(currentOptions, mapOfEmployees)
+
 
 
 

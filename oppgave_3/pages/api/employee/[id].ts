@@ -11,7 +11,7 @@ export default async function handler(
         case 'GET':
             const {id} = req.query
             if(!id) {
-                return res.status(400).json({ status: false, message: 'Id missing' })
+                return res.status(400).json({ status: 400, message: 'Id missing' })
             }
             const employee = await prisma.employee.findUnique({
                 where: {
@@ -19,15 +19,15 @@ export default async function handler(
                 }
             })
             if(!employee) {
-                return res.status(404).json({ status: false, message: 'Employee not found' })
+                return res.status(404).json({ status: 404, message: 'Employee not found' })
             }
-            return res.status(200).json({status: true, data: employee})
+            return res.status(200).json({status: 200, data: employee})
         case 'POST':
             console.log("post")
         case 'PUT':
             const idUser = req.query.id
             if(!idUser) {
-                return res.status(400).json({ status: false, message: 'Id missing' })
+                return res.status(400).json({ status: 400, message: 'Id missing' })
             }
             try {
                 const data = await prisma.$queryRaw<any>`

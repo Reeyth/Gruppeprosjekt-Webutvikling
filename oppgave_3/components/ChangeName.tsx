@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Employee } from '../types'
 
 const ChangeName = (props : any) => {

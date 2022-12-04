@@ -2,9 +2,10 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import ExcelJS from 'exceljs';
 import saveAs from 'file-saver';
+import { Employee } from "../types";
 
 const PersonnelList = () => {
-    const [employees, setEmployees] = useState<any[]>([])
+    const [employees, setEmployees] = useState<Employee[]>([])
     const fetchEmployees = async () => {
         try {
             const response = await fetch(`/api/allEmployees`)
@@ -30,7 +31,7 @@ const PersonnelList = () => {
             { header: 'Regler', key: 'rules', width: 10 }
         ]
         
-        employees.forEach((employee, index) => {
+        employees.forEach((employee : Employee) => {
             worksheet.addRow({
                 id: employee.id,
                 name: employee.name,
@@ -60,7 +61,7 @@ const PersonnelList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {employees.map((employee: any) => (
+                        {employees.map((employee: Employee) => (
                             <tr key={employee.id}>
                                 <td>{employee.id}</td>
                                 <td><Link href={`/employee/${employee.name}`}>{employee.name}</Link></td>

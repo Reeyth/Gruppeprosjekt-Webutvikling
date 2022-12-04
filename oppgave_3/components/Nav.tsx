@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const Nav = () => {
 
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState<boolean>(false)
 
   const runDemo = async () => {
     const response = await fetch('/api/demo')

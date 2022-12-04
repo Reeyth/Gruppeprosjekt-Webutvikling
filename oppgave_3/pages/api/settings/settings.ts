@@ -7,11 +7,9 @@ export default function handler(req: { method: string; body: any }, res: { statu
     } else if (req.method === 'POST') {
         const newSettings = req.body
 
-        settings.vacations = newSettings.vacations.sort((a: number, b: number) => a - b)
-        settings.yearSize = newSettings.yearSize
-        settings.workDays = newSettings.workDays
-        settings.batchSize = newSettings.batchSize
-        settings.maxOccurrences = newSettings.maxOccurrences
+        newSettings.vacations.sort((a: number, b: number) => a - b)
+
+        Object.assign(settings, newSettings)
         
         writeSettings()
 

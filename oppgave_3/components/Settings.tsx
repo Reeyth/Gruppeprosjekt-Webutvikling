@@ -7,7 +7,7 @@ const Settings: React.FC<SettingsProps> = () => {
   const [yearSize, setYearSize] = useState<number>(52)
   const [workDays, setWorkDays] = useState<number>(5)
   const [batchSize, setBatchSize] = useState<number>(5)
-  const [maxOccurences, setMaxOccurences] = useState<number>(2)
+  const [maxOccurrences, setMaxOccurrences] = useState<number>(2)
 
   const fetchSettings = async () => {
     const response = await fetch('/api/settings/settings')
@@ -17,7 +17,7 @@ const Settings: React.FC<SettingsProps> = () => {
     setYearSize(data.data.yearSize)
     setWorkDays(data.data.workDays)
     setBatchSize(data.data.batchSize)
-    setMaxOccurences(data.data.maxOccurences)
+    setMaxOccurrences(data.data.maxOccurences)
   }
 
   useEffect(() => {
@@ -66,10 +66,10 @@ const Settings: React.FC<SettingsProps> = () => {
         break
       case 'max-occurences':
         if (Number(value) > 0 && Number(value) < 11) {
-          setMaxOccurences(Number(value))
+          setMaxOccurrences(Number(value))
         } else {
             alert('Antall forekomster må være mellom 1 og 10')
-            e.target.value = String(maxOccurences)
+            e.target.value = String(maxOccurrences)
         }
         break
     }
@@ -86,7 +86,7 @@ const Settings: React.FC<SettingsProps> = () => {
         yearSize: yearSize,
         workDays: workDays,
         batchSize: batchSize,
-        maxOccurences: maxOccurences,
+        maxOccurrences: maxOccurrences,
       }),
     })
     const data = await response.json()

@@ -19,7 +19,6 @@ const Nav = () => {
   const runAlgo = async () => {
     const responseAlgo = await fetch('/api/algo')
     const data = await responseAlgo.json()
-    console.log((data))
     if(data.success === true) {
       setSuccess(true)
       document.location.reload()

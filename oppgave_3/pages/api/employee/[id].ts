@@ -23,7 +23,7 @@ export default async function handler(
             }
             return res.status(200).json({status: 200, data: employee})
         case 'POST':
-            console.log("post")
+            return(res.status(405).json({status: 405, message: 'Method not allowed'}))
         case 'PUT':
             const idUser = req.query.id
             if(!idUser) {
@@ -47,7 +47,7 @@ export default async function handler(
             }
 
         case 'DELETE':
-            console.log("delete")
+            return(res.status(405).json({status: 405, message: 'Method not allowed'}))
         
     }
 }

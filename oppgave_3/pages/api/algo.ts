@@ -19,6 +19,18 @@ export default async function handler(
       await prisma.$queryRaw`
         DELETE FROM sqlite_sequence
         WHERE name = 'Day'`
+        await prisma.week.deleteMany()
+        await prisma.$queryRaw`
+        DELETE FROM sqlite_sequence
+        WHERE name = 'Week'`
+        for(let i = 0; i < options.yearSize; i++) {
+            const week = await prisma.week.create({
+                data: {
+                    id: i + 1,
+                    name: `Week ${i+1}`,
+                }
+            })
+        }
       const weeks = createLunchList(options, mapOfEmployees)
       for (const week of weeks) {
         for (const day of week) {

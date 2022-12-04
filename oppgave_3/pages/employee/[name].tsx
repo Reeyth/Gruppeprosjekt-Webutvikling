@@ -8,18 +8,26 @@ const Span = () => {
   const router = useRouter()
   const name = router.query.name
   const [week, setWeek] = useState<Day[]>([])
+
   const fetchWeek = async (name: any) => {
     try {
       const response = await fetch(`/api/search/${name}`)
       const data = await response.json()
-      setWeek(data)
+      return data
     } catch (error) {
       console.error(error)
     }
   }
+  
   useEffect(() => {
-    fetchWeek(name)
+    const tableData = async () => {
+      const data = await fetchWeek(name)
+      setWeek(data)
+    }
+
+    tableData()
   }, [name])
+
 
   return (
     <div>

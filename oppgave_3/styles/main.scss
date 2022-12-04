@@ -48,6 +48,11 @@ div {
   }
 }
 
+input {
+  font-size: 1.3rem;
+  margin: 0.3rem;
+}
+
 .lunch-table,
 .employee-table {
   width: 100%;
@@ -74,6 +79,10 @@ div {
     a {
       color: black;
     }
+  }
+
+  table {
+    font-size: 1.3rem;
   }
 
   .export-to-excel-button,
@@ -227,8 +236,7 @@ form {
 
 .span-selection {
 
-  label, input {
-    font-size: 1.3rem;
+  label {
     margin: 0.5rem;
   }
 

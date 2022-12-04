@@ -47,7 +47,8 @@ const Register = () => {
     if (ruleWeek != '') {
       allRules = allRules + '|week:' + ruleWeek
     }
-    const response = await fetch('http://localhost:3000/api/create/employee', {
+
+    const response = await fetch('/api/create/employee', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

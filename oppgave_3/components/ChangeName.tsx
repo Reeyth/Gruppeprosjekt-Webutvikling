@@ -40,7 +40,7 @@ const ChangeName = (props : any) => {
         </select>
         <label htmlFor='name'>Nytt navn</label>
         <input id="name" type="text" value={name} onChange={handleName}/>
-        <button>Oppdater</button>
+        <button className="styled-button">Oppdater</button>
         </form>
         </div>
     </>

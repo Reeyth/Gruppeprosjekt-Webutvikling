@@ -173,7 +173,7 @@ const Settings: React.FC<SettingsProps> = () => {
       </div>
 
       <div className="settings-save">
-        <button onClick={handleSave}>Lagre</button>
+        <button className="styled-button" onClick={handleSave}>Lagre</button>
       </div>
     </div>
   )

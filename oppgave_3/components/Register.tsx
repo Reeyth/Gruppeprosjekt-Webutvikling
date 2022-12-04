@@ -131,12 +131,13 @@ const Register = () => {
                   <p>
                     {rule} - {getDay(rule)}
                   </p>
-                  <button onClick={() => removeThis(index)}>Fjern</button>
+                  <button className="styled-button" onClick={() => removeThis(index)}>Fjern</button>
                 </div>
               ))
             )}
           </div>
           <button
+            className="styled-button"
             disabled={!(rules.length != 0 && name)}
             onClick={() => handleSubmit()}
           >

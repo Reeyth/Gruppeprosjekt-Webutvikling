@@ -70,7 +70,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
                     </tbody>
                 </table>
 
-                <button className="export-to-excel-button" onClick={exportToExcel}>Eksporter til Excel</button>
+                <button className="styled-button" onClick={exportToExcel}>Eksporter til Excel</button>
             </>
             )
             : (

@@ -114,7 +114,7 @@ export const createLunchList = (options: Options, map: Map<String | number, any>
               String(a.rules.match(regex)).includes('*')
           )
           .filter((a: Employee) => !employeesUsed.includes(a.name))
-          .filter((a: any) => a.days.get(days[j]) <= maxOccurrences)
+          .filter((a: any) => a.days.get(days[j]) < maxOccurrences)
           employee[0].count++
           employee[0].days.set(days[j], employee[0].days.get(days[j]) + 1)
         employeesUsed.push(employee[0].name)

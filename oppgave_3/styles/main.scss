@@ -42,14 +42,10 @@ div {
   justify-content: center;
   align-items: center;
   align-content: center;
-  label {
-    margin: 0.3rem;
-    font-size: 12px;
-  }
 }
 
-input {
-  font-size: 1.3rem;
+input, label, select {
+  font-size: 1.5rem;
   margin: 0.3rem;
 }
 
@@ -80,32 +76,26 @@ input {
       color: black;
     }
   }
+}
 
-  table {
-    font-size: 1.3rem;
+.styled-button {
+  margin: 0.5rem;
+  background-color: black;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 12px 24px;
+  font-size: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lightgrey;
+    color: black;
   }
 
-  .export-to-excel-button,
-  .return-to-week-selection-button {
-    width: 20%;
-    text-align: center;
-
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 12px 24px;
-    font-size: 12px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: lightgrey;
-      color: black;
-    }
-
-    &:focus {
-      background-color: lightgrey;
-      color: black;
-    }
+  &:focus {
+    background-color: lightgrey;
+    color: black;
   }
 }
 
@@ -234,58 +224,9 @@ form {
   float: right;
 }
 
-.span-selection {
-
-  label {
-    margin: 0.5rem;
-  }
-
-  .submit-span-selection {
-    text-align: center;
-
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 10px 28px;
-    font-size: 12px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: lightgrey;
-      color: black;
-    }
-
-    &:focus {
-      background-color: lightgrey;
-      color: black;
-    }
-  }
-
-}
-
 .settings-save {
   text-align: center;
   margin-top: 3rem;
-
-  button {
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 10px 28px;
-    font-size: 12px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: lightgrey;
-      color: black;
-    }
-
-    &:focus {
-      background-color: lightgrey;
-      color: black;
-    }
-  }
-
 }
 
 .employee-original {
@@ -352,4 +293,8 @@ form {
     border: 4px solid #333;
     box-shadow: -407px 0 0 400px red;
   }
+}
+
+table {
+  font-size: 1.5rem;
 }

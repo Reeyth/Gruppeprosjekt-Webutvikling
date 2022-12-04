@@ -15,7 +15,7 @@
       "yearSize": 52,
       "workDays": 5,
       "batchSize": 4,
-      "maxOccurrences": 4,
+      "maxOccurrences": 2,
       "days": [
         "Mandag",
         "Tirsdag",
@@ -41,7 +41,7 @@
       "yearSize": 52,
       "workDays": 5,
       "batchSize": 4,
-      "maxOccurrences": 4,
+      "maxOccurrences": 2,
       "days": [
         "Mandag",
         "Tirsdag",

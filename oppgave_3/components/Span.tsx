@@ -37,7 +37,7 @@ const WeekSpan = () => {
 
         <br></br>
 
-        <input className="submit-span-selection" type="submit" value="Søk" />
+        <input className="styled-button small" type="submit" value="Søk" />
       </form>
     </div>
   )

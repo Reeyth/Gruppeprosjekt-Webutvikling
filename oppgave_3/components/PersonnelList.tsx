@@ -69,7 +69,7 @@ const PersonnelList = () => {
                         ))}
                     </tbody>
                 </table>
-                <button className="export-to-excel-button" onClick={exportToExcel}>Eksporter til Excel</button>
+                <button className="styled-button" onClick={exportToExcel}>Eksporter til Excel</button>
             </div>
         </>
     )

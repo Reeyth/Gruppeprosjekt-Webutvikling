@@ -30,8 +30,7 @@ const Span = () => {
       <Nav />
       <h2>Søk etter en ansatt</h2>
       <Search />
-      <LunchTable week={week} />
-      {week.length === 0 ? <p>Person not found</p> : null}
+      <LunchTable week={week} response="Fant ikke ansatt, har du skrevet riktig navn?"/>
     </div>
   )
 }

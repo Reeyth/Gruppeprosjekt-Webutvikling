@@ -3,10 +3,11 @@ import ExcelJS from 'exceljs';
 import saveAs from 'file-saver';
 
 type LunchTableProps = {
-    week: Day[]
+    week: Day[],
+    response: string,
 };
 
-const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
+const LunchTable: React.FC<LunchTableProps> = ({ week, response }) => {
 
     const exportToExcel = () => {
         const workbook = new ExcelJS.Workbook();
@@ -74,7 +75,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
             </>
             )
             : (
-                <h2>Velg en uke</h2>
+                <h2>{response}</h2>
             )}
         </div>
     )

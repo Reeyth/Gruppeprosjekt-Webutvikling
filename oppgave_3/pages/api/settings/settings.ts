@@ -7,15 +7,11 @@ export default function handler(req: { method: string; body: any }, res: { statu
     } else if (req.method === 'POST') {
         const newSettings = req.body
 
-        // Validate settings
-        
-        for(let key in newSettings) {
-            console.log(key)
-        }
-
-        settings.vacations = newSettings.vacations
+        settings.vacations = newSettings.vacations.sort((a: number, b: number) => a - b)
         settings.yearSize = newSettings.yearSize
         settings.workDays = newSettings.workDays
+        settings.batchSize = newSettings.batchSize
+        settings.maxOccurrences = newSettings.maxOccurrences
         
         writeSettings()
 

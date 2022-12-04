@@ -8,9 +8,11 @@ const UpdateWeek = (props: any) => {
     { id: 0 },
     { id: 0 },
   ])
+
   const handleEmployeeChange = (event: any, index: number) => {
     employeId[index] = Number(event.target.value)
   }
+  
   const handleSubmit = async (idEmployee: Number, dayId: Number) => {
     const response = await fetch(`/api/week/${dayId}/${idEmployee}`, {
       method: 'PUT',

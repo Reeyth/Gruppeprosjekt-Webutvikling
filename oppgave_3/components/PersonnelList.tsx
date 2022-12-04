@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import ExcelJS from 'exceljs';
+import saveAs from 'file-saver';
 
 const PersonnelList = () => {
     const [employees, setEmployees] = useState<any[]>([])
@@ -15,6 +17,35 @@ const PersonnelList = () => {
     useEffect(() => {
         fetchEmployees()
     }, [])
+
+    const exportToExcel = () => {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Lunsjliste');
+
+        workbook.modified = new Date();
+
+        worksheet.columns = [
+            { header: 'ID', key: 'id', width: 10 },
+            { header: 'Navn', key: 'name', width: 10 },
+            { header: 'Regler', key: 'rules', width: 10 }
+        ]
+        
+        employees.forEach((employee, index) => {
+            worksheet.addRow({
+                id: employee.id,
+                name: employee.name,
+                rules: employee.rules
+            })
+        })
+
+        workbook.xlsx.writeBuffer().then((data) => {
+            const blob = new Blob([data], {
+                type:
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            })
+            saveAs(blob, 'Personalliste.xlsx');
+        })
+    }
 
     return (
         <>
@@ -38,6 +69,7 @@ const PersonnelList = () => {
                         ))}
                     </tbody>
                 </table>
+                <button className="export-to-excel-button" onClick={exportToExcel}>Eksporter til Excel</button>
             </div>
         </>
     )

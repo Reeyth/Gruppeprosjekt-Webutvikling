@@ -19,7 +19,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
             { header: 'Dag', key: 'day', width: 10 },
             { header: 'Navn', key: 'name', width: 10 },
             { header: 'Lunsj', key: 'lunch', width: 10 },
-        ];
+        ]
 
         week.forEach((day, index) => {
             worksheet.addRow({
@@ -27,8 +27,8 @@ const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
                 day: day.day,
                 name: day.employee_name,
                 lunch: day.lunch_type,
-            });
-        });
+            })
+        })
 
         // Save Excel file
 
@@ -38,8 +38,8 @@ const LunchTable: React.FC<LunchTableProps> = ({ week }) => {
                     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             });
             saveAs(blob, 'Lunsjliste.xlsx');
-        });
-    };
+        })
+    }
 
     return (
         <div className="lunch-table">

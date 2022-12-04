@@ -12,15 +12,18 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   if (req.method === 'GET') {
+
     const mapOfEmployees = new Map()
     const options = settings.settingsJson.defaultSettings
     feedMap(employees, mapOfEmployees, options.workDays, options.days)
 
     try {
-      await prisma.day.deleteMany()
-      await prisma.lunch.deleteMany()
-      await prisma.week.deleteMany()
-      await prisma.employee.deleteMany()
+      await prisma.$queryRaw`DELETE FROM "Day"`
+      await prisma.$queryRaw`DELETE FROM "Lunch"`
+      await prisma.$queryRaw`DELETE FROM "Week"`
+      await prisma.$queryRaw`DELETE FROM "Employee"`
+      await prisma.$queryRaw`DELETE FROM "Overwrite"`
+
       await prisma.$queryRaw`
             DELETE FROM sqlite_sequence;`
       for (let i = 1; i <= 52; i++) {
@@ -40,10 +43,11 @@ export default async function handler(
           },
         })
       }
-        for (const employee of employees) {
-            await prisma.employee.create({
-                data: employee
-            })}
+      for (const employee of employees) {
+        await prisma.employee.create({
+          data: employee,
+        })
+      }
       const weeks = createLunchList(options, mapOfEmployees)
       for (const week of weeks) {
         for (const day of week) {
@@ -59,8 +63,11 @@ export default async function handler(
         await prisma.$disconnect()
       }
     }
-    res.status(200).json({ message: 'Success' })
+
+    console.log('The database has been reset')
+
+    res.status(200).json({ success: true, message: 'Success' })
   } else {
-    res.status(405).json({ message: 'Method not allowed' })
+    res.status(405).json({ success: false, message: 'Method not allowed' })
   }
 }

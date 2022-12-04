@@ -56,13 +56,9 @@ it('There should be no employees working when vacation', () => {
   }
 })
 describe('Validation', () => {
-  console.log('---Validation---')
   it('Should fail when batch of size 4 and maxOccournce 1 when not enough employees.', () => {
     const opt = { ...options, batchSize: 7, maxOccurrences: 1 }
     const employeemap = new Map()
-    employeemap.set('all', [])
-    employeemap.set('even', [])
-    employeemap.set('odd', [])
     for (let i = 0; i < 6; i++) {
       employeemap
         .get('all')

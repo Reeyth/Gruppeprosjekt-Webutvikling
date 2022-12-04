@@ -15,6 +15,7 @@ export default async function handler(
     const employees = await prisma.employee.findMany()
     feedMap(employees, mapOfEmployees, options.workDays, options.days)
     try {
+        await prisma.day.deleteMany()
       await prisma.$queryRaw`
         DELETE FROM sqlite_sequence
         WHERE name = 'Day'`

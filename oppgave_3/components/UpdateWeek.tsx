@@ -88,7 +88,7 @@ const UpdateWeek = (props: any) => {
           </tbody>
         </table>
         <p className="paragraph-info">* Den ansatte som originalt var tildelt en dag vises i <span className="employee-original">rødt</span>.</p>
-        <a className="return-to-week-selection-button" href="http://localhost:3000/update">Gå tilbake</a>
+        <a className="styled-button" href="http://localhost:3000/update">Gå tilbake</a>
       </div>
     </>
   )

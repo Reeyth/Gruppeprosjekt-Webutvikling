@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { Employee, Week, Options } from '../types/index'
+import { foodList } from '../data/foodList'
 
 export const feedMap = (employees: any[], map : Map<String | number, any>, workdays : number, days : String[]) => {
   map.set('all', [])
@@ -122,7 +123,8 @@ export const createLunchList = (options: Options, map: Map<String | number, any>
           name: days[j],
           employeeId: employee[0].id,
           weekId: weekNumber,
-          lunchId: faker.datatype.number({ min: 1, max: 22 }),
+          lunchId: faker.datatype.number({ min: 1, max: foodList.length }),
+
         })
       }
       if (weekNumber > options.yearSize) {

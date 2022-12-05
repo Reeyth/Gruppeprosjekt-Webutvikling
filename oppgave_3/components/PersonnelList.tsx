@@ -10,7 +10,7 @@ const PersonnelList = () => {
         try {
             const response = await fetch(`/api/allEmployees`)
             const data = await response.json()
-            setEmployees(data)
+            setEmployees(data.data)
         } catch(error) {
             console.error(error)
         }
@@ -58,6 +58,7 @@ const PersonnelList = () => {
                             <th>ID</th>
                             <th>Navn</th>
                             <th>Regler</th>
+                            <th>Antall lunsjdager</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,6 +67,7 @@ const PersonnelList = () => {
                                 <td>{employee.id}</td>
                                 <td><Link href={`/employee/${employee.name}`}>{employee.name}</Link></td>
                                 <td>{employee.rules}</td>
+                                <td>{employee.count}</td>
                             </tr>
                         ))}
                     </tbody>

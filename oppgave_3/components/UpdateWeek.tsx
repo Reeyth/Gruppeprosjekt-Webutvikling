@@ -42,7 +42,9 @@ const UpdateWeek = (props: any) => {
             </tr>
           </thead>
           <tbody>
-            {props.week.map((day: Day, index: number) => {
+            {
+            props.week[0] &&
+            props.week.map((day: Day, index: number) => {
               return (
                 <tr key={day.id}>
                   <td>{day?.day}</td>

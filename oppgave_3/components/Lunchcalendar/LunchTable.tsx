@@ -75,7 +75,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, response }) => {
                 </>
             )
             : (
-                <h2>Fant ingen tabell å vise</h2>
+                <h2>{response}</h2>
             )}
         </div>
     )

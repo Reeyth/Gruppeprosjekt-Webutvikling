@@ -7,13 +7,13 @@ type LunchCalendarProps = {
 }
 
 const LunchCalendar = (props: any) => {
-  const [vacations, setVacations] = useState<number[]>([])
+  const [yearSize, setYearSize] = useState<number[]>([])
 
   const fetchYearSize = async () => {
     try {
       const response = await fetch(`/api/settings/yearsize`)
       const data = await response.json()
-      setVacations(data.data)
+      setYearSize(data.data)
     } catch (error) {
       console.error(error)
     }
@@ -23,7 +23,7 @@ const LunchCalendar = (props: any) => {
     fetchYearSize()
   }, [])
 
-  const weeks = Array.from(Array(vacations).keys()).map((i) => i + 1)
+  const weeks = Array.from(Array(yearSize).keys()).map((i) => i + 1)
 
   return (
     <>

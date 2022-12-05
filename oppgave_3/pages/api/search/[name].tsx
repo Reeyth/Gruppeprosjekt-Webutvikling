@@ -48,8 +48,8 @@ export default async function handler(
         })
       }
     } catch (error) {
-      return res.status(400).json({ success: false, message: 'Bad request' })
       console.error(error)
+      return res.status(500).json({ status: 500, message: 'Internal server error' })
     } finally {
       ;async () => {
         await prisma.$disconnect()

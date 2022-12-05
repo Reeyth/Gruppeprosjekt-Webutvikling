@@ -62,7 +62,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, response }) => {
                                     <td>{day?.week_number}</td>
                                     <td>{day?.day}</td>
                                     {day?.overwrite_employee != null ? (<td><Link href={`/employee/${day?.overwrite_employee}`}>{day?.overwrite_employee}</Link></td>)
-                                    : <td><Link href={`/employee/${day?.employee_name}`}>{day?.employee_name}</Link></td>}
+                                    : <td className="employeeName"><Link href={`/employee/${day?.employee_name}`}>{day?.employee_name}</Link></td>}
                                     <td>{day?.lunch_type}</td>
                                 </tr>
                             )
@@ -71,7 +71,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, response }) => {
                     </tbody>
                 </table>
 
-                <button className="styled-button" onClick={exportToExcel}>Eksporter til Excel</button>
+                <button className="styled-button excel-button" onClick={exportToExcel}>Eksporter til Excel</button>
             </>
             )
             : (

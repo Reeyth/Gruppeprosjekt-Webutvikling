@@ -1,4 +1,5 @@
 import { employees } from '../data/employees'
+import { expect } from '@jest/globals' // Type issue fix due to Cypress
 import {
   feedMap,
   createLunchList,

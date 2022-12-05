@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test": "jest",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@prisma/client": "4.5.0",

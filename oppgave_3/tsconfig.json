@@ -20,7 +20,7 @@
     "incremental": true
   },
   "include": [
-    "next-env.d.ts",
+    "prisma/next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "lib/lunch.ts",

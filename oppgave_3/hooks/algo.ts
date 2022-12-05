@@ -81,7 +81,7 @@ export const validateBatch = (occourances: number, weekBatch: any[]) => {
 
 export const createLunchList = (options: Options, map: Map<String | number, any>) => {
   let regex = /(?!days:)([\d]+)|\*/g
-  const workWeeks: Week[] = []
+  const workWeeks: Week[][] = []
   let even: Employee[] = new Array(...map.get('all'), ...map.get('even'))
   let odd: Employee[] = new Array(...map.get('all'), ...map.get('odd'))
   const { vacations, yearSize, workDays, batchSize, maxOccurrences, days } = options

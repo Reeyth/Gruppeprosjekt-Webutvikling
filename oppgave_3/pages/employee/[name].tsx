@@ -4,7 +4,7 @@ import LunchTable from '../../components/Lunchcalendar/LunchTable'
 import Nav from '../../components/Nav'
 import Search from '../../components/Search/Search'
 
-const Span = () => {
+const Employee = () => {
   const router = useRouter()
   const name = router.query.name
 
@@ -12,21 +12,23 @@ const Span = () => {
   const [response, setResponse] = useState<string>('')
 
   const fetchWeek = async (name: any) => {
-    try {
-      const response = await fetch(`/api/search/${name}`)
-      const data = await response.json()
-      setWeek(data.data)
-      setResponse(data.message)
-      return data
-    } catch (error) {
-      console.error(error)
+    if (name !== undefined) {
+      const response = await fetch(`/api/search/${name}`).then((res) =>
+        res.json()
+      ).then((data) => {
+        if (data.success === true) {
+          setWeek(data.data)
+          setResponse('')
+        } else {
+          setResponse(data.message)
+        }
+      })
     }
   }
-  
+
   useEffect(() => {
     fetchWeek(name)
   }, [name])
-
 
   return (
     <div>
@@ -38,4 +40,4 @@ const Span = () => {
   )
 }
 
-export default Span
+export default Employee

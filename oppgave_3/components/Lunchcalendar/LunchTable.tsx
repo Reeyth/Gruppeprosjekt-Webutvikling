@@ -75,7 +75,9 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, response }) => {
             </>
             )
             : (
-                <h2>{response}</h2>
+               <>
+                 {response && <h2>{response}</h2>}
+               </>
             )}
         </div>
     )

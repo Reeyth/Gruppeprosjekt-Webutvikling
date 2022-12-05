@@ -63,16 +63,15 @@ const Register = () => {
     }
   }
 
-  // const userExists = async ( username: String ) => {
-  //   const response = await fetch('http://localhost:3000/api/employee/' + username)
-  //   const data = await response.json()
-  //   if(data.employee) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-
-  // }
+  const runAlgo = async () => {
+    const responseAlgo = await fetch('/api/algo')
+    const data = await responseAlgo.json()
+    if(data.success === true) {
+      document.location.reload()
+    } else {
+      alert('Det skjedde en feil i oppdateringen')
+    }
+  }
 
   return (
     <>
@@ -139,7 +138,7 @@ const Register = () => {
           <button
             className="styled-button"
             disabled={!(rules.length != 0 && name)}
-            onClick={() => handleSubmit()}
+            onClick={() => handleSubmit().then(() => runAlgo())}
           >
             Registrer
           </button>

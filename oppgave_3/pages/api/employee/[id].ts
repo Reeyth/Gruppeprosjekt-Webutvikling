@@ -13,15 +13,22 @@ export default async function handler(
             if(!id) {
                 return res.status(400).json({ status: 400, message: 'Id missing' })
             }
-            const employee = await prisma.employee.findUnique({
-                where: {
-                    id: parseInt(id)
+            try {
+                const employee = await prisma.employee.findUnique({
+                    where: {
+                        id: parseInt(id)
+                    }
+                })
+                if(!employee) {
+                    return res.status(404).json({ status: 404, message: 'Employee not found' })
                 }
-            })
-            if(!employee) {
-                return res.status(404).json({ status: 404, message: 'Employee not found' })
+                return res.status(200).json({status: 200, data: employee})
+            } catch (error) {
+                console.error(error)
+                return res.status(500).json({ status: 500, message: 'Internal server error' })
+            } finally {
+                await prisma.$disconnect()
             }
-            return res.status(200).json({status: 200, data: employee})
         case 'POST':
             return(res.status(405).json({status: 405, message: 'Method not allowed'}))
         case 'PUT':

@@ -76,13 +76,16 @@ const Settings: React.FC<SettingsProps> = () => {
   }
 
   const handleSave = async () => {
+
+    const validVacations = vacations.filter((vacation) => vacation > 0 && vacation <= yearSize)
+
     const response = await fetch(`/api/settings/settings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        vacations: vacations,
+        vacations: validVacations,
         yearSize: yearSize,
         workDays: workDays,
         batchSize: batchSize,
@@ -92,13 +95,35 @@ const Settings: React.FC<SettingsProps> = () => {
     const data = await response.json()
   }
 
-  const weeks = Array.from(Array(52).keys()).map((i) => i + 1)
+  const runAlgo = async () => {
+    const responseAlgo = await fetch('/api/algo')
+    const data = await responseAlgo.json()
+    if(data.success === true) {
+      document.location.reload()
+    } else {
+      alert('Det skjedde en feil i oppdateringen')
+    }
+  }
+
+
+  const weeks = Array.from(Array(yearSize).keys()).map((i) => i + 1)
 
   return (
     <div className="settings">
       <h2>Instillinger</h2>
 
-      <br></br>
+      <div className="settings-year-size">
+        <h3>Uker i året</h3>
+        <p className="year-size-visualize">{yearSize}</p>
+        <input
+          id="year-size"
+          type="range"
+          min="1"
+          max="52"
+          value={yearSize}
+          onChange={handleSettingsChange}
+        />
+      </div>
 
       <div className="vacation-selection">
         <h3>Ferieuker</h3>
@@ -113,19 +138,6 @@ const Settings: React.FC<SettingsProps> = () => {
             {week}
           </button>
         ))}
-      </div>
-
-      <div className="settings-year-size">
-        <h3>Uker i året</h3>
-        <p className="year-size-visualize">{yearSize}</p>
-        <input
-          id="year-size"
-          type="range"
-          min="1"
-          max="52"
-          defaultValue={yearSize}
-          onChange={handleSettingsChange}
-        />
       </div>
 
       <div className="settings-flex">
@@ -173,7 +185,12 @@ const Settings: React.FC<SettingsProps> = () => {
       </div>
 
       <div className="settings-save">
-        <button className="styled-button" onClick={handleSave}>Lagre</button>
+        <button
+            className="styled-button"
+            onClick={() => handleSave().then(() => runAlgo())}
+          >
+            Lagre
+          </button>
       </div>
     </div>
   )

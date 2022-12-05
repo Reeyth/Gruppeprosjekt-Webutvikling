@@ -8,15 +8,22 @@ export default async function handler(
   res: NextApiResponse<Response>
 ) {
     const { name, rules } = req.body
-    const employee = await prisma.employee.create({
-        data: {
-        name: name,
-        rules: rules
-        },
-    })
-    if(!employee) {
-        res.status(400).json({ message: 'Error creating employee' })
-    } else {
-        res.status(200).json({ employee })
+    try {
+        const employee = await prisma.employee.create({
+            data: {
+            name: name,
+            rules: rules
+            },
+        })
+        if(!employee) {
+            res.status(400).json({ message: 'Error creating employee' })
+        } else {
+            res.status(200).json({ employee })
+        }
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: 'Internal server error' })
+    } finally {
+        await prisma.$disconnect()
     }
 }

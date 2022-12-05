@@ -79,8 +79,23 @@ export const validateBatch = (occourances: number, weekBatch: any[]) => {
   return true
 }
 
-export const createLunchList = (options: Options, map: Map<String | number, any>) => {
+export const filterList = (list : any, employeesUsed : String[], dayNumber : number, maxOccurrences : number, days : String[]) => {
   let regex = /(?!days:)([\d]+)|\*/g
+  list = list
+  .sort(() => (Math.random() > 0.5 ? 1 : -1))
+  .sort((a: Employee, b: Employee) => a.count - b.count)
+  .filter(
+    (a: Employee) =>
+      String(a.rules.match(/([\d]+)/g)).includes(String(dayNumber+1)) ||
+      String(a.rules.match(regex)).includes('*')
+  )
+  .filter((a: Employee) => !employeesUsed.includes(a.name))
+  .filter((a: any) => a.days.get(days[dayNumber]) < maxOccurrences)
+  return list
+}
+
+
+export const createLunchList = (options: Options, map: Map<String | number, any>) => {
   const workWeeks: Week[][] = []
   let even: Employee[] = new Array(...map.get('all'), ...map.get('even'))
   let odd: Employee[] = new Array(...map.get('all'), ...map.get('odd'))
@@ -106,16 +121,7 @@ export const createLunchList = (options: Options, map: Map<String | number, any>
         if (vacations.includes(weekNumber) || weekNumber > options.yearSize) {
           continue
         }
-        let employee = employeeList
-          .sort(() => (Math.random() > 0.5 ? 1 : -1))
-          .sort((a: Employee, b: Employee) => a.count - b.count)
-          .filter(
-            (a: Employee) =>
-              String(a.rules.match(/([\d]+)/g)).includes(String(j+1)) ||
-              String(a.rules.match(regex)).includes('*')
-          )
-          .filter((a: Employee) => !employeesUsed.includes(a.name))
-          .filter((a: any) => a.days.get(days[j]) < maxOccurrences)
+        let employee : any = filterList(employeeList, employeesUsed, j, maxOccurrences, days)
           employee[0].count++
           employee[0].days.set(days[j], employee[0].days.get(days[j]) + 1)
         employeesUsed.push(employee[0].name)

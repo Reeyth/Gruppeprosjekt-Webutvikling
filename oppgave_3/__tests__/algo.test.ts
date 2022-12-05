@@ -1,5 +1,6 @@
 import { employees } from '../data/employees'
 import { expect } from '@jest/globals' // Type issue fix due to Cypress
+
 import {
   feedMap,
   createLunchList,
@@ -84,7 +85,7 @@ describe('Validation', () => {
         { employeeId: 51, name: 'Fredag' },
       ],
     ]
-    expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false)
+    expect(validateBatch(opt.maxOccourances, batch)).toBeFalsy()
   })
 
   it('Should fail when batch of size 4 have more than 3 occurrences of employee', () => {
@@ -119,7 +120,7 @@ describe('Validation', () => {
         { employeeId: 19, name: 'Fredag' },
       ],
     ]
-    expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false)
+    expect(validateBatch(opt.maxOccourances, batch)).toBeFalsy()
   })
   it('Should fail when batchsize is greater than number of employees', () => {
     const opt = { ...options, batchSize: 20, maxOccourances: 3 }
@@ -164,7 +165,7 @@ describe('Validation employees', () => {
         { employeeId: 10, name: 'Fredag' },
       ]
     ]
-    expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false)
+    expect(validateBatch(opt.maxOccourances, batch)).toBeFalsy()
   })
   it("Should filter out employees who cannot work Mondays.", () => {
     const worker = [{ name: 'Lars', rules: 'days:1' }, { name: 'Magnus', rules: 'days:*' }, { name: 'Kari', rules: 'days:2' }, { name: 'Ola', rules: 'days:*' }]

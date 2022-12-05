@@ -41,6 +41,15 @@ it('should be 52 weeks', () => {
   expect(data.length).toBe(52)
 })
 
+it("Should be 5 unique employees in each week", () => {
+  for (const week of data) {
+    let usedEmployees = []
+    for(const day of week) {
+      expect(usedEmployees.includes(day.employeeId)).toBeFalsy()
+      usedEmployees.push(day.employeeId)
+    }
+  }})
+
 describe('Validation', () => {
   it('Should fail when batch of size 4 have more than 2 occurrences of employee', () => {
     const opt = { ...options, batchSize: 4, maxOccourances: 2 }
@@ -174,7 +183,6 @@ describe('Validation employees', () => {
   })
   it("Should succee if a new rule is introduced", () => {
     const worker = [{ name: 'Lars', rules: 'days:1|week:4' }, { name: 'Magnus', rules: 'days:*|week:4' }, { name: 'Kari', rules: 'days:2' }, { name: 'Ola', rules: 'days:*' }]
-    const employeesUsed = [" empty "]
     const workerMap = new Map()
     feedMap(worker, workerMap, options.workDays, options.days)
     const workers = new Array(...workerMap.get("4"))

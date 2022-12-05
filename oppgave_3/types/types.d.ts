@@ -7,3 +7,8 @@ interface Day {
     overwrite_employee_id: number
     overwrite_employee: string
 }
+
+interface Week {
+    employee_id: number
+    days: Day[]
+}

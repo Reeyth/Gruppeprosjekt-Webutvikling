@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 const fetchEmployee = async (name: string) => {
   const employee = await prisma.$queryRaw<any>`
   SELECT 
-  Employee.name as employee_name, Day.name as day, Lunch.name as lunch_type, Day.id as id, Day.weekId as week_number
+  Employee.id as employee_id, Employee.name as employee_name, Day.name as day, Lunch.name as lunch_type, Day.id as id, Day.weekId as week_number
   FROM Employee
   INNER JOIN Day ON Employee.id = Day.employeeId
   INNER JOIN Lunch ON Day.lunchId = lunch.id

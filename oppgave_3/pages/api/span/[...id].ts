@@ -18,7 +18,7 @@ export default async function handler(
         /* Checking if the first value is larger than the second value,
         if so, swap the values. This ensures that the first value is always
         the smaller value. */
-        if(weekId[0] > weekId[1]) {
+        if(Number(weekId[0]) > Number(weekId[1])) {
             const temp = weekId[0]
             weekId[0] = weekId[1]
             weekId[1] = temp

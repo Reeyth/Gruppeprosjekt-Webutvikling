@@ -10,7 +10,7 @@ const fetchEmployee = async (name: string) => {
   FROM Employee
   INNER JOIN Day ON Employee.id = Day.employeeId
   INNER JOIN Lunch ON Day.lunchId = lunch.id
-  WHERE Employee.name like ${name}
+  WHERE Employee.name like ${name + "%"}
   ORDER BY Day.weekId ASC
 `
   return employee

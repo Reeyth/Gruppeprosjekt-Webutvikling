@@ -15,5 +15,6 @@ export const foodList = [
     "Hummer med sitronsmør",
     "Ris og kylling",
     "Nudler",
-
+    "Smalahove",
+    "Grandis"
 ]

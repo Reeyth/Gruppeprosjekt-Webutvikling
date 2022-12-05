@@ -5,11 +5,11 @@ const prisma = new PrismaClient()
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Response>
+  res: NextApiResponse
 ) {
     if(req.method === 'GET') {
       try {
-        const weekId = req.query.id
+        const weekId : any = req.query.id
 
         if(!weekId) {
             return res.status(400).json({ status: 400, message: 'Id missing' })

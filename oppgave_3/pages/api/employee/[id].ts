@@ -5,11 +5,11 @@ const prisma = new PrismaClient()
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Response>
+  res: NextApiResponse
 ) {
     switch (req.method?.toUpperCase()) {
         case 'GET':
-            const {id} = req.query
+            const {id} : any = req.query
             if(!id) {
                 return res.status(400).json({ status: 400, message: 'Id missing' })
             }

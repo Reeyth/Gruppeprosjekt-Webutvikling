@@ -1,6 +1,9 @@
-import { settings, writeSettings } from '../../../data/settings'
+import { settings } from '../../../data/settings'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default function handler(req: any, res: any) {
+export default function handler(  
+    req: NextApiRequest,
+    res: NextApiResponse) {
 
     if(req.method === 'GET') {
         res.status(200).json({ success: true, data: settings.yearSize })

@@ -23,7 +23,9 @@ describe('Test of search', () => {
     cy.get('.employeeName').should('contain', testPerson)
   })
   it('Excel file can be downloaded by clicking the button', () => {
-    cy.get('.excel-button').click({ multiple: true })
+    cy.get('.excel-button').click()
     cy.readFile('../oppgave_3/cypress/downloads/Lunsjliste.xlsx')
   })
 })
+
+export{}

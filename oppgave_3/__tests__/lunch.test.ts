@@ -3,6 +3,7 @@ import {
   feedMap,
   createLunchList,
   validateBatch,
+  filterList
 } from '../hooks/algo'
 
 const options = {
@@ -40,34 +41,7 @@ it('should be 52 weeks', () => {
   expect(data.length).toBe(52)
 })
 
-it('Should have 5 unique employees each week', () => {
-  for (const week of data) {
-    let employeesUsed = []
-    for (const day of week) {
-      expect(employeesUsed.includes(day.employeeId)).toBe(false)
-      employeesUsed.push(day.employeeId)
-    }
-  }
-})
-
-it('There should be no employees working when vacation', () => {
-  for (const holidays of options.vacations) {
-    expect(data[holidays - 1].length).toEqual(0)
-  }
-})
 describe('Validation', () => {
-  it('Should fail when batch of size 4 and maxOccournce 1 when not enough employees.', () => {
-    const opt = { ...options, batchSize: 7, maxOccurrences: 1 }
-    const employeemap = new Map()
-    for (let i = 0; i < 6; i++) {
-      employeemap
-        .get('all')
-        .push({ id: i, name: 'test' + i, rules: '*', occourance: 0, count: 0 })
-    }
-    expect(() => {
-      createLunchList(opt, employeemap)
-    }).toThrow(TypeError)
-  })
   it('Should fail when batch of size 4 have more than 2 occurrences of employee', () => {
     const opt = { ...options, batchSize: 4, maxOccourances: 2 }
     const batch = [
@@ -154,73 +128,6 @@ describe('Validation', () => {
   })
 })
 describe('Validation employees', () => {
-  it('should pass if all employees match rule *', () => {
-    const workers = [
-      {
-        id: 1,
-        name: 'Trude',
-        rules: 'days:*',
-      },
-      {
-        id: 2,
-        name: 'Lars',
-        rules: '*',
-      },
-      {
-        id: 3,
-        name: 'Finn',
-        rules: '*',
-      },
-      {
-        id: 4,
-        name: 'Kaare',
-        rules: 'days:*|week:odd',
-      },
-      {
-        id: 5,
-        name: 'Olav',
-        rules: '*',
-      },
-      {
-        id: 6,
-        name: 'Sebastian',
-        rules: '*',
-      },
-    ]
-    for (const worker of workers) {
-      expect(worker.rules.match(/(?!days:)([\d]+)|\*/g)).toEqual(['*'])
-    }
-  })
-  it('Should pass if filter only shows relevant employees following by day.', () => {
-    const workers = [
-      {
-        id: 1,
-        name: 'Trude',
-        rules: 'days:123',
-      },
-      {
-        id: 2,
-        name: 'Lars',
-        rules: 'days:2',
-      },
-      {
-        id: 3,
-        name: 'Finn',
-        rules: 'days:3',
-      },
-      {
-        id: 4,
-        name: 'Kaare',
-        rules: 'days:4',
-      },
-    ]
-    const filtered = workers.filter(
-      (a: any) =>
-        String(a.rules.match(/(?!days:)([\d]+)|\*/g)).includes(String(3)) ||
-        String(a.rules.match(/(?!days:)([\d]+)|\*/g)).includes('*')
-    )
-    expect(filtered.length).toEqual(2)
-  })
   it('Should fail if an invalid rule is applied to employee', () => {
     const worker = [{ name: 'Lars', rules: 'week:blablabla' }]
     const workerMap = new Map()
@@ -248,5 +155,29 @@ describe('Validation employees', () => {
       ]
     ]
     expect(validateBatch(opt.maxOccourances, batch)).toBe<boolean>(false)
+  })
+  it("Should filter out employees who cannot work Mondays.", () => {
+    const worker = [{ name: 'Lars', rules: 'days:1' }, { name: 'Magnus', rules: 'days:*' }, { name: 'Kari', rules: 'days:2' }, { name: 'Ola', rules: 'days:*' }]
+    const employeesUsed = [" empty "]
+    const workerMap = new Map()
+    feedMap(worker, workerMap, options.workDays, options.days)
+    const workers = new Array(...workerMap.get('all'))
+    expect(filterList(workers, employeesUsed, 0, 2, options.days).length).toBe(3)
+  })
+  it("Filter should return an empty list if an invalid day gets checked", () => {
+    const worker = [{ name: 'Lars', rules: 'days:1' }, { name: 'Magnus', rules: 'days:*' }, { name: 'Kari', rules: 'days:2' }, { name: 'Ola', rules: 'days:*' }]
+    const employeesUsed = [" empty "]
+    const workerMap = new Map()
+    feedMap(worker, workerMap, options.workDays, options.days)
+    const workers = new Array(...workerMap.get('all'))
+    expect(filterList(workers, employeesUsed, 8, 2, options.days).length).toBe(0)
+  })
+  it("Should succee if a new rule is introduced", () => {
+    const worker = [{ name: 'Lars', rules: 'days:1|week:4' }, { name: 'Magnus', rules: 'days:*|week:4' }, { name: 'Kari', rules: 'days:2' }, { name: 'Ola', rules: 'days:*' }]
+    const employeesUsed = [" empty "]
+    const workerMap = new Map()
+    feedMap(worker, workerMap, options.workDays, options.days)
+    const workers = new Array(...workerMap.get("4"))
+    expect(workers.length).toBe(2)
   })
 })

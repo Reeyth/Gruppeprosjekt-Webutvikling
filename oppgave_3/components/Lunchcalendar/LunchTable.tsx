@@ -72,12 +72,10 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, response }) => {
                 </table>
 
                 <button className="styled-button excel-button" onClick={exportToExcel}>Eksporter til Excel</button>
-            </>
+                </>
             )
             : (
-               <>
-                 {response && <h2>{response}</h2>}
-               </>
+                <h2>Fant ingen tabell å vise</h2>
             )}
         </div>
     )

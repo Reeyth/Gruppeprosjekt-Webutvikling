@@ -5,6 +5,8 @@
 
 [/api/employee](../pages/api/employee/%5Bid%5D.ts)
 
+[/api/employee/data](../pages/api/employee/data/%5Bid%5D.tsx)
+
 [/api/span](../pages/api/span/%5B...id%5D.ts)
 
 [/api/create](../pages/api/create/employee.ts)
@@ -27,6 +29,9 @@
 
 [Employee](../pages/api/employee/%5Bid%5D.ts)
 > GET/PUT
+
+[Employee Data](../pages/api/employee/data/%5Bid%5D.tsx)
+> GET/PUT/POST/DELETE
 
 [Span](../pages/api/span/%5B...id%5D.ts)
 > GET

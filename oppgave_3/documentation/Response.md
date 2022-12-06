@@ -35,6 +35,29 @@
 
 - Response 405 - returns status 405 and message as 'Method not allowed' 
 
+## [/api/employee/data](../pages/api/employee/data/%5Bid%5D.tsx)
+
+> GET
+
+- Response 200 - returns status 200 and message as data
+- Response 400 - returns status 400 and message as 'Id missing'
+- Response 404 - returns status 404 and message as 'Employee not found'
+- Response 500 - returns status 500 and message as 'internal server error'
+
+> PUT 
+
+- Response 200 - returns status 200 and message as 'Absatt oppdatert med nytt navn'
+- Response 400 - returns status 400 and message as 'Det skjedde en feil. Id mangler'
+- Response 500 - returns status 500 and message as 'internal server error'
+
+> POST
+
+- Response 405 - returns status 405 and message as 'Method not allowed'
+
+> DELETE
+
+- Response 405 - returns status 405 and message as 'Method not allowed'
+
 ## [/api/span](../pages/api/span/%5B...id%5D.ts)
 > GET
 

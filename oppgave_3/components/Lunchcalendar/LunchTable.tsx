@@ -3,11 +3,12 @@ import ExcelJS from 'exceljs';
 import saveAs from 'file-saver';
 
 type LunchTableProps = {
+    title?: string,
     week: Day[],
     response: string,
 };
 
-const LunchTable: React.FC<LunchTableProps> = ({ week, response }) => {
+const LunchTable: React.FC<LunchTableProps> = ({ title, week, response }) => {
 
     const exportToExcel = () => {
         const workbook = new ExcelJS.Workbook();
@@ -46,6 +47,7 @@ const LunchTable: React.FC<LunchTableProps> = ({ week, response }) => {
         <div className="lunch-table">
             {week[0] != null ? (
                 <>
+                {title && <h2>{title}</h2>}
                 <table >
                     <thead>
                         <tr>

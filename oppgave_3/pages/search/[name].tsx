@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import LunchTable from '../../components/Lunchcalendar/LunchTable'
 import Nav from '../../components/Nav'
 import Search from '../../components/Search/Search'
+import EmployeeId from '../employee/[id]'
 
 const Employee = () => {
   const router = useRouter()
@@ -56,7 +57,11 @@ const Employee = () => {
       <Search />
       {
         weeks[0]
-         ? <LunchTable key={weeks[0].employee_id} week={weeks[0].days} response={response} />
+         ? weeks.map((week: Week) => {
+            var title = weeks.length < 2 ? week.days[0].employee_name : week.days[0].employee_name + " (" + week.days[0].employee_id + ")"
+            title = "Ansatt: " + title
+            return <LunchTable title={title} key={week.employee_id} week={week.days} response={response} />
+          })
          : <h2>{response}</h2> 
       }
     </div>

@@ -52,16 +52,9 @@ export default async function handler(
     `
 
       return res.status(200).json(data)
-    } catch (error: any) {
-      if (error?.message.includes('no such column: employeeId')) {
-        const data = await prisma.$queryRaw<any>`
-          INSERT INTO Overwrite (id, employee)
-          VALUES (${dayId}, ${employeeId})
-        `
-      } else {
+    } catch (error) {
         console.error(error)
         return res.status(500).json({ status: 500, message: 'Internal server error' })
-      }
     } finally {
       ;async () => {
         await prisma.$disconnect()

@@ -6,8 +6,9 @@ const prisma = new PrismaClient()
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
-) {
-    const { name, rules } = req.body
+) { 
+    if (req.method === 'GET') {
+        const { name, rules } = req.body
     try {
         const employee = await prisma.employee.create({
             data: {
@@ -25,5 +26,8 @@ export default async function handler(
         return res.status(500).json({ message: 'Internal server error' })
     } finally {
         await prisma.$disconnect()
+    }}
+    else {
+        return res.status(405).json({ message: 'Method not allowed'})
     }
 }

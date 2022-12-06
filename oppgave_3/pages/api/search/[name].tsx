@@ -32,7 +32,7 @@ export default async function handler(
         )
 
         if (employee.length === 0) {
-          res.status(200).json({
+          res.status(204).json({
             success: false,
             message: 'Fant ingen ansatte med dette navnet',
             data: [],

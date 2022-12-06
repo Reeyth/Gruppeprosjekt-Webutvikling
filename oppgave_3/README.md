@@ -15,13 +15,19 @@
 
 ### Running the application
 1. Clone the repo
-2. npm install
-3. npx prisma migrate dev
+2. 'npm install'
+3. 'npx prisma migrate dev'
+4. 'npm run dev'
 
-### Testing
-1. npx jest - for testing the algorithm
-2. npx cypress open - A already completed test script will be shown (Tesing the search function).
+### Jest testing of algorithm
+1. 'npx jest' - for testing the algorithm
 
+### Cypress testing of the search page
+1. 'npm run dev' (application must be running for the test)
+2. open another terminal and do 'npx cypress open' 
+3. Select E2E testing
+4. Select browser
+5. and click on the search.cy.ts file in the browser to run the test.
 ---
 
 

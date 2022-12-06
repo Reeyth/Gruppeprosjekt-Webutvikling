@@ -44,7 +44,7 @@
 
 
 ## [/api/create](../pages/api/create/employee.ts)
-> GET
+> POST
 
 - Response 200 - returns status 200 and employee
 - Response 400 - returns status 400 and message as 'Error creating employee'
@@ -55,8 +55,8 @@
 
 > GET
 
-- Response 200 - returns status 200 and employee
-- Response 204 - returns status 204 and message as 'Fant ingen ansatte med dette navnet'
+- Response 200 - returns status 200 and employee, or returns status 200 and message as 'Fant ingen ansatte med dette navnet', or returns status 200 and data as employees
+
 - Response 500 - returns status 500 and message as 'internal server error'
 
 ## [/api/settings](../pages/api/settings)

@@ -24,10 +24,11 @@
 
 ### Cypress testing of the search page
 1. 'npm run dev' (application must be running for the test)
-2. open another terminal and do 'npx cypress open' 
-3. Select E2E testing
-4. Select browser
-5. and click on the search.cy.ts file in the browser to run the test.
+2. Click the 'demo' button at the top right of the webapplication to fill the database with employees
+3. Open another terminal and do 'npx cypress open' 
+4. Select E2E testing
+5. Select browser
+6. Click on the search.cy.ts file in the browser to run the test.
 ---
 
 

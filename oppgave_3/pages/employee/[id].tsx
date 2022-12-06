@@ -12,10 +12,8 @@ const EmployeeId = () => {
     const fetchWeek = async (id: any) => {
         const response = await fetch(`/api/employee/data/${id}`)
         const data = await response.json()
-        console.log(data)
         setWeeks(data.data)
         setResponse(data.message)
-        console.log(weeks)
 }
   useEffect(() => {
     fetchWeek(id)

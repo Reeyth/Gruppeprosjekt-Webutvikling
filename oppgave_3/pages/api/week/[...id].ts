@@ -15,7 +15,7 @@ export default async function handler(
       }
       const data = await prisma.$queryRaw<any>`
         SELECT 
-        Employee.name as employee_name, Day.name as day, Lunch.name as lunch_type, Day.id as id, Day.weekId as week_number, Overwrite.employee as overwrite_employee_id, owEmployee.name as overwrite_employee
+        Employee.name as employee_name, Employee.id as employee_id, Day.name as day, Lunch.name as lunch_type, Day.id as id, Day.weekId as week_number, Overwrite.employee as overwrite_employee_id, owEmployee.name as overwrite_employee
         FROM Employee
         INNER JOIN Day ON Employee.id = Day.employeeId
         INNER JOIN Week ON Day.weekId = Week.id

@@ -17,7 +17,7 @@ const Search = () => {
 
   return (
     <div className="flexbox">
-      <form method="GET" action={`/employee/${search}`}>
+      <form method="GET" action={`/search/${search}`}>
         <label htmlFor="person">Navn på ansatt</label>
         <input id="person" value={search} onChange={handleSearch} type="text" />
         <button className="styled-button" disabled={buttonDisabled}>Søk</button>

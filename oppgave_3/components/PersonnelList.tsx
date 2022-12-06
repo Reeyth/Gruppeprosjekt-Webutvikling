@@ -65,7 +65,7 @@ const PersonnelList = () => {
                         {employees?.map((employee: Employee) => (
                             <tr key={employee.id}>
                                 <td>{employee.id}</td>
-                                <td><Link href={`/employee/${employee.name}`}>{employee.name}</Link></td>
+                                <td><Link href={`/employee/${employee.id}`}>{employee.name}</Link></td>
                                 <td>{employee.rules}</td>
                                 <td>{employee.count}</td>
                             </tr>

@@ -80,13 +80,13 @@ export const validateBatch = (occourances: number, weekBatch: any[]) => {
 }
 
 export const filterList = (list : any, employeesUsed : String[], dayNumber : number, maxOccurrences : number, days : String[]) => {
-  let regex = /(?!days:)([\d]+)|\*/g
+  let regex = /(?!days:)([\d]+)|\*/
   list = list
   .sort(() => (Math.random() > 0.5 ? 1 : -1))
   .sort((a: Employee, b: Employee) => a.count - b.count)
   .filter(
     (a: Employee) =>
-      String(a.rules.match(/([\d]+)/g)).includes(String(dayNumber+1)) ||
+      String(a.rules.match(/([\d]+)/)).includes(String(dayNumber+1)) ||
       String(a.rules.match(regex)).includes('*')
   )
   .filter((a: Employee) => !employeesUsed.includes(a.name))

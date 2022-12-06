@@ -11,8 +11,7 @@ const UpdateEmployeePage: NextPage = () => {
         try {
             const response = await fetch(`/api/allEmployees`)
             const data = await response.json()
-            setEmployees(data)
-            console.log(data)
+            setEmployees(data.data)
         } catch(error) {
             console.error(error)
         }

@@ -5,19 +5,29 @@ const prisma = new PrismaClient()
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Response>
+  res: NextApiResponse
 ) {
+  if (req.method === 'POST') {
     const { name, rules } = req.body
-    console.log(name, rules)
-    const employee = await prisma.employee.create({
+    try {
+      const employee = await prisma.employee.create({
         data: {
-        name: name,
-        rules: rules
+          name: name,
+          rules: rules,
         },
-    })
-    if(!employee) {
+      })
+      if (!employee) {
         res.status(400).json({ message: 'Error creating employee' })
-    } else {
+      } else {
         res.status(200).json({ employee })
+      }
+    } catch (error) {
+      console.error(error)
+      return res.status(500).json({ message: 'Internal server error' })
+    } finally {
+      await prisma.$disconnect()
     }
+  } else {
+    return res.status(405).json({ message: 'Method not allowed' })
+  }
 }

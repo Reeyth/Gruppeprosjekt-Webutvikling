@@ -1,46 +1,56 @@
-# Endpoints
+## Endpoints  
+### [Go back](../README.md)
+---
+[/api/week](../pages/api/week/%5B...id%5D.ts)
 
+[/api/employee](../pages/api/employee/%5Bid%5D.ts)
 
-[Create - /api/create](../pages/api/create/employee.ts)
+[/api/employee/data](../pages/api/employee/data/%5Bid%5D.tsx)
 
-[Employee - /api/employee](../pages/api/employee/%5Bid%5D.ts)
+[/api/span](../pages/api/span/%5B...id%5D.ts)
 
-[Search - /api/search](../pages/api/search/%5Bname%5D.tsx)
+[/api/create](../pages/api/create/employee.ts)
 
-[Span - /api/span](../pages/api/span/%5B...id%5D.ts)
+[/api/search](../pages/api/search/%5Bname%5D.tsx)
 
-[Week - /api/week](../pages/api/week/%5B...id%5D.ts)
+[/api/settings](../pages/api/settings)
+
+[/api/allEmployees](../pages/api/allEmployees.ts)
+
+[/api/demo](../pages/api/demo.ts)
+
+[/api/algo](../pages/api/algo.ts)
 
 ---
 ## Methods
 
-
-[Create](../pages/api/create/employee.ts)
-> POST
+[Week](../pages/api/week/%5B...id%5D.ts)
+> GET/PUT
 
 [Employee](../pages/api/employee/%5Bid%5D.ts)
-> GET/POST/PUT/DELETE
+> GET/PUT
 
-[Search](../pages/api/search/%5Bname%5D.tsx)
-> GET
+[Employee Data](../pages/api/employee/data/%5Bid%5D.tsx)
+> GET/PUT/POST/DELETE
 
 [Span](../pages/api/span/%5B...id%5D.ts)
 > GET
 
-[Week](../pages/api/week/%5B...id%5D.ts)
-> GET/PUT
+[Create](../pages/api/create/employee.ts)
+> POST
 
----
-## Status/Respons
+[Search](../pages/api/search/%5Bname%5D.tsx)
+> GET
 
+[Settings](../pages/api/settings)
+> GET/POST
 
+[allEmployees](../pages/api/allEmployees.ts)
+> GET
 
----
-## Pages
+[Demo](../pages/api/demo.ts)
+> GET
 
-
-
----
-
-
+[Algo](../pages/api/algo.ts)
+> GET
 

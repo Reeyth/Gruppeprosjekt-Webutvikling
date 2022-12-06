@@ -5,26 +5,37 @@ const prisma = new PrismaClient()
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse
 ) {
-  if(req.method === 'GET') {
+  if (req.method === 'GET') {
     try {
       const data = await prisma.$queryRaw<any>`
-        SELECT 
-          *
-        FROM Employee
+        SELECT Employee.id, Employee.name, rules, COUNT(lunchId) as "count"
+        FROM Employee, Day
+        WHERE Employee.id = Day.employeeId
+        GROUP BY Employee.id
+        `
 
-  `
-    return res.status(200).json(data)
+        /*
+        The count column was returned as a bigint by the query above, which apparently is not supported by the JSON.stringify function, so I had to convert it to a number.
+        */
+        const data2 = data.map((item: any) => {
+          return {
+            ...item,
+            count: Number(item.count)
+          }
+        })
+
+      return res.status(200).json({success: true, data: data2})
     } catch (error) {
       console.error(error)
+      return res.status(500).json({ success: false, message: 'Internal server error' })
     } finally {
       async () => {
         await prisma.$disconnect()
       }
     }
-  } 
-  else {
+  } else {
     return res.status(400).json({ success: false, message: 'Bad request' })
   }
 }

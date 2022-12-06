@@ -16,7 +16,7 @@ const Id = ()  =>  {
             const data = await response.json()
             const getAllEmployees = await fetch(`/api/allEmployees`)
             const allEmployees = await getAllEmployees.json()
-            setEmployees(allEmployees)
+            setEmployees(allEmployees.data)
             setWeek(data)
         } catch(error) {
             console.error(error)

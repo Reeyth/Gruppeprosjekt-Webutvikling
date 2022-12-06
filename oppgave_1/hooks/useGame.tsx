@@ -55,7 +55,9 @@ export const useGame = () => {
 
     if (!country?.name?.toLowerCase().includes(letter.toLowerCase())) {
 
-      {/* CHANGE: NO-COMMENT YET */}
+      {/* CHANGE: The bug caused no strike to actually be set/replaced. 
+      We fixed this by getting the first "available" strike which has not been set yet, by using .find and getting the first one without a guess set.
+      We then change add a guess/letter to the strike and an icon to display the guess' failiure. Finally, we set the new list of strikes. */}
       const newStrikes = [...strikes]
       const strike = newStrikes.find((strike: any) => !strike.guess)
       if (strike) {

@@ -38,3 +38,8 @@ model Lunch {
   name String @unique
   day Day[]
 }
+
+model Overwrite {
+  id Int @id @unique
+  employee Int
+}

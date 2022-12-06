@@ -1,11 +1,13 @@
 @import './globals.scss';
 
-main, div {
+main,
+div {
   max-width: 1080px;
   margin: 0 auto;
 }
 
-.week-selection {
+.week-selection,
+.vacation-selection {
   button {
     background-color: black;
     color: white;
@@ -27,20 +29,31 @@ main, div {
     }
   }
 }
-.flexbox form, .flexbox .divwrapper {
+
+.vacation-selection {
+  margin-top: 1rem;
+}
+
+.flexbox form,
+.flexbox .divwrapper {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   align-content: center;
-  label {
-    margin: 0.3rem;
-    font-size: 12px;
-  }
 }
 
-.lunch-table, .employee-table {
+input, label, select {
+  font-size: 1.5rem;
+  margin: 0.3rem;
+}
+
+.lunch-table,
+.employee-table {
+  width: 100%;
+  text-align: center;
+
   table {
     width: 80%;
     border-collapse: collapse;
@@ -65,9 +78,29 @@ main, div {
   }
 }
 
+.styled-button {
+  margin: 0.5rem;
+  background-color: black;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 12px 24px;
+  font-size: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lightgrey;
+    color: black;
+  }
+
+  &:focus {
+    background-color: lightgrey;
+    color: black;
+  }
+}
 
 .days {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0.5rem;
@@ -75,7 +108,7 @@ main, div {
 }
 .daysGray {
   background: #f2f2f2;
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0.5rem;
@@ -89,7 +122,9 @@ nav {
   align-items: center;
   padding: 0 2rem;
   height: 4rem;
+
   a {
+    text-align: center;
     color: black;
     text-decoration: none;
     font-size: 1.2em;
@@ -97,13 +132,13 @@ nav {
     font-weight: 500;
     display: inline-block;
     width: 100px;
+    margin: 0.5em;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
   }
   a:hover {
     color: #fddb3a;
   }
-  
 }
 .divider {
   display: flex;
@@ -126,7 +161,8 @@ nav {
     margin: 0.5rem;
   }
 }
-h2 {
+h2,
+h3 {
   font-size: 1.5rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -137,7 +173,7 @@ h2 {
   color: black;
   text-align: center;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -146,7 +182,7 @@ h2 {
     background: black;
   }
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     right: 0;
@@ -155,6 +191,11 @@ h2 {
     background: black;
   }
 }
+
+h3 {
+  font-size: 1.2rem;
+}
+
 .rulesDiv {
   display: flex;
   justify-content: center;
@@ -165,22 +206,99 @@ h2 {
   color: black;
   font-size: 1.5rem;
   div {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 1rem;
-    p {
-      margin: 1rem;
-      padding: 1rem;
-    }
   }
-  }
+}
 
 form {
   text-align: center;
 }
+
 .changeEmployee select {
   float: right;
+}
+
+.settings-save {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.employee-original {
+  color: red;
+}
+
+.paragraph-info {
+  margin-left: 10%;
+  text-align: left;
+}
+
+.settings-flex {
+
+  font-size: 1.3rem;
+  display: flex;
+
+
+  * {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    flex-direction: row;
+  }
+
+  p {
+    float: left;
+    width: 65%;
+  }
+
+  input {
+    margin: 0.5rem 1rem;
+    float: right;
+  }
+}
+
+
+.settings-year-size {
+  width: 100%;
+  text-align: center;
+  margin-top: 3rem;
   
+  .year-size-visualize {
+    font-size: 3rem;
+  }
+
+  input {
+    width: 400px;
+    height: 15px;
+    -webkit-appearance: none;
+    background: #111;
+    outline: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: inset 0 0 5px black;
+  }
+
+  input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: red;
+    cursor: pointer;
+    border: 4px solid #333;
+    box-shadow: -407px 0 0 400px red;
+  }
+}
+
+table, p {
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 1.3rem;
+
+  select {
+    font-size: 1.2rem;
+  }
 }

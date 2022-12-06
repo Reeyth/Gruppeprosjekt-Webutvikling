@@ -21,7 +21,9 @@ export default function Letters({
     <>
       <p className="message">{getMessage()}</p>
       <ul className="letters">
+        {/* CHANGE: Again, we changed from forEach to map for looping through the list. We also added a ? to ensure it's not undefined */}
         {letterList?.map((letter) => {
+          {/* CHANGE: Since we are using map and not forEach, we have to return the component we want to render.*/}
           return(
           <Letter
             key={letter}

@@ -38,18 +38,17 @@ const Register = () => {
   }
 
   const handleSubmit = async () => {
-
     // if(await userExists(name)) {
     //   setStatus('En ansatt med dette navnet eksisterer allerede')
     //   return
     // }
 
     let allRules: String = 'days:' + rules.join('')
-    console.log(ruleWeek)
     if (ruleWeek != '') {
       allRules = allRules + '|week:' + ruleWeek
     }
-    const response = await fetch('http://localhost:3000/api/create/employee', {
+
+    const response = await fetch('/api/create/employee', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -64,17 +63,15 @@ const Register = () => {
     }
   }
 
-  // const userExists = async ( username: String ) => {
-  //   const response = await fetch('http://localhost:3000/api/employee/' + username)
-  //   const data = await response.json()
-  //   if(data.employee) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-
-  // }
-  
+  const runAlgo = async () => {
+    const responseAlgo = await fetch('/api/algo')
+    const data = await responseAlgo.json()
+    if(data.success === true) {
+      document.location.reload()
+    } else {
+      alert('Det skjedde en feil i oppdateringen')
+    }
+  }
 
   return (
     <>
@@ -129,20 +126,19 @@ const Register = () => {
               <p>Vennligst velg når du er tilgjenglig.</p>
             ) : (
               rules.map((rule, index) => (
-                <>
-                  <div key={index}>
-                    <p>
-                      {rule} - {getDay(rule)}
-                    </p>
-                    <button onClick={() => removeThis(index)}>Fjern</button>
-                  </div>
-                </>
+                <div key={index}>
+                  <p>
+                    {rule} - {getDay(rule)}
+                  </p>
+                  <button className="styled-button" onClick={() => removeThis(index)}>Fjern</button>
+                </div>
               ))
             )}
           </div>
           <button
+            className="styled-button"
             disabled={!(rules.length != 0 && name)}
-            onClick={() => handleSubmit()}
+            onClick={() => handleSubmit().then(() => runAlgo())}
           >
             Registrer
           </button>

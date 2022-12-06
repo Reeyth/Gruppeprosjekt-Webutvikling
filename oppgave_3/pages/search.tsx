@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Nav from '../components/Nav';
 import Search from '../components/Search/Search'
 

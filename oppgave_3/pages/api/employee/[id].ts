@@ -34,15 +34,20 @@ export default async function handler(
         case 'PUT':
             const idUser = req.query.id
             if(!idUser) {
-                return res.status(400).json({ status: 400, message: 'Id missing' })
+                return res.status(400).json({ status: 400, message: 'Det skjedde en feil. Id mangler.' })
             }
+
+            if(!req.body.name || req.body.name === '') {
+                return res.status(400).json({ status: 400, message: 'Navn mangler' })
+            }
+
             try {
                 const data = await prisma.$queryRaw<any>`
                 UPDATE Employee
                 SET name = ${req.body.name}
                 WHERE Employee.id = ${idUser}
                 `
-                return res.status(200).json(data)
+                return res.status(200).json({status: 200, data: data, message: "Ansatt oppdatert med nytt navn"})
             }
             catch (error) {
                 console.error(error)

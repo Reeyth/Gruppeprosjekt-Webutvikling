@@ -9,6 +9,8 @@ const Span = () => {
     const index = router.query.id
     
     const [week, setWeek] = useState<Day[]>([])
+    const [response, setResponse] = useState<string>('')
+
     const fetchWeek = async (week: any) => {
         if(week === undefined) return
         try {
@@ -16,8 +18,10 @@ const Span = () => {
             const data = await response.json()
             data.week_number = { week }
             setWeek(data)
+            setResponse('')
         } catch(error) {
             console.error(error)
+            setResponse('Noe gikk galt')
         }
     }
     useEffect(() => {
@@ -28,7 +32,7 @@ const Span = () => {
         <div>
         <Nav/>
         <WeekSpan/>
-        <LunchTable week={week}/>
+        <LunchTable week={week} response={response}/>
         </div>
     )
 }

@@ -26,7 +26,7 @@ const Week = () => {
     <main>
       <div>
         <Nav />
-        <LunchCalendar week={week} weekFetcher={fetchWeek} />
+        <LunchCalendar week={week} response={"Fant ingen tabell å vise"} />
       </div>
     </main>
   )

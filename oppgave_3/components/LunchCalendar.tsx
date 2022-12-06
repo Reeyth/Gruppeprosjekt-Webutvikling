@@ -3,10 +3,11 @@ import LunchTable from './Lunchcalendar/LunchTable'
 import WeekSelection from './Lunchcalendar/WeekSelection'
 
 type LunchCalendarProps = {
-  title: string
+  week: Day[],
+  response: string
 }
 
-const LunchCalendar = (props: any) => {
+const LunchCalendar: React.FC<LunchCalendarProps> = ({ week, response }) => {
   const [yearSize, setYearSize] = useState<number[]>([])
 
   const fetchYearSize = async () => {
@@ -27,9 +28,8 @@ const LunchCalendar = (props: any) => {
 
   return (
     <>
-      <h1>{props.title}</h1>
       <WeekSelection title="Uker" weeks={weeks} hyperlink="/week/" />
-      <LunchTable week={props.week} response="Velg en uke" />
+      <LunchTable week={week} response={response} />
     </>
   )
 }

@@ -10,7 +10,7 @@ const HomePage: NextPage = () => {
   return (
     <main>
       <Nav/>
-      <LunchCalendar week={week}/>
+      <LunchCalendar week={week} response={"Velg tabell"}/>
     </main>
   )
 }

@@ -38,7 +38,6 @@ const Employee = () => {
 
           setWeeks(weeks)
           setResponse('')
-
         } else {
           setResponse(data.message)
         }
@@ -56,11 +55,9 @@ const Employee = () => {
       <h2>Søk etter en ansatt</h2>
       <Search />
       {
-        weeks.map((week) => {
-          return (
-            <LunchTable key={week.employee_id} week={week.days} response={response} />
-          )
-        })
+        weeks[0]
+         ? <LunchTable key={weeks[0].employee_id} week={weeks[0].days} response={response} />
+         : <h2>{response}</h2> 
       }
     </div>
   )
